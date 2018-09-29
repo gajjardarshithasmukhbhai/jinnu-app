@@ -13,16 +13,20 @@ class Darshit extends React.Component{
 render()
 {
 	return(
-			<div class="background">
-			<div class="circle">
-			</div>
-				<img src={jin} class="img-fluid kl"/>
+			<div class="col-sm-12 background">
+				<div class="col-sm-3">
+				</div>
+				<div class="col-sm-6">
+					<img src={jin} class="img-fluid mb-4 kl"/>	
+				</div>
+				<div class="col-sm-3">
+				</div>
 				<h1 class="text font">JINU</h1>
-				<h3 class="font2">Daily task reminder</h3>
-				<Link exact to="/next-page"><Button variant="contained" color="lk" class="btn text-white next">
-					 Next <Forward/>
-				</Button>
-				</Link>
+					<h3 class="font2">Daily task reminder</h3>
+					<Link exact to="/next-page"><Button variant="contained" color="lk" class="btn text-white next">
+						 Next <Forward/>
+					</Button>
+					</Link>
 			</div>
 	);
 }
