@@ -2,7 +2,7 @@
 
 .background{
 	background-color: #5535CC;
-	height: 697px;
+	height: 600px;
 	background:-webkit-linear-gradient(top,#5535CC 60%,#1ADA43 100%);
 }
 .circle{
@@ -27,18 +27,18 @@
   color: #FFFFFF;
   font-size: 60px;
   position: absolute;
-  top:48%;
+  top:40%;
   left: 28%;
 }
 .font2{
    position: absolute;
-  top:59%;
+  top:53%;
   left: 12%;
   color: #FFFFFF;
 }
 .next{
   position: absolute;
-  top:68%;
+  top:63%;
   left: 34%;
   background-color: #F26C09;
 }
