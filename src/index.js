@@ -21,8 +21,8 @@ render()
 				</div>
 				<div class="col-sm-3">
 				</div>
-				<h1 class="text font">JINU</h1>
-					<h3 class="font2">Daily task reminder</h3>
+				<h1 class="text text-center font">JINU</h1>
+					<h3 class="font2 text-center">Daily task reminder</h3>
 					<Link exact to="/next-page"><Button variant="contained" color="lk" class="btn text-white next">
 						 Next <Forward/>
 					</Button>
