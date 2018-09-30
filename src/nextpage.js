@@ -16,13 +16,22 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import {indigo} from '@material-ui/core/colors'
 import AddIcon from '@material-ui/icons/Add';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import { withStyles } from '@material-ui/core/styles';
 const theme = createMuiTheme({
 	palatte:indigo[400],
+	width:10
 });
-
+console.log(theme);
+const styles = theme => ({
+  margin: {
+    margin: theme.spacing.unit*5,
+  },
+});
 class Nextpage extends React.Component{
 render()
 {
+	 const { classes } = this.props;
 	return(
 			<div>
 				<AppBar class="appbar">
@@ -34,21 +43,27 @@ render()
 				<div class="col-sm-12">
 					<Card>
 						 <CardContent>
-						 	<Grid continer alignItems="flex-end" style={{flex:1}}>
-						 		
-						        <Grid item class="text text-center email">
-						            <TextField  label="E-mail Adress" />
-						            <br/>
-						            <br/>
-						            <TextField  label="Jinu-Password" />
-						            <br/>
-						            <br/>
-						            <br/>
-						        	<Button>
-          								click me
-        							</Button>
-						        </Grid>
-						 	</Grid>
+							 <div className={classes.margin}>
+							        <Grid container spacing={8} alignItems="flex-end">
+							          <Grid item>
+							            <AccountCircle />
+							          </Grid>
+							          <Grid item>
+							            <TextField id="input-with-icon-grid" label="E-mail adress" />
+							          </Grid>
+							        </Grid>
+							  </div>
+							  <div className={classes.margin}>
+							        <Grid container spacing={8} alignItems="flex-end">
+							          <Grid item>
+							            <VisibilityIcon/>
+							          </Grid>
+							          <Grid item>
+							            <TextField id="input-with-icon-grid" label="password" />
+							          </Grid>
+							        </Grid>
+							  </div>
+
 						 </CardContent>
 					</Card>
 				</div>
@@ -56,4 +71,4 @@ render()
 	);
 }
 }
-export default Nextpage;
+export default withStyles(styles)(Nextpage);
