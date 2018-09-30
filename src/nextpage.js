@@ -37,7 +37,7 @@ render()
 						 	<Grid continer alignItems="flex-end" style={{flex:1}}>
 						 		
 						        <Grid item class="text text-center email">
-						            <TextField  label="E-mail darshit Adress" />
+						            <TextField  label="E-mail darshi Adress" />
 						            <br/>
 						            <br/>
 						            <TextField  label="Jinu-Password" />
