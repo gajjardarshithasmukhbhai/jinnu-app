@@ -20,6 +20,9 @@ import HowToRegRoundedIcon from '@material-ui/icons/HowToRegRounded';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { withStyles } from '@material-ui/core/styles';
+import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
+import Signup from './signup.js'
+
 const theme = createMuiTheme({
 	palatte:indigo[400],
 	width:10,
@@ -88,8 +91,8 @@ render()
 						      <Button spacing={5} color="secondary" variant="contained" className={classes.button}>
 						        <KeyboardArrowLeftIcon/>
 						        Back
-						      </Button>
-						      
+						      </Button><br/><br/>
+						      <Link exact to="/sign-up"class="text text-center" label="password" color="primary">you have no account?Signup</Link>
 						 </CardContent>
 					</Card>
 				</div>
