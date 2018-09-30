@@ -44,7 +44,7 @@ const usericon=style({
 })
 const button=style({
     marginLeft: -36,
-    width:250
+    width:280
 })
 
 class Signup extends React.Component{
