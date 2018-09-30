@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script" rel="stylesheet"');
 .appbar{
 	background-color: #5535CC;
 }
@@ -6,7 +6,6 @@
 	width: 100%;
 	color: #D60E0E;
 }
-
 .appheading{
 	font-family: 'Dancing Script', cursive;
 }

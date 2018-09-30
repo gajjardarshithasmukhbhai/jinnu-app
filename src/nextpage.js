@@ -23,7 +23,6 @@ import { withStyles } from '@material-ui/core/styles';
 import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
 import Signup from './signup.js'
 import {style} from 'typestyle'
-
 const theme = createMuiTheme({
 	palatte:indigo[400],
 	width:10,
