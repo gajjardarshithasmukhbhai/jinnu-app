@@ -85,11 +85,11 @@ render()
 						        <HowToRegRoundedIcon/>
 						        Login
 						      </Button>
-						      <Button spacing={5}  color="secondary" variant="contained" className={classes.button}>
+						      <Button spacing={5} color="secondary" variant="contained" className={classes.button}>
 						        <KeyboardArrowLeftIcon/>
 						        Back
 						      </Button>
-						      <TextField/>
+						      
 						 </CardContent>
 					</Card>
 				</div>
