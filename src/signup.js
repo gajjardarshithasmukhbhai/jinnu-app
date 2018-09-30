@@ -46,8 +46,47 @@ const button=style({
     marginLeft: -36,
     width:288
 })
+var firebase=require("firebase");
+ var config = {
+    apiKey: "AIzaSyDtgsq_E7-mie2nTiMewlNuZ4NUiJxBlt0",
+    authDomain: "jinu-cismox.firebaseapp.com",
+    databaseURL: "https://jinu-cismox.firebaseio.com",
+    projectId: "jinu-cismox",
+    storageBucket: "jinu-cismox.appspot.com",
+    messagingSenderId: "36379120584"
+  };
+  firebase.initializeApp(config);
+
+
+
 
 class Signup extends React.Component{
+	constructor(props)
+	{
+		super(props);
+		this.state={
+			der:"",
+		};
+		this.signin=this.signin.bind(this);
+	}
+	signin()
+	{
+		var provider=new firebase.auth.GoogleAuthProvider();
+		var promise=firebase.auth().signInWithRedirect(provider);
+		promise.then(result=>{
+			var user=result.user;
+			console.log(result);
+			firebase.database().ref("user/"+user.uid).set({
+				email:user.email,
+			});
+		})
+		promise.catch(err=>{
+			var errorcode=err.code;
+			this.setState({
+				der:errorcode,
+			})
+		})
+	}
 render()
 {
 	const {classes}=this.props;
@@ -64,13 +103,15 @@ render()
 			<br/>
 			<br/><br/>
 			<br/>
+			{this.state.der}
 			<div class="col-sm-12">
+
 				<Card>
 					<CardContent>
 						<div className={classes.margin}>
 							        <Grid container alignItems="flex-end">
 							          <Grid item>
-							          		<Button variant="contained" className={button} color="secondary">
+							          		<Button variant="contained" onClick={this.signin} className={button} color="secondary">
           										<i class="fa fa-google-plus fa-2x pl" aria-hidden="true"></i>signup with Google
         									</Button>  
 							          </Grid>
