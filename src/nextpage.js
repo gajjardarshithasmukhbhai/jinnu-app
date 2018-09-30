@@ -22,6 +22,7 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { withStyles } from '@material-ui/core/styles';
 import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
 import Signup from './signup.js'
+import {style} from 'typestyle'
 
 const theme = createMuiTheme({
 	palatte:indigo[400],
@@ -49,14 +50,20 @@ const styles = theme => ({
   	backgroundColor:"#F80707",
   }
 });
+const appbar=style({
+    flexGrow: 1,
+    backgroundColor: "#5535CC",
+})
 class Nextpage extends React.Component{
 render()
 {
 	 const { classes } = this.props;
 	return(
 			<div>
-				<AppBar class="appbar">
+			<br/><br/>
+				<AppBar className={appbar}>
 					<Toolbar >
+						<h3 class="appheading">Login in JINU</h3>
 					</Toolbar>
 				</AppBar>
 				<br/>
@@ -83,16 +90,16 @@ render()
 							            <TextField id="input-with-icon-grid" label="password" />
 							          </Grid>
 							        </Grid>
-							  </div>
+							  </div>&nbsp;&nbsp;&nbsp;
 							  <Button variant="contained" color="primary" className={classes.button}>
 						        <HowToRegRoundedIcon/>
 						        Login
-						      </Button>
+						      </Button>&nbsp;&nbsp;
 						      <Button spacing={5} color="secondary" variant="contained" className={classes.button}>
 						        <KeyboardArrowLeftIcon/>
 						        Back
 						      </Button><br/><br/>
-						      <Link exact to="/sign-up"class="text text-center" label="password" color="primary">you have no account?Signup</Link>
+						      &nbsp;&nbsp;&nbsp;&nbsp;<Link exact to="/sign-up" class="text text-center mk" label="password" color="primary">you have no account?Signup</Link>
 						 </CardContent>
 					</Card>
 				</div>
