@@ -55,7 +55,7 @@ const appbar=style({
     backgroundColor: "#5535CC",
 })
 const usericon=style({
-    marginLeft:theme.spacing.unit * 14,
+    marginLeft:theme.spacing.unit * 9,
 })
 class Nextpage extends React.Component{
 render()

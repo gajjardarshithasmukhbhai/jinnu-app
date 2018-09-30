@@ -9,6 +9,7 @@ import Icon from '@material-ui/core/Icon';
 import Forward from '@material-ui/icons/Forward';
 import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
 import Nextpage from './nextpage.js'
+import Signup from './signup.js'
 class Darshit extends React.Component{
 render()
 {
@@ -36,6 +37,7 @@ ReactDOM.render(
 <div>
 	<Route exact path="/" component={Darshit}/>
 	<Route exact path="/next-page" component={Nextpage}/>
+	<Route exact path="/sign-up" component={Signup}/>
 </div>
 </Router>
 	,document.getElementById("root"));
