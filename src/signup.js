@@ -44,7 +44,7 @@ const usericon=style({
 })
 const button=style({
     marginLeft: -36,
-    width:280
+    width:288
 })
 
 class Signup extends React.Component{
@@ -84,6 +84,8 @@ render()
         									</Button>  
 							          </Grid>
 							        </Grid>
+							        <br/>
+							        <p class="text text-muted">Mr.Darshit Gajjar(Designer,Frontend Devloper,backend Devloper and MERN stack Devloper)</p>
 							  </div>
 					</CardContent>
 				</Card>
