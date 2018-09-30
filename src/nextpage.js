@@ -16,17 +16,35 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import {indigo} from '@material-ui/core/colors'
 import AddIcon from '@material-ui/icons/Add';
+import HowToRegRoundedIcon from '@material-ui/icons/HowToRegRounded';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { withStyles } from '@material-ui/core/styles';
 const theme = createMuiTheme({
 	palatte:indigo[400],
-	width:10
+	width:10,
+
 });
 console.log(theme);
 const styles = theme => ({
   margin: {
     margin: theme.spacing.unit*5,
   },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  leftIcon: {
+    marginRight: theme.spacing.unit,
+  },
+  rightIcon: {
+    marginLeft: theme.spacing.unit,
+  },
+  iconSmall: {
+    fontSize: 20,
+  },
+  button1:{
+  	backgroundColor:"#F80707",
+  }
 });
 class Nextpage extends React.Component{
 render()
@@ -63,7 +81,17 @@ render()
 							          </Grid>
 							        </Grid>
 							  </div>
-
+							  <Button variant="contained" color="primary" className={classes.button}>
+						        <HowToRegRoundedIcon/>
+						        Login
+						      </Button>
+						      <Button spacing={5} class="btn btn-danger" variant="contained">
+						        <KeyboardArrowLeftIcon/>
+						        Back
+						      </Button>
+						      <TextField>
+						      	SignUp
+						      </TextField>
 						 </CardContent>
 					</Card>
 				</div>
