@@ -68,6 +68,7 @@ class Signup extends React.Component{
 			der:"daekk",
 		};
 		this.signin=this.signin.bind(this);
+		this.facebook=this.facebook.bind(this);
 	}
 	signin()
 	{
@@ -95,6 +96,33 @@ class Signup extends React.Component{
 				der:errmessage,
 			})
 		})
+	}
+	facebook()
+	{
+		console.log("gajjar darshit ja");
+		var provider=new firebase.auth.FacebookAuthProvider();
+		var promise=firebase.auth().signInWithPopup(provider);
+		promise.then(result=>{
+			var user=result.user;
+			this.setState({
+				der:"Welcome "+user+"in Jinu App",
+			})
+			console.log(result);
+			console.log("hasmukhbhai");
+			firebase.database().ref("user/"+user.uid).set({
+				email:user.email,
+				name:user.displayName,
+				
+			});
+		})
+		promise.catch(err=>{
+			var errorcode=err.code;
+			var errmessage=err.message;
+			console.log("gajjar darshit hasks");
+			this.setState({
+				der:errmessage,
+			})
+		})	
 	}
 render()
 {
@@ -129,7 +157,7 @@ render()
 						<div className={classes.margin}>
 							        <Grid container alignItems="flex-end">
 							          <Grid item>
-							          		<Button variant="contained" className={button} color="primary">
+							          		<Button variant="contained" onClick={this.facebook}className={button} color="primary">
           										<i class="fa fa-facebook-square fa-2x pl1" aria-hidden="true"></i>signup with facebook
         									</Button>  
 							          </Grid>
