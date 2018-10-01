@@ -89,7 +89,7 @@ class Signup extends React.Component{
 			var errmessage=err.message;
 			console.log("gajjar darshit hasks");
 			this.setState({
-				der:"gajjarmm",
+				der:errmessage,
 			})
 		})
 	}
