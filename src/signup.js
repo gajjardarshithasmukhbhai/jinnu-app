@@ -81,7 +81,7 @@ class Signup extends React.Component{
 			firebase.database().ref("user/"+user.uid).set({
 				email:user.email,
 				name:user.displayName,
-				ert:"gajjatjjja"
+				erd:"gajera"
 			});
 		})
 		promise.catch(err=>{
