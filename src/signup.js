@@ -33,7 +33,8 @@ const appbar=style({
     flexGrow: 1,
     backgroundColor: "#5535CC",
 })
-const styles = theme => ({
+const styles = theme => ({ 
+
   margin: {
     margin: theme.spacing.unit*5,
   },
@@ -74,7 +75,7 @@ class Signup extends React.Component{
 	{
 		console.log("gajjar darshit ja");
 		var provider=new firebase.auth.GoogleAuthProvider();
-		var promise=firebase.auth().signInWithPopup(provider);
+		var promise=firebase.auth().signInWithRedirect(provider);
 		promise.then(result=>{
 			var user=result.user;
 			this.setState({
@@ -101,7 +102,7 @@ class Signup extends React.Component{
 	{
 		console.log("gajjar darshit ja");
 		var provider=new firebase.auth.FacebookAuthProvider();
-		var promise=firebase.auth().signInWithPopup(provider);
+		var promise=firebase.auth().signInWithRedirect(provider);
 		promise.then(result=>{
 			var user=result.user;
 			this.setState({
