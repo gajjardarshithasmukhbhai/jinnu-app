@@ -34,7 +34,7 @@ const appbar=style({
     backgroundColor: "#5535CC",
 })
 const styles = theme => ({ 
-	
+
   margin: {
     margin: theme.spacing.unit*5,
   },
@@ -66,7 +66,7 @@ class Signup extends React.Component{
 	{
 		super(props);
 		this.state={
-			der:"daekk",
+			der:"",
 		};
 		this.signin=this.signin.bind(this);
 		this.facebook=this.facebook.bind(this);
