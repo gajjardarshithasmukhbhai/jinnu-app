@@ -29,7 +29,6 @@ const theme = createMuiTheme({
 	width:10,
 
 });
-console.log(theme);
 const styles = theme => ({
   margin: {
     margin: theme.spacing.unit*5,

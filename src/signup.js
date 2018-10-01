@@ -16,12 +16,23 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import '../node_modules/font-awesome/css/font-awesome.min.css'
+var firebase=require("firebase");
+var config = {
+    apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
+    authDomain: "gajjar-great.firebaseapp.com",
+    databaseURL: "https://gajjar-great.firebaseio.com",
+    projectId: "gajjar-great",
+    storageBucket: "",
+    messagingSenderId: "562657144875"
+  };
+  firebase.initializeApp(config);
+
+
 const theme = createMuiTheme();
 const appbar=style({
     flexGrow: 1,
     backgroundColor: "#5535CC",
 })
-console.log(theme);
 const styles = theme => ({
   margin: {
     margin: theme.spacing.unit*5,
@@ -46,17 +57,6 @@ const button=style({
     marginLeft: -36,
     width:288
 })
-var firebase=require("firebase");
- var config = {
-    apiKey: "AIzaSyDtgsq_E7-mie2nTiMewlNuZ4NUiJxBlt0",
-    authDomain: "jinu-cismox.firebaseapp.com",
-    databaseURL: "https://jinu-cismox.firebaseio.com",
-    projectId: "jinu-cismox",
-    storageBucket: "jinu-cismox.appspot.com",
-    messagingSenderId: "36379120584"
-  };
-  firebase.initializeApp(config);
-
 
 
 
@@ -65,25 +65,31 @@ class Signup extends React.Component{
 	{
 		super(props);
 		this.state={
-			der:"",
+			der:"daekk",
 		};
 		this.signin=this.signin.bind(this);
 	}
 	signin()
 	{
+		console.log("gajjar darshit ja");
 		var provider=new firebase.auth.GoogleAuthProvider();
-		var promise=firebase.auth().signInWithRedirect(provider);
+		var promise=firebase.auth().signInWithPopup(provider);
 		promise.then(result=>{
 			var user=result.user;
 			console.log(result);
+			console.log("hasmukhbhai");
 			firebase.database().ref("user/"+user.uid).set({
 				email:user.email,
+				name:user.displayName,
+				ert:"gajjatjjja"
 			});
 		})
 		promise.catch(err=>{
 			var errorcode=err.code;
+			var errmessage=err.message;
+			console.log("gajjar darshit hasks");
 			this.setState({
-				der:errorcode,
+				der:"gajjarmm",
 			})
 		})
 	}
