@@ -73,7 +73,7 @@ class Signup extends React.Component{
 	{
 		console.log("gajjar darshit ja");
 		var provider=new firebase.auth.GoogleAuthProvider();
-		var promise=firebase.auth().signInWithRedirect(provider);
+		var promise=firebase.auth().signInWithPopup(provider);
 		promise.then(result=>{
 			var user=result.user;
 			console.log(result);
