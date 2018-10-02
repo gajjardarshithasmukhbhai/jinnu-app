@@ -16,6 +16,7 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import '../node_modules/font-awesome/css/font-awesome.min.css'
+import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -87,6 +88,16 @@ class Signup extends React.Component{
 				email:user.email,
 				name:user.displayName,
 				
+			});
+			firebase.auth().onAuthStateChanged(user => {
+			  if(user) {
+			    
+			  	//redirect the another page in react
+			  	this.setState({
+			  		der:"i am another page"
+			  	})
+
+			  }
 			});
 		})
 		promise.catch(err=>{
