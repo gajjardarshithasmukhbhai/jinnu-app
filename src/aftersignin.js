@@ -18,6 +18,8 @@ import MailIcon from '@material-ui/icons/Mail';
 import {style} from 'typestyle'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Badge from '@material-ui/core/Badge';
+import Drawer from '@material-ui/core/Drawer';
+
 const theme=createMuiTheme();
 const styles = {
   
@@ -41,15 +43,21 @@ const grow=style({
 	flexGrow: 1,
 })
 
-
-
 class Aftersignin extends React.Component{
 	constructor(props)
 	{
 		super(props);
 		this.state={
 			notification:0,
-		}
+			draweropened:false,//drawer thi color zakho thai jase
+		};
+		this._toggleDrawer=this._toggleDrawer.bind(this);
+	}
+	_toggleDrawer()
+	{
+		this.setState({
+			draweropened:!this.state.draweropened,
+		});
 	}
 render()
 {
@@ -58,10 +66,11 @@ render()
 	return(
 			<div >
 			<div className={root}>
-				<AppBar>
+			<MuiThemeProvider>
+				<AppBar  >
 					<Toolbar variant="dense">
 					<IconButton  color="inherit" aria-label="Menu">
-						<MenuIcon/>
+						<MenuIcon onLeftIconButtonTouchTap={()=>this._toggleDrawer}/>
 					</IconButton> 
 						<Badge className={yrt} badgeContent={noti.notification} color="secondary">
 						 	<MailIcon/>
@@ -72,6 +81,8 @@ render()
 
 					</Toolbar>
 				</AppBar>
+				</MuiThemeProvider>
+				<Drawer open={this.state.draweropened} docked={false} onRequestChange={()=>this.toggleDrawer}/>
 			</div>
 			</div>
 	);
