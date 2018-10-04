@@ -82,7 +82,7 @@ render()
 							            <AccountCircle className={classes.rightIcon}/>
 							          </Grid>
 							          <Grid item>
-							            <TextField id="input-with-icon-grid" label="E-mail adress" />
+							            <TextField id="input-with-icon-grid" label="username" />
 							          </Grid>
 							        </Grid>
 							  </div>

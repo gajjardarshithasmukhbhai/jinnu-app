@@ -16,7 +16,8 @@ import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import '../node_modules/font-awesome/css/font-awesome.min.css'
-import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
+import Aftersignin from './aftersignin.js'
+import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -68,10 +69,25 @@ class Signup extends React.Component{
 		super(props);
 		this.state={
 			der:"",
+			redirect: false,
 		};
 		this.signin=this.signin.bind(this);
 		this.facebook=this.facebook.bind(this);
+		this.renderRedirect=this.renderRedirect.bind(this);
 	}
+
+
+
+
+	renderRedirect = () => {
+   				 if (this.state.redirect) {
+      					return <Redirect to='/after-signin' />
+    			}
+  			}
+
+
+
+
 	signin()
 	{
 		console.log("gajjar darshit ja");
@@ -82,6 +98,7 @@ class Signup extends React.Component{
 			this.setState({
 				der:"Welcome "+user+"in Jinu App",
 			})
+			
 			console.log(result);
 			console.log("hasmukhbhai");
 			firebase.database().ref("user/"+user.uid).set({
@@ -89,16 +106,20 @@ class Signup extends React.Component{
 				name:user.displayName,
 				
 			});
+
 			firebase.auth().onAuthStateChanged(user => {
 			  if(user) {
 			    
 			  	//redirect the another page in react
+			  	
 			  	this.setState({
-			  		der:"i am another page"
+			  		der:"i am another page",
+			  		redirect:true
 			  	})
 
 			  }
 			});
+
 		})
 		promise.catch(err=>{
 			var errorcode=err.code;
@@ -177,6 +198,7 @@ render()
 							        <br/>
 							        <p class="text text-muted">Mr.Darshit Gajjar(Designer,Frontend Devloper,backend Devloper and MERN stack Devloper)</p>
 							  </div>
+							  {this.renderRedirect()}
 					</CardContent>
 				</Card>
 			</div>

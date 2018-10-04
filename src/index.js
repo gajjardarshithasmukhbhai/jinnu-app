@@ -7,9 +7,10 @@ import jin from './image/jinu.png'
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Forward from '@material-ui/icons/Forward';
-import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
 import Nextpage from './nextpage.js'
 import Signup from './signup.js'
+import Aftersignin from './aftersignin.js'
 class Darshit extends React.Component{
 render()
 {
@@ -38,6 +39,7 @@ ReactDOM.render(
 	<Route exact path="/" component={Darshit}/>
 	<Route exact path="/next-page" component={Nextpage}/>
 	<Route exact path="/sign-up" component={Signup}/>
+	<Route exact path="/after-signin" component={Aftersignin}/>
 </div>
 </Router>
 	,document.getElementById("root"));
