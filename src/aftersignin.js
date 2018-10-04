@@ -20,23 +20,29 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Badge from '@material-ui/core/Badge';
 const theme=createMuiTheme();
 const styles = {
-  root: {
-    flexGrow: 1,
-  },
-  grow: {
-    flexGrow: 1,
-  },
+  
+  
   menuButton: {
     marginLeft: -12,
     marginRight: 20,
   },
 };
 const yrt=style({
-	marginLeft: 232,
+	marginLeft: 200,
 })
 const yt=style({
-	marginLeft: 16,
+	marginLeft: 24,
+
 })
+const root=style({
+	flexGrow: 1,
+})
+const grow=style({
+	flexGrow: 1,
+})
+
+
+
 class Aftersignin extends React.Component{
 	constructor(props)
 	{
@@ -48,17 +54,25 @@ class Aftersignin extends React.Component{
 render()
 {
 	const noti=this.state;
+	const { classes } = this.state;
 	return(
-			<div>
+			<div >
+			<div className={root}>
 				<AppBar>
-					<Toolbar>
+					<Toolbar variant="dense">
+					<IconButton  color="inherit" aria-label="Menu">
 						<MenuIcon/>
+					</IconButton> 
 						<Badge className={yrt} badgeContent={noti.notification} color="secondary">
 						 	<MailIcon/>
 						</Badge>
+						
 						 <AccountCircle className={yt}/>
+						
+
 					</Toolbar>
 				</AppBar>
+			</div>
 			</div>
 	);
 }

@@ -147,6 +147,18 @@ class Signup extends React.Component{
 				name:user.displayName,
 				
 			});
+			firebase.auth().onAuthStateChanged(user => {
+			  if(user) {
+			    
+			  	//redirect the another page in react
+			  	
+			  	this.setState({
+			  		der:"i am another page",
+			  		redirect:true
+			  	})
+
+			  }
+			});
 		})
 		promise.catch(err=>{
 			var errorcode=err.code;
