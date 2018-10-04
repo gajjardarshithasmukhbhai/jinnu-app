@@ -17,6 +17,7 @@ import Menu from '@material-ui/core/Menu';
 import MailIcon from '@material-ui/icons/Mail';
 import {style} from 'typestyle'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import Badge from '@material-ui/core/Badge';
 const theme=createMuiTheme();
 const styles = {
   root: {
@@ -37,14 +38,24 @@ const yt=style({
 	marginLeft: 16,
 })
 class Aftersignin extends React.Component{
+	constructor(props)
+	{
+		super(props);
+		this.state={
+			notification:0,
+		}
+	}
 render()
 {
+	const noti=this.state;
 	return(
 			<div>
 				<AppBar>
 					<Toolbar>
 						<MenuIcon/>
-						 <MailIcon className={yrt}/>
+						<Badge className={yrt} badgeContent={noti.notification} color="secondary">
+						 	<MailIcon/>
+						</Badge>
 						 <AccountCircle className={yt}/>
 					</Toolbar>
 				</AppBar>
