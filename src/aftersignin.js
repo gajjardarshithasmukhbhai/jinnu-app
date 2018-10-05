@@ -20,8 +20,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Badge from '@material-ui/core/Badge';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import { mailFolderListItems, otherMailFolderListItems } from './tileData';
-import Divider from '@material-ui/core/Divider';
+import { mailFolderListItems} from './tileData';
 import List from '@material-ui/core/List';
 const theme=createMuiTheme();
 const styles = {
@@ -78,8 +77,6 @@ render()
   const sideList = (
       <div className={list}>
         <List>{mailFolderListItems}</List>
-        <Divider />
-        <List>{otherMailFolderListItems}</List>
       </div>
     );
 	return(

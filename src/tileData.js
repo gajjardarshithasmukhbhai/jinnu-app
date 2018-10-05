@@ -9,55 +9,57 @@ import SendIcon from '@material-ui/icons/Send';
 import MailIcon from '@material-ui/icons/Mail';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReportIcon from '@material-ui/icons/Report';
+import PersonIcon from '@material-ui/icons/Person';
+import BusinessIcon from '@material-ui/icons/Business';
 
+import Divider from '@material-ui/core/Divider';
+import 'font-awesome/css/font-awesome.min.css';
+import  'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faNewspaper } from '@fortawesome/free-solid-svg-icons'
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
+import {style} from 'typestyle'
+library.add(faNewspaper )
+library.add(faSignOutAlt)
 export const mailFolderListItems = (
   <div>
+  <ListItem>
+        <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+  </ListItem>
+    <Divider/>
+    <ListItem button>
+      <ListItemIcon>
+        <FontAwesomeIcon icon="newspaper" size={190}/>
+      </ListItemIcon>
+      <ListItemText primary="News" />
+    </ListItem>
+    <Divider/>
     <ListItem button>
       <ListItemIcon>
         <InboxIcon />
       </ListItemIcon>
       <ListItemText primary="Inbox" />
     </ListItem>
+    <Divider/>
     <ListItem button>
       <ListItemIcon>
-        <StarIcon />
+      <span className="fa-fw">
+        <FontAwesomeIcon icon="sign-out-alt"/>
+       </span>
       </ListItemIcon>
-      <ListItemText primary="Starred" />
+      <ListItemText primary="logout" />
+    </ListItem>
+    <Divider/>
+    <ListItem button>
+      <ListItemIcon>
+        <BusinessIcon />
+      </ListItemIcon>
+      <ListItemText primary="company details" />
     </ListItem>
     <ListItem button>
-      <ListItemIcon>
-        <SendIcon />
-      </ListItemIcon>
-      <ListItemText primary="Send mail" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DraftsIcon />
-      </ListItemIcon>
-      <ListItemText primary="Drafts" />
-    </ListItem>
-  </div>
-);
-
-export const otherMailFolderListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <MailIcon />
-      </ListItemIcon>
-      <ListItemText primary="All mail" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DeleteIcon />
-      </ListItemIcon>
-      <ListItemText primary="Trash" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ReportIcon />
-      </ListItemIcon>
-      <ListItemText primary="Spam" />
+        <p class="text text-muted">Mr.Darshit Gajjar(Devloper)</p>
     </ListItem>
   </div>
 );
