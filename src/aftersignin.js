@@ -29,6 +29,10 @@ const styles = {
     marginRight: 20,
   },
 };
+const appbar=style({
+    flexGrow: 1,
+    backgroundColor: "#5535CC",
+})
 const yrt=style({
 	marginLeft: 154,
 })
@@ -67,7 +71,7 @@ render()
 			<div >
 			<div className={root}>
 			<MuiThemeProvider>
-				<AppBar  >
+				<AppBar  className={appbar}>
 					<Toolbar variant="dense">
 					<IconButton  color="inherit" aria-label="Menu">
 						<MenuIcon onLeftIconButtonTouchTap={()=>this._toggleDrawer}/>
