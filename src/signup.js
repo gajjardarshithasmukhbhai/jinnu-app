@@ -87,8 +87,6 @@ class Signup extends React.Component{
   			}
 
 
-
-
 	signin()
 	{
 		console.log("gajjar darshit ja");

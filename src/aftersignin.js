@@ -19,7 +19,10 @@ import {style} from 'typestyle'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Badge from '@material-ui/core/Badge';
 import Drawer from '@material-ui/core/Drawer';
-
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import { mailFolderListItems, otherMailFolderListItems } from './tileData';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
 const theme=createMuiTheme();
 const styles = {
   
@@ -28,11 +31,16 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
+
 };
 const appbar=style({
     flexGrow: 1,
     backgroundColor: "#5535CC",
 })
+const list=style({
+    width: 200,
+})
+
 const yrt=style({
 	marginLeft: 154,
 })
@@ -53,29 +61,57 @@ class Aftersignin extends React.Component{
 		super(props);
 		this.state={
 			notification:0,
-			draweropened:false,//drawer thi color zakho thai jase
+      left:false
 		};
-		this._toggleDrawer=this._toggleDrawer.bind(this);
+		this.toggleDrawer=this.toggleDrawer.bind(this);
 	}
-	_toggleDrawer()
-	{
-		this.setState({
-			draweropened:!this.state.draweropened,
-		});
-	}
+ toggleDrawer = (open) => () => {
+    this.setState({
+      left: open,
+    });
+  }
+
 render()
 {
 	const noti=this.state;
 	const { classes } = this.state;
+  const sideList = (
+      <div className={list}>
+        <List>{mailFolderListItems}</List>
+        <Divider />
+        <List>{otherMailFolderListItems}</List>
+      </div>
+    );
 	return(
-			<div >
+			<div>
+    {/* sidebar open karva mate thay che */}
+    <SwipeableDrawer
+          open={this.state.left}
+          onClose={this.toggleDrawer(false)}
+          onOpen={this.toggleDrawer(true)}
+        >
+
+        
+        <div
+            tabIndex={0}
+            role="button"
+            onClick={this.toggleDrawer('left', false)}
+            onKeyDown={this.toggleDrawer('left', false)}
+          >
+            {sideList}
+        </div>
+
+
+    </SwipeableDrawer>
+
 			<div className={root}>
-			<MuiThemeProvider>
 				<AppBar  className={appbar}>
 					<Toolbar variant="dense">
-					<IconButton  color="inherit" aria-label="Menu">
-						<MenuIcon onLeftIconButtonTouchTap={()=>this._toggleDrawer}/>
-					</IconButton> 
+					<IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
+
+						<MenuIcon/>
+					
+          </IconButton> 
           <Typography variant="title" color="inherit">
             Jinu
           </Typography>
@@ -88,13 +124,11 @@ render()
 
 					</Toolbar>
 				</AppBar>
-				</MuiThemeProvider>
 				<Drawer open={this.state.draweropened} docked={false} onRequestChange={()=>this.toggleDrawer}/>
 			</div>
 			</div>
 	);
 }
-
 }
 
 
