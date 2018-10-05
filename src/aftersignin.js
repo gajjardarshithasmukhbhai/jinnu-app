@@ -22,6 +22,8 @@ import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import { mailFolderListItems} from './tileData';
 import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Divider from '@material-ui/core/Divider';
 const theme=createMuiTheme();
 const styles = {
   
@@ -60,7 +62,9 @@ class Aftersignin extends React.Component{
 		super(props);
 		this.state={
 			notification:0,
-      left:false
+      left:false,
+      title_name:"Gajjar Darshit",
+      password:"hdhbd462"
 		};
 		this.toggleDrawer=this.toggleDrawer.bind(this);
 	}
@@ -76,6 +80,10 @@ render()
 	const { classes } = this.state;
   const sideList = (
       <div className={list}>
+      <ListItem>
+        <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.title_name}
+      </ListItem>
+      <Divider/>
         <List>{mailFolderListItems}</List>
       </div>
     );
@@ -122,6 +130,12 @@ render()
 					</Toolbar>
 				</AppBar>
 				<Drawer open={this.state.draweropened} docked={false} onRequestChange={()=>this.toggleDrawer}/>
+        <br/><br/><br/>
+        <div class="container">
+            <div class="alert alert-primary"><span aria-hidden="true" data-dismiss="alert" class="close">&times;</span>
+            <b>welcome user in Darshit jinu app</b><br/>your username is:&nbsp;&nbsp;<b>{this.state.title_name}</b><br/>your password is:&nbsp;&nbsp;<b>{this.state.password}</b>
+            </div>
+        </div>
 			</div>
 			</div>
 	);

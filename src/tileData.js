@@ -23,12 +23,16 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import {style} from 'typestyle'
 library.add(faNewspaper )
 library.add(faSignOutAlt)
-export const mailFolderListItems = (
+let full_name=()=>
+{
+  this.state={
+    der:"gajjar",
+  }
+}
+export const mailFolderListItems = ( 
+
   <div>
-  <ListItem>
-        <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
-  </ListItem>
-    <Divider/>
+  
     <ListItem button>
       <ListItemIcon>
         <FontAwesomeIcon icon="newspaper" size={190}/>
