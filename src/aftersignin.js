@@ -38,7 +38,7 @@ const appbar=style({
     backgroundColor: "#5535CC",
 })
 const list=style({
-    width: 200,
+    width: 230,
 })
 
 const yrt=style({
