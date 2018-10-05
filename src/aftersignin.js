@@ -30,7 +30,7 @@ const styles = {
   },
 };
 const yrt=style({
-	marginLeft: 200,
+	marginLeft: 154,
 })
 const yt=style({
 	marginLeft: 24,
@@ -72,6 +72,9 @@ render()
 					<IconButton  color="inherit" aria-label="Menu">
 						<MenuIcon onLeftIconButtonTouchTap={()=>this._toggleDrawer}/>
 					</IconButton> 
+          <Typography variant="title" color="inherit">
+            Jinu
+          </Typography>
 						<Badge className={yrt} badgeContent={noti.notification} color="secondary">
 						 	<MailIcon/>
 						</Badge>

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import  'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './signup.css'
+import Typography from '@material-ui/core/Typography';
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Card from '@material-ui/core/Card';
@@ -54,7 +55,7 @@ const styles = theme => ({
   }
 });
 const usericon=style({
-    marginLeft:theme.spacing.unit * 14,
+    marginLeft:theme.spacing.unit * 30,
 })
 const button=style({
     marginLeft: -36,
@@ -176,7 +177,9 @@ render()
 			<div>	
 				<AppBar className={appbar}>
 					<Toolbar>
-						<h3 class="appheading">Signup in JINU</h3>
+						<Typography variant="title" color="inherit">
+            				Jinu
+          				</Typography>
 						<div>
 							<AccountCircleIcon className={usericon}/>
 						</div>

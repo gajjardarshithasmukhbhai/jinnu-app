@@ -23,6 +23,8 @@ import { withStyles } from '@material-ui/core/styles';
 import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
 import Signup from './signup.js'
 import {style} from 'typestyle'
+import Typography from '@material-ui/core/Typography';
+
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 const theme = createMuiTheme({
 	palatte:indigo[400],
@@ -54,7 +56,7 @@ const appbar=style({
     backgroundColor: "#5535CC",
 })
 const usericon=style({
-    marginLeft:theme.spacing.unit * 14,
+    marginLeft:theme.spacing.unit * 30,
 })
 class Nextpage extends React.Component{
 render()
@@ -65,7 +67,9 @@ render()
 			<br/><br/>
 				<AppBar className={appbar}>
 					<Toolbar >
-						<h3 class="appheading">Login in JINU</h3>
+						<Typography variant="title" color="inherit">
+            				Jinu
+          				</Typography>
 						<div class="text-c">
 							<AccountCircleIcon className={usericon}/>
 						</div>
