@@ -57,6 +57,18 @@ const grow=style({
 })
 
 class Aftersignin extends React.Component{
+  componentWillMount()
+  {
+   let ert="zxcvWERTYUIobnm<asdfghjklpoiuytrewq1234567890";
+   let lp="";
+   for(let i=0;i<=4;i++)
+   {
+     lp=lp+ert.charAt(Math.floor(Math.random()*ert.length))
+   }
+   this.setState({
+     password:lp,
+   }) 
+  }
 	constructor(props)
 	{
 		super(props);
@@ -64,7 +76,7 @@ class Aftersignin extends React.Component{
 			notification:0,
       left:false,
       title_name:"Gajjar Darshit",
-      password:"hdhbd462"
+      password:""
 		};
 		this.toggleDrawer=this.toggleDrawer.bind(this);
 	}
