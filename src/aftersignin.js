@@ -24,6 +24,16 @@ import { mailFolderListItems} from './tileData';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
+var firebase=require("firebase");
+var config = {
+    apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
+    authDomain: "gajjar-great.firebaseapp.com",
+    databaseURL: "https://gajjar-great.firebaseio.com",
+    projectId: "gajjar-great",
+    storageBucket: "",
+    messagingSenderId: "562657144875"
+  };
+
 const theme=createMuiTheme();
 const styles = {
   
@@ -59,7 +69,7 @@ const grow=style({
 class Aftersignin extends React.Component{
   componentWillMount()
   {
-   let ert="zxcvWERTYUIobnm<asdfghjklpoiuytrewq1234567890";
+   let ert="zxcvWERTYUIobnmasdfghjklpoiuytrewq1234567890";
    let lp="";
    for(let i=0;i<=4;i++)
    {
@@ -68,6 +78,17 @@ class Aftersignin extends React.Component{
    this.setState({
      password:lp,
    }) 
+    firebase.auth().onAuthStateChanged(user => {
+        if(user) {
+          
+          this.setState({
+              function:true,
+          })          
+          
+        }
+      });
+
+
   }
 	constructor(props)
 	{
@@ -76,7 +97,8 @@ class Aftersignin extends React.Component{
 			notification:0,
       left:false,
       title_name:"Gajjar Darshit",
-      password:""
+      password:"",
+      function:false,
 		};
 		this.toggleDrawer=this.toggleDrawer.bind(this);
 	}
@@ -85,7 +107,17 @@ class Aftersignin extends React.Component{
       left: open,
     });
   }
+function(){
+  var firebaseref=firebase.database().ref("user");
+  
 
+  if(this.state.function)
+  {
+    {/*firebaseref.child().set({
+          password:this.state.password,
+        })*/}
+  }
+}
 render()
 {
 	const noti=this.state;
@@ -101,6 +133,7 @@ render()
     );
 	return(
 			<div>
+      {this.function()}
     {/* sidebar open karva mate thay che */}
     <SwipeableDrawer
           open={this.state.left}

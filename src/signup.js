@@ -65,12 +65,26 @@ const button=style({
 
 
 class Signup extends React.Component{
+componentWillMount()
+  {
+   let ert="zxcvWERTYUIobnmasdfghjklpoiuytrewq1234567890";
+   let lp="";
+   for(let i=0;i<=4;i++)
+   {
+     lp=lp+ert.charAt(Math.floor(Math.random()*ert.length))
+   }
+   this.setState({
+     password:lp,
+   }) 
+}
 	constructor(props)
 	{
 		super(props);
 		this.state={
 			der:"",
 			redirect: false,
+			passingvalue:"darshit genius",
+			 password:"",
 		};
 		this.signin=this.signin.bind(this);
 		this.facebook=this.facebook.bind(this);
@@ -92,17 +106,18 @@ class Signup extends React.Component{
 		console.log("gajjar darshit ja");
 		var provider=new firebase.auth.GoogleAuthProvider();
 		var promise=firebase.auth().signInWithPopup(provider);
+  		var firebaseRef=firebase.database().ref("user");
+  		var qwe=this.state.password;
 		promise.then(result=>{
 			var user=result.user;
 			this.setState({
 				der:"Welcome "+user+"in Jinu App",
 			})
 			
-			console.log(result);
-			console.log("hasmukhbhai");
-			firebase.database().ref("user/"+user.uid).set({
+			firebaseRef.child(`${qwe}`).set({
 				email:user.email,
 				name:user.displayName,
+				password:this.state.password,
 				
 			});
 
@@ -172,7 +187,7 @@ render()
 {
 	const {classes}=this.props;
 	return(
-			<div>	
+			<div>
 				<AppBar className={appbar}>
 					<Toolbar>
 						<Typography variant="title" color="inherit">
@@ -220,4 +235,6 @@ render()
 	);
 }
 }
+
+	
 export default withStyles(styles)(Signup);
