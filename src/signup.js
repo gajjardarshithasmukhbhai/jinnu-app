@@ -106,15 +106,18 @@ componentWillMount()
 		console.log("gajjar darshit ja");
 		var provider=new firebase.auth.GoogleAuthProvider();
 		var promise=firebase.auth().signInWithPopup(provider);
-  		var firebaseRef=firebase.database().ref("user");
+  		var firebaseRef=firebase.database();
   		var qwe=this.state.password;
+
 		promise.then(result=>{
 			var user=result.user;
+			var ert=user.displayName;
+
 			this.setState({
 				der:"Welcome "+user+"in Jinu App",
 			})
 			
-			firebaseRef.child(`${qwe}`).set({
+			firebaseRef.ref(`${ert}`).set({
 				email:user.email,
 				name:user.displayName,
 				password:this.state.password,
@@ -135,6 +138,9 @@ componentWillMount()
 			});
 
 		})
+
+
+		
 		promise.catch(err=>{
 			var errorcode=err.code;
 			var errmessage=err.message;

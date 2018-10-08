@@ -53,17 +53,17 @@ const list=style({
 })
 
 const yrt=style({
-	marginLeft: 154,
+  marginLeft: 154,
 })
 const yt=style({
-	marginLeft: 24,
+  marginLeft: 24,
 
 })
 const root=style({
-	flexGrow: 1,
+  flexGrow: 1,
 })
 const grow=style({
-	flexGrow: 1,
+  flexGrow: 1,
 })
 
 class Aftersignin extends React.Component{
@@ -90,18 +90,18 @@ class Aftersignin extends React.Component{
 
 
   }
-	constructor(props)
-	{
-		super(props);
-		this.state={
-			notification:0,
+  constructor(props)
+  {
+    super(props);
+    this.state={
+      notification:0,
       left:false,
       title_name:"Gajjar Darshit",
       password:"",
       function:false,
-		};
-		this.toggleDrawer=this.toggleDrawer.bind(this);
-	}
+    };
+    this.toggleDrawer=this.toggleDrawer.bind(this);
+  }
  toggleDrawer = (open) => () => {
     this.setState({
       left: open,
@@ -120,8 +120,8 @@ function(){
 }
 render()
 {
-	const noti=this.state;
-	const { classes } = this.state;
+  const noti=this.state;
+  const { classes } = this.state;
   const sideList = (
       <div className={list}>
       <ListItem>
@@ -131,8 +131,8 @@ render()
         <List>{mailFolderListItems}</List>
       </div>
     );
-	return(
-			<div>
+  return(
+      <div>
       {this.function()}
     {/* sidebar open karva mate thay che */}
     <SwipeableDrawer
@@ -154,36 +154,36 @@ render()
 
     </SwipeableDrawer>
 
-			<div className={root}>
-				<AppBar  className={appbar}>
-					<Toolbar variant="dense">
-					<IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
+      <div className={root}>
+        <AppBar  className={appbar}>
+          <Toolbar variant="dense">
+          <IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
 
-						<MenuIcon/>
-					
+            <MenuIcon/>
+          
           </IconButton> 
           <Typography variant="title" color="inherit">
             Jinu
           </Typography>
-						<Badge className={yrt} badgeContent={noti.notification} color="secondary">
-						 	<MailIcon/>
-						</Badge>
-						
-						 <AccountCircle className={yt}/>
-						
+            <Badge className={yrt} badgeContent={noti.notification} color="secondary">
+               <MailIcon/>
+            </Badge>
+            
+             <AccountCircle className={yt}/>
+            
 
-					</Toolbar>
-				</AppBar>
-				<Drawer open={this.state.draweropened} docked={false} onRequestChange={()=>this.toggleDrawer}/>
+          </Toolbar>
+        </AppBar>
+        <Drawer open={this.state.draweropened} docked={false} onRequestChange={()=>this.toggleDrawer}/>
         <br/><br/><br/>
         <div class="container">
             <div class="alert alert-primary"><span aria-hidden="true" data-dismiss="alert" class="close">&times;</span>
             <b>welcome user in Darshit jinu app</b><br/>your username is:&nbsp;&nbsp;<b>{this.state.title_name}</b><br/>your password is:&nbsp;&nbsp;<b>{this.state.password}</b>
             </div>
         </div>
-			</div>
-			</div>
-	);
+      </div>
+      </div>
+  );
 }
 }
 
