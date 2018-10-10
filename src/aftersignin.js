@@ -97,7 +97,6 @@ class Aftersignin extends React.Component{
   {
     super(props);
     this.state={
-      notification:0,
       left:false,
       title_name:"",
       password:"",
@@ -121,9 +120,12 @@ function(){
       if (user) {
        var wer=user.uid;
         var ert=user.displayName;
-
+        var photourl=user.photoURL;
+        var phonenumb=user.phoneNumber;
           firebaseRef.child(`${wer}`).child("password").set({
                   password:this.state.password,
+                  photo:photourl,
+                  phoneNumber:phonenumb,
                 });
 
 
