@@ -144,7 +144,7 @@ componentWillMount()
 			console.log("gajjar darshit hasks");
 			this.setState({
 				der:errmessage,
-				catch:true,
+				catch:true
 			})
 		})
 	}
@@ -179,12 +179,14 @@ componentWillMount()
 			});
 
 		})
+		
 		promise.catch(err=>{
 			var errorcode=err.code;
 			var errmessage=err.message;
 			console.log("gajjar darshit hasks");
 			this.setState({
 				der:errmessage,
+				catch:true
 			})
 		})	
 	}
