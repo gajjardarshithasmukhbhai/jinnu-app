@@ -84,7 +84,8 @@ class Aftersignin extends React.Component{
           this.setState({
               function:true,
               title_name:ert,
-
+              inbox:"welcome user in jinu app our company make the webapp,mobile app and ios app",
+              inbox_number:1
           })          
           
         }
@@ -101,6 +102,9 @@ class Aftersignin extends React.Component{
       title_name:"",
       password:"",
       function:false,
+      inbox:"",
+      inbox_number:0
+
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
 
@@ -174,7 +178,7 @@ render()
           <Typography variant="title" color="inherit">
             Jinu
           </Typography>
-            <Badge className={yrt} badgeContent={noti.notification} color="secondary">
+            <Badge className={yrt} badgeContent={this.state.inbox_number} color="secondary">
                <MailIcon/>
             </Badge>
             
