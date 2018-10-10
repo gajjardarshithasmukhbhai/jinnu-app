@@ -106,7 +106,6 @@ componentWillMount()
 		console.log("gajjar darshit ja");
 		var provider=new firebase.auth.GoogleAuthProvider();
 		var promise=firebase.auth().signInWithPopup(provider);
-  		var firebaseRef=firebase.database();
   		var qwe=this.state.password;
 
 		promise.then(result=>{
@@ -117,17 +116,13 @@ componentWillMount()
 				der:"Welcome "+user+"in Jinu App",
 			})
 			
-			firebaseRef.ref(`${ert}`).set({
-				email:user.email,
-				name:user.displayName,
-				password:this.state.password,
-				
+			firebase.database().ref("users/"+user.uid).child("username").set({
+				name:user.displayName,				
 			});
 
 			firebase.auth().onAuthStateChanged(user => {
 			  if(user) {
-			    
-			  	//redirect the another page in react
+			      	
 			  	
 			  	this.setState({
 			  		der:"i am another page",

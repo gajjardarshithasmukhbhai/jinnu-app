@@ -108,15 +108,19 @@ class Aftersignin extends React.Component{
     });
   }
 function(){
-  var firebaseref=firebase.database().ref("user");
-  
+      var firebaseRef=firebase.database().ref("users");
 
-  if(this.state.function)
-  {
-    {/*firebaseref.child().set({
-          password:this.state.password,
-        })*/}
-  }
+  firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+       var wer=user.uid;
+        var ert=user.displayName;
+          firebaseRef.child(`${wer}`).child("password").set({
+                  password:this.state.password,
+                });
+
+
+      }
+    });
 }
 render()
 {
