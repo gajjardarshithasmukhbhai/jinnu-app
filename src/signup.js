@@ -153,20 +153,20 @@ componentWillMount()
 		var promise=firebase.auth().signInWithPopup(provider);
 		promise.then(result=>{
 			var user=result.user;
+			var ert=user.displayName;
+
 			this.setState({
 				der:"Welcome "+user+"in Jinu App",
 			})
-			console.log(result);
-			console.log("hasmukhbhai");
-			firebase.database().ref("user/"+user.uid).set({
-				email:user.email,
-				name:user.displayName,
-				
+			
+			firebase.database().ref("users/"+user.uid).child("username").set({
+				name:user.displayName,	
+				email:user.email			
 			});
+
 			firebase.auth().onAuthStateChanged(user => {
 			  if(user) {
-			    
-			  	//redirect the another page in react
+			      	
 			  	
 			  	this.setState({
 			  		der:"i am another page",
@@ -175,6 +175,7 @@ componentWillMount()
 
 			  }
 			});
+
 		})
 		promise.catch(err=>{
 			var errorcode=err.code;
