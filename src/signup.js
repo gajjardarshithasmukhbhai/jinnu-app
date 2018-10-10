@@ -85,6 +85,7 @@ componentWillMount()
 			redirect: false,
 			passingvalue:"darshit genius",
 			 password:"",
+			 catch:false,
 		};
 		this.signin=this.signin.bind(this);
 		this.facebook=this.facebook.bind(this);
@@ -143,6 +144,7 @@ componentWillMount()
 			console.log("gajjar darshit hasks");
 			this.setState({
 				der:errmessage,
+				catch:true,
 			})
 		})
 	}
@@ -189,6 +191,14 @@ componentWillMount()
 render()
 {
 	const {classes}=this.props;
+	var ddr;
+	if(this.state.catch)
+	{
+				ddr=<div class="alert alert-primary">
+						<span class="close" data-dismiss="alert">&times;</span>
+						{this.state.der}
+				</div>
+	}
 	return(
 			<div>
 				<AppBar className={appbar}>
@@ -204,7 +214,7 @@ render()
 			<br/>
 			<br/><br/>
 			<br/>
-			{this.state.der}
+			{ddr}	
 			<div class="col-sm-12">
 
 				<Card>
