@@ -122,13 +122,14 @@ function(){
         var ert=user.displayName;
         var photourl=user.photoURL;
         var phonenumb=user.phoneNumber;
+        console.log(user);
           firebaseRef.child(`${wer}`).child("password").set({
                   password:this.state.password,
-                  photo:photourl,
-                  phoneNumber:phonenumb,
                 });
+          firebaseRef.child(`${wer}`).child("photo").set({
+                  photo:photourl,
 
-
+          });
       }
     });
 }
