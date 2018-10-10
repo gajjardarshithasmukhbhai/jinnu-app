@@ -80,9 +80,11 @@ class Aftersignin extends React.Component{
    }) 
     firebase.auth().onAuthStateChanged(user => {
         if(user) {
-          
+        var ert=user.displayName;
           this.setState({
               function:true,
+              title_name:ert,
+
           })          
           
         }
@@ -96,11 +98,12 @@ class Aftersignin extends React.Component{
     this.state={
       notification:0,
       left:false,
-      title_name:"Gajjar Darshit",
+      title_name:"",
       password:"",
       function:false,
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
+
   }
  toggleDrawer = (open) => () => {
     this.setState({
@@ -114,6 +117,7 @@ function(){
       if (user) {
        var wer=user.uid;
         var ert=user.displayName;
+
           firebaseRef.child(`${wer}`).child("password").set({
                   password:this.state.password,
                 });
@@ -122,6 +126,7 @@ function(){
       }
     });
 }
+
 render()
 {
   const noti=this.state;

@@ -117,7 +117,8 @@ componentWillMount()
 			})
 			
 			firebase.database().ref("users/"+user.uid).child("username").set({
-				name:user.displayName,				
+				name:user.displayName,	
+				email:user.email			
 			});
 
 			firebase.auth().onAuthStateChanged(user => {
