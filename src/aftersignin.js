@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
 import  'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { withStyles } from '@material-ui/core/styles';
@@ -20,10 +21,17 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import Badge from '@material-ui/core/Badge';
 import Drawer from '@material-ui/core/Drawer';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
-import { mailFolderListItems} from './tileData';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Inbox from './inbox.js'
+import PersonIcon from '@material-ui/icons/Person';
+import BusinessIcon from '@material-ui/icons/Business';
+
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -102,17 +110,49 @@ class Aftersignin extends React.Component{
       password:"",
       function:false,
       inbox:"",
-      inbox_number:0
+      inbox_number:0,
+      inb_page:false,
+      logout:false
 
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
-
+    this.inbox=this.inbox.bind(this);
+    this.inbox_pages=this.inbox_pages.bind(this);
+    this.logout=this.logout.bind(this);
+    this.logouting=this.logouting.bind(this);
   }
+
  toggleDrawer = (open) => () => {
     this.setState({
       left: open,
     });
   }
+  inbox_pages=()=>{
+    if(this.state.inb_page)
+    {
+      return <Redirect to="/inbox"/>
+    }
+  }
+  logout()
+  {
+    this.setState({
+      logout:true,
+    })
+  }
+  logouting()
+  {
+    if(this.state.logout)
+    {
+      return <Redirect to="/next-page"/>
+    }
+  }
+  inbox()
+  {
+    this.setState({
+        inb_page:true,
+    })
+  }
+
 function(){
       var firebaseRef=firebase.database().ref("users");
 
@@ -122,34 +162,91 @@ function(){
         var ert=user.displayName;
         var photourl=user.photoURL;
         var phonenumb=user.phoneNumber;
-        console.log(user);
+        var database=firebase.database();
+        var ref=database.ref("users");
+
           firebaseRef.child(`${wer}`).child("password").set({
                   password:this.state.password,
                 });
           firebaseRef.child(`${wer}`).child("photo").set({
                   photo:photourl,
 
-          });
+          });  
+        ref.on("value",gotdata,errdata);
+
       }
     });
+  function gotdata(data)
+  {
+    var scores=data.val();
+    var keys=Object.keys(scores);
+    for(var i=0;i<keys.length;i++)
+    {
+      var k=keys[i];
+      var initials=scores[k].initials;
+      var scor=scores[k].name;
+
+      console.log(initials,scor);
+    }
+  }
+  function errdata(err)
+  {
+
+  }
 }
 
 render()
 {
   const noti=this.state;
   const { classes } = this.state;
+  
   const sideList = (
       <div className={list}>
       <ListItem>
         <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.title_name}
       </ListItem>
       <Divider/>
-        <List>{mailFolderListItems}</List>
+      <ListItem button>
+      <ListItemIcon>
+        <FontAwesomeIcon icon="newspaper" size={190}/>
+      </ListItemIcon>
+      <ListItemText primary="News" />
+    </ListItem>
+    <Divider/>
+    <ListItem button onClick={this.inbox}>
+      <ListItemIcon>
+        <InboxIcon />
+      </ListItemIcon>
+      <ListItemText primary="Inbox" />
+    </ListItem>
+    <Divider/>
+    <ListItem button onClick={this.logout}>
+      <ListItemIcon>
+      <span className="fa-fw">
+        <FontAwesomeIcon icon="sign-out-alt"/>
+       </span>
+      </ListItemIcon>
+      <ListItemText primary="logout" />
+    </ListItem>
+    <Divider/>
+    <ListItem button>
+      <ListItemIcon>
+        <BusinessIcon />
+      </ListItemIcon>
+      <ListItemText primary="company details" />
+    </ListItem>
+    <ListItem button>
+        <p class="text text-muted">Mr.Darshit Gajjar(Devloper)</p>
+    </ListItem> 
       </div>
     );
   return(
       <div>
       {this.function()}
+      {Inbox}
+      {this.logouting()}
+
+      {this.inbox_pages()}
     {/* sidebar open karva mate thay che */}
     <SwipeableDrawer
           open={this.state.left}

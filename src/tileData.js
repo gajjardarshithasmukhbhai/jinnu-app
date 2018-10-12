@@ -33,19 +33,7 @@ export const mailFolderListItems = (
 
   <div>
   
-    <ListItem button>
-      <ListItemIcon>
-        <FontAwesomeIcon icon="newspaper" size={190}/>
-      </ListItemIcon>
-      <ListItemText primary="News" />
-    </ListItem>
-    <Divider/>
-    <ListItem button>
-      <ListItemIcon>
-        <InboxIcon />
-      </ListItemIcon>
-      <ListItemText primary="Inbox" />
-    </ListItem>
+    
     <Divider/>
     <ListItem button>
       <ListItemIcon>

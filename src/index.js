@@ -11,6 +11,7 @@ import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-
 import Nextpage from './nextpage.js'
 import Signup from './signup.js'
 import Aftersignin from './aftersignin.js'
+import Inbox from './inbox.js'
 class Darshit extends React.Component{
 render()
 {
@@ -39,6 +40,7 @@ ReactDOM.render(
 	<Route exact path="/" component={Darshit}/>
 	<Route exact path="/next-page" component={Nextpage}/>
 	<Route exact path="/sign-up" component={Signup}/>
+	<Route exact path="/inbox" component={Inbox}/>
 	<Route exact path="/after-signin" component={Aftersignin}/>
 </div>
 </Router>
