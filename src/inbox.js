@@ -52,8 +52,8 @@ const list=style({
 })
 const styles = {
   	 bigAvatar: {
-    width: 60,
-    height: 60,
+    width: 85,
+    height: 85,
   },
 }
 class Inbox extends React.Component{
