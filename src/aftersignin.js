@@ -112,7 +112,7 @@ class Aftersignin extends React.Component{
       inbox:"",
       inbox_number:0,
       inb_page:false,
-      logout:false
+      logout:false,
 
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);

@@ -211,7 +211,7 @@ render()
 						<div>
 							<AccountCircleIcon className={usericon}/>
 						</div>
-					</Toolbar>
+					</Toolbar>				
 				</AppBar>
 			<br/>
 			<br/><br/>

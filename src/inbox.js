@@ -17,6 +17,10 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Grid from '@material-ui/core/Grid';
+import Avatar from '@material-ui/core/Avatar';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import MenuIcon from '@material-ui/icons/Menu';
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -24,6 +28,20 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
+import { withStyles } from '@material-ui/core/styles';
+import './inbox.css'
+var firebase=require("firebase");
+var config = {
+    apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
+    authDomain: "gajjar-great.firebaseapp.com",
+    databaseURL: "https://gajjar-great.firebaseio.com",
+    projectId: "gajjar-great",
+    storageBucket: "",
+    messagingSenderId: "562657144875"
+  };
+
+
+
 library.add(faNewspaper )
 library.add(faSignOutAlt)
 library.add(faChevronLeft)
@@ -32,14 +50,37 @@ const theme=createMuiTheme();
 const list=style({
     width: 230,
 })
-
+const styles = {
+  	 bigAvatar: {
+    width: 60,
+    height: 60,
+  },
+}
 class Inbox extends React.Component{
+componentWillMount(){
+	var user = firebase.auth().currentUser;
+	if(user!=null)
+	{
+		var name=user.displayName;
+		var photoUrl = user.photoURL;
+		this.setState({
+			user:name,
+			photo:photoUrl,
+		})		
+	}
+	else
+	{
+
+	}
+}
 	constructor(props)
 	{
 		super(props);
 		this.state={
      		 left:false,
-     		 back:false
+     		 back:false,
+     		 user:"",
+     		 photo:'',
 		};
     	this.toggleDrawer=this.toggleDrawer.bind(this);
     	this.back=this.back.bind(this);
@@ -64,12 +105,14 @@ class Inbox extends React.Component{
   		return <Redirect exact to="/after-signin"/>
   	}
   }
+
 render()
 {
+	const { classes } = this.props;
 	const sideList = (
       <div className={list}>
       <ListItem>
-        <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.title_name}
+        <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.user}
       </ListItem>
       <Divider/>
       	<ListItem button>
@@ -136,9 +179,29 @@ render()
           				</Typography>
 					</Toolbar>
 				</AppBar>
+				<br/>
+				<br/>
+				<br/>
+				<br/>
+				<div class="image">
+				<Avatar
+			        alt={this.state.user}
+			        src={this.state.photo}
+			        className={classes.bigAvatar}
+			     />	
+			     </div>
+			     <br/>
+				<br/>
+				<br/>
+			     <div class="container">
+				<Card>
+					<CardContent>
+					</CardContent>
+				</Card>
+				</div>
 			</div>
 	);
 }
 }
 
-export default Inbox;
+export default withStyles(styles)(Inbox);;
