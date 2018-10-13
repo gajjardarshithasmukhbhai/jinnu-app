@@ -1,6 +1,7 @@
 .image{
 	position: absolute;
 	left: 35%;
-	
+	border: 2px solid #0E09F1;
+	border-radius: 90%;
 
 }

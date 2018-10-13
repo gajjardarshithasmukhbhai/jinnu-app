@@ -196,10 +196,9 @@ render()
 				<br/>
 				
 			     <div class="container">
-				<Card>
-					<CardContent>
-					</CardContent>
-				</Card>
+					<Typography variant="title" class="text-center">
+						Inbox Messages 
+					</Typography>
 				</div>
 			</div>
 	);
