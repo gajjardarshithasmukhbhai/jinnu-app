@@ -106,12 +106,42 @@ class Newspaper extends React.Component{
 			photo:""
 		};
     	this.toggleDrawer=this.toggleDrawer.bind(this);
+    	this.back=this.back.bind(this);
+    	this.backing=this.backing.bind(this);
+    	this.logout=this.logout.bind(this);
+    	this.logouting=this.logouting.bind(this);
 	}
+	back()
+  {
+  	this.setState({
+  		back:true,
+  	})
+  }
+  backing=()=>
+  {
+  	if(this.state.back)
+  	{
+  		return <Redirect exact to="/after-signin"/>
+  	}
+  }
 	toggleDrawer = (open) => () => {
    		 this.setState({
       			left: open,
     		});
   	}
+  	logout()
+  {
+    this.setState({
+      logout:true,
+    })
+  }
+  logouting()
+  {
+    if(this.state.logout)
+    {
+      return <Redirect to="/next-page"/>
+    }
+  }
 render()
 {
 	const { classes } = this.props;
@@ -121,13 +151,6 @@ render()
         <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.user}
       </ListItem>
       <Divider/>
-      	<ListItem button>
-		      <ListItemIcon>
-		        <FontAwesomeIcon icon="newspaper" size={190}/>
-		      </ListItemIcon>
-		      <ListItemText primary="News" />
-    	</ListItem>
-      <Divider/>
 
     	<ListItem button onClick={this.back}>
       	<ListItemIcon>
@@ -135,10 +158,10 @@ render()
 		        <FontAwesomeIcon icon="chevron-left"/>
 		       </span>
       	</ListItemIcon>
-      		<ListItemText primary="Back" />
+      		<ListItemText primary="Back"/>
     	</ListItem>
     <Divider/>
-    	<ListItem button>
+    	<ListItem button onClick={this.logout}>
       	<ListItemIcon>
 		      	<span className="fa-fw">
 		        <FontAwesomeIcon icon="sign-out-alt"/>
@@ -153,6 +176,9 @@ render()
     );
 	return(
 		<div>
+		{this.backing()}
+		{this.logouting()}
+
 		<SwipeableDrawer
           open={this.state.left}
           onClose={this.toggleDrawer(false)}
