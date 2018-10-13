@@ -196,9 +196,10 @@ render()
 				<br/>
 				
 			     <div class="container">
-					<Typography variant="title" class="text-center">
-						Inbox Messages 
+					<Typography variant="title" class="text-capitalize text-center text-muted">
+						inbox Messages 
 					</Typography>
+					<Divider/>
 				</div>
 			</div>
 	);
