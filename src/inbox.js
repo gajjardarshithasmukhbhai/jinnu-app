@@ -216,7 +216,7 @@ render()
 								<IconButton aria-label="Comments">
                   					<CommentIcon />
                 				</IconButton>
-							<ListItemText primary="welcome user in our webapp Jinu"/>
+							<ListItemText primary="welcome user in our webapp Jinu this app is free so don't worry use it"/>
 								
 						</ListItem>
 					</List>
