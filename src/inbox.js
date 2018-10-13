@@ -30,6 +30,9 @@ import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles';
 import './inbox.css'
+import CommentIcon from '@material-ui/icons/Comment';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -50,12 +53,18 @@ const theme=createMuiTheme();
 const list=style({
     width: 230,
 })
-const styles = {
-  	 bigAvatar: {
-    width: 90,
-    height: 90,
+const styles = theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
   },
-}
+});
+
+const image=style({
+	width: 90,
+    height: 90,
+})
 class Inbox extends React.Component{
 componentWillMount(){
 	var user = firebase.auth().currentUser;
@@ -109,6 +118,7 @@ componentWillMount(){
 render()
 {
 	const { classes } = this.props;
+
 	const sideList = (
       <div className={list}>
       <ListItem>
@@ -187,19 +197,42 @@ render()
 				<Avatar
 			        alt={this.state.user}
 			        src={this.state.photo}
-			        className={classes.bigAvatar}
+			        className={image}
 			     />	
 			     </div>
 			     <br/>
 				<br/>
 				<br/>
 				<br/>
-				
+				<br/>
 			     <div class="container">
 					<Typography variant="title" class="text-capitalize text-center text-muted">
 						inbox Messages 
 					</Typography>
 					<Divider/>
+					<div className={classes.root}>
+					<List className={classes.listItem}   disableRipple>
+						<ListItem button>{/* button thi ribbel effect ave*/}
+								<IconButton aria-label="Comments">
+                  					<CommentIcon />
+                				</IconButton>
+							<ListItemText primary="welcome user in our webapp Jinu"/>
+								
+						</ListItem>
+					</List>
+					<Divider/>
+					<List className={classes.listItem}   disableRipple>
+						<ListItem button>{/* button thi ribbel effect ave*/}
+								<IconButton aria-label="Comments">
+                  					<CommentIcon />
+                				</IconButton>
+							<ListItemText primary="any problem occur so please send message cismox.code@gmail.com"/>
+								
+						</ListItem>
+					</List>
+					<Divider/>
+					
+					</div>
 				</div>
 			</div>
 	);
