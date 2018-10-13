@@ -31,6 +31,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Inbox from './inbox.js'
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
+import Newspaper from './newspaper.js'
 
 var firebase=require("firebase");
 var config = {
@@ -113,6 +114,7 @@ class Aftersignin extends React.Component{
       inbox_number:0,
       inb_page:false,
       logout:false,
+      newspaper:false
 
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
@@ -120,6 +122,8 @@ class Aftersignin extends React.Component{
     this.inbox_pages=this.inbox_pages.bind(this);
     this.logout=this.logout.bind(this);
     this.logouting=this.logouting.bind(this);
+    this.newspaper=this.newspaper.bind(this);
+    this.newspaper_open=this.newspaper_open.bind(this);
   }
 
  toggleDrawer = (open) => () => {
@@ -176,6 +180,7 @@ function(){
 
       }
     });
+  
   function gotdata(data)
   {
     var scores=data.val();
@@ -194,7 +199,19 @@ function(){
 
   }
 }
-
+newspaper()
+  {
+    this.setState({
+      newspaper:true,
+    })
+  }
+  newspaper_open()
+  {
+    if(this.state.newspaper)
+    {
+      return <Redirect exact to="/newspaper"/>
+    }
+  }
 render()
 {
   const noti=this.state;
@@ -206,7 +223,7 @@ render()
         <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.title_name}
       </ListItem>
       <Divider/>
-      <ListItem button>
+      <ListItem button onClick={this.newspaper}>
       <ListItemIcon>
         <FontAwesomeIcon icon="newspaper" size={190}/>
       </ListItemIcon>
@@ -245,6 +262,7 @@ render()
       {this.function()}
       {Inbox}
       {this.logouting()}
+      {this.newspaper_open()}
 
       {this.inbox_pages()}
     {/* sidebar open karva mate thay che */}

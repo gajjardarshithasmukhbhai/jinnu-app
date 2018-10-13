@@ -9,8 +9,6 @@ import SendIcon from '@material-ui/icons/Send';
 import MailIcon from '@material-ui/icons/Mail';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReportIcon from '@material-ui/icons/Report';
-import PersonIcon from '@material-ui/icons/Person';
-import BusinessIcon from '@material-ui/icons/Business';
 
 import Divider from '@material-ui/core/Divider';
 import 'font-awesome/css/font-awesome.min.css';
@@ -34,24 +32,6 @@ export const mailFolderListItems = (
   <div>
   
     
-    <Divider/>
-    <ListItem button>
-      <ListItemIcon>
-      <span className="fa-fw">
-        <FontAwesomeIcon icon="sign-out-alt"/>
-       </span>
-      </ListItemIcon>
-      <ListItemText primary="logout" />
-    </ListItem>
-    <Divider/>
-    <ListItem button>
-      <ListItemIcon>
-        <BusinessIcon />
-      </ListItemIcon>
-      <ListItemText primary="company details" />
-    </ListItem>
-    <ListItem button>
-        <p class="text text-muted">Mr.Darshit Gajjar(Devloper)</p>
-    </ListItem>
+    
   </div>
 );
