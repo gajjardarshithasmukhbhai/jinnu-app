@@ -93,6 +93,7 @@ class Newspaper extends React.Component{
 		var photoUrl = user.photoURL;
 		this.setState({
 			photo:photoUrl,
+      user:name,
 		})		
 	}
 	this.news();
@@ -104,6 +105,7 @@ class Newspaper extends React.Component{
 			left:false,
 			photo:"",
       news:[],
+      user:""
 		};
     	this.toggleDrawer=this.toggleDrawer.bind(this);
     	this.back=this.back.bind(this);
