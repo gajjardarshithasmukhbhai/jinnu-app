@@ -151,6 +151,7 @@ class Newspaper extends React.Component{
     .then((result)=>
     {
       const post=result.data.articles;
+      console.log(post);
       this.setState({
         news:post,
       })
@@ -254,6 +255,7 @@ render()
                 {wr.description}
               </Typography>
             </CardContent>
+            <a class="text text-muted pl-3" href={wr.url}>more details</a>
             <CardActions className={classes.actions} disableActionSpacing>
               <IconButton aria-label="Add to favorites">
                 <FavoriteIcon />
@@ -263,7 +265,7 @@ render()
               </IconButton>
               
             </CardActions>
-            
+                      
           </Card>
       </div> 
           })
