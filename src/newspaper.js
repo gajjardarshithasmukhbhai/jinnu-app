@@ -147,7 +147,7 @@ class Newspaper extends React.Component{
   }
   news()
   {
-    axios.get(`https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=c9de7f6e3b714a7bb68f3f9320c58357`)
+    axios.get(`https://newsapi.org/v2/top-headlines?sources=the-hindu&apiKey=c9de7f6e3b714a7bb68f3f9320c58357`)
     .then((result)=>
     {
       const post=result.data.articles;
@@ -252,7 +252,7 @@ render()
             />
             <CardContent>
               <Typography component="p">
-                {wr.description}
+                {wr.content}
               </Typography>
             </CardContent>
             <a class="text text-muted pl-3" href={wr.url}>more details</a>
