@@ -36,6 +36,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import wer from './image/breaking.jpg'
 import red from '@material-ui/core/colors/red'
 import axios from 'axios'
+import './newspaper.css'
 
 var firebase=require("firebase");
 var config = {
@@ -53,6 +54,10 @@ library.add(faSignOutAlt)
 const list=style({
     width: 230,
 })
+const loving=style({
+        backgroundColor:red,
+      })
+
 const theme=createMuiTheme();
 const styles = theme => ({
   card: {
@@ -98,14 +103,18 @@ class Newspaper extends React.Component{
 	}
 	this.news();
 	}
-	constructor(props)
+
+  constructor(props)
 	{
 		super(props);
 		this.state={
 			left:false,
 			photo:"",
       news:[],
-      user:""
+      user:"",
+      color:"default",
+      share:false,
+      sharingcolor:"default"
 		};
     	this.toggleDrawer=this.toggleDrawer.bind(this);
     	this.back=this.back.bind(this);
@@ -113,6 +122,9 @@ class Newspaper extends React.Component{
     	this.logout=this.logout.bind(this);
     	this.logouting=this.logouting.bind(this);
       this.news=this.news.bind(this);
+      this.love=this.love.bind(this);
+      this.share=this.share.bind(this);
+
   }
 	back()
   {
@@ -136,6 +148,7 @@ class Newspaper extends React.Component{
   {
     this.setState({
       logout:true,
+
     })
   }
   logouting()
@@ -157,10 +170,25 @@ class Newspaper extends React.Component{
       })
     })
   }
+  share()
+  {
+    this.setState({
+      share:true,
+      sharingcolor:"primary"
+    })
+  }
+  love(event)
+  {
+    var value=event.target.value;
+    this.setState({
+      color:"secondary",
+    })
+  }
 
 render()
 {
 	const { classes } = this.props;
+  let sharing;
 	const sideList = (
       <div className={list}>
       <ListItem>
@@ -185,11 +213,14 @@ render()
       	</ListItemIcon>
       		<ListItemText primary="logout" />
     	</ListItem>
-
-
-
       </div>
+
     );
+   sharing=(
+                  <div>
+
+                  </div>
+                )
 	return(
 		<div>
 		{this.backing()}
@@ -229,7 +260,7 @@ render()
 				<br/>
 				
         {
-          this.state.news.map((wr)=>{
+          this.state.news.map((wr,i)=>{
             return <div class="container">
             <br/>
             <Card className={classes.card}>
@@ -257,10 +288,12 @@ render()
             </CardContent>
             <a class="text text-muted pl-3" href={wr.url}>more details</a>
             <CardActions className={classes.actions} disableActionSpacing>
-              <IconButton aria-label="Add to favorites">
-                <FavoriteIcon />
+
+              <IconButton aria-label="Add to favorites" onClick={this.love} value={i} color={this.state.color}>
+                
+                <FavoriteIcon/>
               </IconButton>
-              <IconButton aria-label="Share">
+              <IconButton aria-label="Share" onClick={this.share} color={this.state.sharingcolor}>
                 <ShareIcon />
               </IconButton>
               
