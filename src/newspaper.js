@@ -114,6 +114,7 @@ class Newspaper extends React.Component{
       user:"",
       color:"default",
       share:false,
+      value:0,
       sharingcolor:"default"
 		};
     	this.toggleDrawer=this.toggleDrawer.bind(this);
@@ -124,7 +125,6 @@ class Newspaper extends React.Component{
       this.news=this.news.bind(this);
       this.love=this.love.bind(this);
       this.share=this.share.bind(this);
-
   }
 	back()
   {
@@ -177,13 +177,13 @@ class Newspaper extends React.Component{
       sharingcolor:"primary"
     })
   }
-  love(event)
+  love()
   {
-    var value=event.target.value;
-    this.setState({
-      color:"secondary",
-    })
+            this.setState({
+              color:"secondary",
+            })
   }
+  
 
 render()
 {
@@ -289,8 +289,7 @@ render()
             <a class="text text-muted pl-3" href={wr.url}>more details</a>
             <CardActions className={classes.actions} disableActionSpacing>
 
-              <IconButton aria-label="Add to favorites" onClick={this.love} value={i} color={this.state.color}>
-                
+              <IconButton aria-label="Add to favorites" key={wr.title} onClick={this.love} color={this.state.color} >
                 <FavoriteIcon/>
               </IconButton>
               <IconButton aria-label="Share" onClick={this.share} color={this.state.sharingcolor}>
