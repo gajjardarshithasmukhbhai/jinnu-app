@@ -101,8 +101,9 @@ componentWillMount(){
       			left: open,
     		});
   }
-  back()
+  back(newValue)
   {
+  	newValue.preventDefault();
   	this.setState({
   		back:true,
   	})

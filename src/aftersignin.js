@@ -32,7 +32,10 @@ import Inbox from './inbox.js'
 import PersonIcon from '@material-ui/icons/Person';
 import BusinessIcon from '@material-ui/icons/Business';
 import Newspaper from './newspaper.js'
-
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -64,6 +67,11 @@ const list=style({
 const yrt=style({
   marginLeft: 154,
 })
+
+const textyu=style({
+  width:"100%",
+})
+
 const yt=style({
   marginLeft: 24,
 
@@ -119,6 +127,7 @@ class Aftersignin extends React.Component{
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
+    this.inboxy=this.inboxy.bind(this);
     this.inbox_pages=this.inbox_pages.bind(this);
     this.logout=this.logout.bind(this);
     this.logouting=this.logouting.bind(this);
@@ -156,7 +165,15 @@ class Aftersignin extends React.Component{
         inb_page:true,
     })
   }
+  inboxy(newValue)
+  {
+    newValue.preventDefault();
+    this.setState({
+        inb_page:true,
+        inbox_number:0
 
+    })
+  }
 function(){
       var firebaseRef=firebase.database().ref("users");
 
@@ -296,7 +313,7 @@ render()
           <Typography variant="title" color="inherit">
             Jinu
           </Typography>
-            <Badge className={yrt} badgeContent={this.state.inbox_number} color="secondary">
+            <Badge className={yrt} badgeContent={this.state.inbox_number} color="secondary" onClick={this.inboxy}>
                <MailIcon/>
             </Badge>
             
@@ -312,6 +329,36 @@ render()
             <b>welcome user in Darshit jinu app</b><br/>your username is:&nbsp;&nbsp;<b>{this.state.title_name}</b><br/>your password is:&nbsp;&nbsp;<b>{this.state.password}</b>
             </div>
         </div>
+{/* form khulse crud operaton by user*/} 
+       <div class="container-fluid">
+          <Card>
+             <CardContent>
+                <TextField
+                  id="outlined-email-input"
+                  label="Daily Task reminder"
+                  className={textyu}
+                  type="text"
+                  name="text"
+                  autoComplete=""
+                  margin="normal"
+                  variant="outlined"
+                  />
+                  <button class="btn btn-outline-primary">ADD</button>&nbsp;
+                  <button type="cancel"class="btn btn-outline-danger">Cancel</button>
+                  <br/><br/>
+                  
+                  
+                   <List disableRipple>
+            <ListItem button>{/* button thi ribbel effect ave*/}
+                <IconButton aria-label="Comments">
+                        </IconButton>
+              <ListItemText primary="welcome user in our webapp "/>
+                
+            </ListItem>
+          </List>
+             </CardContent>
+          </Card>     
+       </div>
       </div>
       </div>
   );
