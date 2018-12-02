@@ -20,7 +20,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
-import {Bar,Line,Doughnut,Pie} from 'react-chartjs-2';
+import {Bar,Line,Pie,Polar,Scatter} from 'react-chartjs-2';
 const appbar=style({
     flexGrow: 1,
     backgroundColor: "#5535CC",
@@ -38,7 +38,7 @@ class Taksanalysis extends React.Component{
 	{
 		this.interval=setInterval(()=>{
 			this.randomdata();
-		},1000)
+		},2350)
 	}
 	componentWillMount()
 	{
