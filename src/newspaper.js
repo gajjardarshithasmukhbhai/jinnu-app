@@ -28,7 +28,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
-
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -52,6 +51,12 @@ library.add(faSignOutAlt)
 
 const list=style({
     width: 230,
+})
+const Favorite=style({
+  outline:"0 !important;",
+})
+const share=style({
+  outline:"0 !important;",
 })
 const loving=style({
         backgroundColor:red,
@@ -114,6 +119,7 @@ class Newspaper extends React.Component{
       color:"default",
       share:false,
       value:0,
+      love:false,
       sharingcolor:"default"
 		};
     	this.toggleDrawer=this.toggleDrawer.bind(this);
@@ -123,6 +129,7 @@ class Newspaper extends React.Component{
     	this.logouting=this.logouting.bind(this);
       this.news=this.news.bind(this);
       this.love=this.love.bind(this);
+      this.hat=this.hat.bind(this);
       this.share=this.share.bind(this);
   }
 	back()
@@ -180,7 +187,15 @@ class Newspaper extends React.Component{
   {
             this.setState({
               color:"secondary",
+              love:true,
             })
+  }
+  hat()
+  {
+    this.setState({
+      color:"default",
+      love:false,
+    })
   }
   
 
@@ -188,6 +203,7 @@ render()
 {
 	const { classes } = this.props;
   let sharing;
+  let love=this.state.love;
 	const sideList = (
       <div className={list}>
       <ListItem>
@@ -288,10 +304,10 @@ render()
             <a class="text text-muted pl-3" href={wr.url}>more details</a>
             <CardActions className={classes.actions} disableActionSpacing>
 
-              <IconButton aria-label="Add to favorites" key={wr.title} onClick={this.love} color={this.state.color} >
+              <IconButton className={Favorite}aria-label="Add to favorites" key={wr.title} onClick={love?(this.hat):(this.love)} color={this.state.color}>
                 <FavoriteIcon/>
               </IconButton>
-              <IconButton aria-label="Share" onClick={this.share} color={this.state.sharingcolor}>
+              <IconButton className={share} aria-label="Share" onClick={this.share} color={this.state.sharingcolor}>
                 <ShareIcon />
               </IconButton>
               
