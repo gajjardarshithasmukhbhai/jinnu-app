@@ -132,8 +132,8 @@ class Aftersignin extends React.Component{
       inbox_number:0,
       inb_page:false,
       logout:false,
-      newspaper:false
-
+      newspaper:false,
+      floaticon:false,
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
@@ -142,6 +142,8 @@ class Aftersignin extends React.Component{
     this.logout=this.logout.bind(this);
     this.logouting=this.logouting.bind(this);
     this.newspaper=this.newspaper.bind(this);
+    this.floaticon=this.floaticon.bind(this);
+    this.flo=this.flo.bind(this);
     this.newspaper_open=this.newspaper_open.bind(this);
   }
 
@@ -183,6 +185,18 @@ class Aftersignin extends React.Component{
         inbox_number:0
 
     })
+  }
+  floaticon()
+  {
+    this.setState({
+      floaticon:true,
+    })
+  }
+  flo()
+  {
+    this.setState({
+      floaticon:false,
+    }) 
   }
 function(){
       var firebaseRef=firebase.database().ref("users");
@@ -243,8 +257,40 @@ render()
 {
   const noti=this.state;
   const { classes } = this.state;
-  
-  const sideList = (
+  let floaticon;
+  if(this.state.floaticon)
+  {
+    floaticon=(
+      <div class="fab-container">
+                    <ul class="fab-options">
+                      <li>
+                          <span class="fab-label">change password</span>
+
+                        <div class="fab-icon-holder">
+                         <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                        </div>
+                      </li>
+                      <br/>
+                      <li>
+                            <span class="fab-label">task analysis</span>
+
+                        <div class="fab-icon-holder">
+                            <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                        </div>
+                      </li>
+                      <br/>
+                      <li>
+                            <span class="fab-label">review</span>  
+
+                        <div class="fab-icon-holder">
+                            <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                        </div>
+                      </li>
+                      <br/>
+                    </ul>
+              </div>)
+    }
+    const sideList = (
       <div className={list}>
       <ListItem>
         <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.title_name}
@@ -369,8 +415,10 @@ render()
           </List>
              </CardContent>
           </Card>
+           {floaticon}
+
           <div class="fixed-bottom lol">
-           <Fab color="primary" aria-label="Add" className={fab}>
+           <Fab color="primary" aria-label="Add" onMouseOver={this.floaticon} onMouseOut={this.flo} className={fab}>
               <AddIcon/>
            </Fab>
            </div>
