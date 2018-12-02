@@ -269,16 +269,18 @@ render()
                         <div class="fab-icon-holder">
                          <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
                         </div>
-                      </li>
                       <br/>
+                        
+                      </li>
                       <li>
                             <span class="fab-label">task analysis</span>
 
                         <div class="fab-icon-holder">
                             <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
                         </div>
-                      </li>
                       <br/>
+
+                      </li>
                       <li>
                             <span class="fab-label">review</span>  
 
