@@ -2,4 +2,7 @@
 	text-decoration: none;
 	position: absolute;
 	top: 470px;
+	outline: none;
+	box-shadow: 1px 1px 1px #787474;
 }
+
