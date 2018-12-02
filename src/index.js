@@ -13,6 +13,7 @@ import Signup from './signup.js'
 import Aftersignin from './aftersignin.js'
 import Inbox from './inbox.js'
 import Newspaper from './newspaper.js'
+import Taksanalysis from './taskanalysis.js'
 class Darshit extends React.Component{
 render()
 {
@@ -44,7 +45,7 @@ ReactDOM.render(
 	<Route exact path="/inbox" component={Inbox}/>
 	<Route exact path="/after-signin" component={Aftersignin}/>
 	<Route exact path="/newspaper" component={Newspaper}/>
-	
+	<Route exact path="/taskanalysis" component={Taksanalysis}/>
 </div>
 </Router>
 	,document.getElementById("root"));

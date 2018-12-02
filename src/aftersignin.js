@@ -39,6 +39,7 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
+import chart from 'chart.js'
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -134,6 +135,7 @@ class Aftersignin extends React.Component{
       logout:false,
       newspaper:false,
       floaticon:false,
+      taskanalysis:false,
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
@@ -145,6 +147,8 @@ class Aftersignin extends React.Component{
     this.floaticon=this.floaticon.bind(this);
     this.flo=this.flo.bind(this);
     this.newspaper_open=this.newspaper_open.bind(this);
+    this.taskanalysis=this.taskanalysis.bind(this);
+    this.taskanalysis_open=this.taskanalysis_open.bind(this);
   }
 
  toggleDrawer = (open) => () => {
@@ -197,6 +201,12 @@ class Aftersignin extends React.Component{
     this.setState({
       floaticon:false,
     }) 
+  }
+  taskanalysis()
+  {
+    this.setState({
+      taskanalysis:true,
+    })
   }
 function(){
       var firebaseRef=firebase.database().ref("users");
@@ -253,6 +263,13 @@ newspaper()
       return <Redirect exact to="/newspaper"/>
     }
   }
+  taskanalysis_open()
+  {
+    if(this.state.taskanalysis)
+    {
+      return <Redirect exact to="/taskanalysis"/>
+    }
+  }
 render()
 {
   const noti=this.state;
@@ -272,9 +289,8 @@ render()
                       <br/>
 
                       </li>
-                      <li>
-                            <span class="fab-label">Task Analystics</span>
-
+                      <li onClick={this.taskanalysis}>
+                        <span class="fab-label">Task Analystics</span>
                         <div class="fab-icon-holder">
                             <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i>
                         </div>
@@ -337,7 +353,7 @@ render()
       {Inbox}
       {this.logouting()}
       {this.newspaper_open()}
-
+      {this.taskanalysis_open()}
       {this.inbox_pages()}
     {/* sidebar open karva mate thay che */}
     <SwipeableDrawer
