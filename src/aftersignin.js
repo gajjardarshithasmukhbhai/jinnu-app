@@ -61,10 +61,12 @@ const styles = {
 };
 const fab=style({
   marginLeft: theme.spacing.unit*34,
+  outline:"0 !important;",
 })
 const appbar=style({
     flexGrow: 1,
     backgroundColor: "#5535CC",
+
 })
 const list=style({
     width: 230,
@@ -88,7 +90,9 @@ const root=style({
 const grow=style({
   flexGrow: 1,
 })
-
+const menuicon=style({
+  outline:"0 !important;",
+})
 class Aftersignin extends React.Component{
   componentWillMount()
   {
@@ -311,7 +315,7 @@ render()
       <div className={root}>
         <AppBar  className={appbar}>
           <Toolbar variant="dense">
-          <IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
+          <IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu" className={menuicon}>
 
             <MenuIcon/>
           
