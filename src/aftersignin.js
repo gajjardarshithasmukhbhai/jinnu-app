@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
 import  'bootstrap/dist/css/bootstrap.min.css';
+import './after-signin.css'
 import 'bootstrap/dist/js/bootstrap.min.js';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -36,6 +37,8 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
+import AddIcon from '@material-ui/icons/Add';
+import Fab from '@material-ui/core/Fab';
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -56,6 +59,9 @@ const styles = {
   },
 
 };
+const fab=style({
+  marginLeft: theme.spacing.unit*34,
+})
 const appbar=style({
     flexGrow: 1,
     backgroundColor: "#5535CC",
@@ -351,13 +357,20 @@ render()
                    <List disableRipple>
             <ListItem button>{/* button thi ribbel effect ave*/}
                 <IconButton aria-label="Comments">
+                          
                         </IconButton>
               <ListItemText primary="welcome user in our webapp "/>
                 
             </ListItem>
           </List>
              </CardContent>
-          </Card>     
+          </Card>
+          <div class="fixed-bottom lol">
+           <Fab color="primary" aria-label="Add" className={fab}>
+              <AddIcon/>
+           </Fab>
+           </div>
+               
        </div>
       </div>
       </div>
