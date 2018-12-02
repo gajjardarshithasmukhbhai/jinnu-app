@@ -275,6 +275,7 @@ render()
   const noti=this.state;
   const { classes } = this.state;
   let floaticon;
+  const vbn=this.state.floaticon;
   if(this.state.floaticon)
   {
     floaticon=(
@@ -403,7 +404,7 @@ render()
             </div>
         </div>
 {/* form khulse crud operaton by user*/} 
-       <div class="container-fluid" onClick={this.flo}>
+       <div class="container-fluid" DbClick={this.flo}>
           <Card>
              <CardContent>
                 <TextField
@@ -434,8 +435,8 @@ render()
           </Card>
            {floaticon}
 
-          <div class="fixed-bottom lol" onMouseOver={this.floaticon}>
-           <Fab color="primary" aria-label="Add" onMouseOver={this.floaticon}  className={fab}>
+          <div class="fixed-bottom lol">
+           <Fab color="primary" aria-label="Add" onClick={vbn?(this.flo):(this.floaticon)}  className={fab}>
               <AddIcon/>
            </Fab>
            </div>
