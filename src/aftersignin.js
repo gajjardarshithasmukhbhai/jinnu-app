@@ -61,8 +61,6 @@ const styles = {
 };
 const fab=style({
   marginLeft: theme.spacing.unit*34,
-  width:"64px",
-  height:"64px",
 })
 const appbar=style({
     flexGrow: 1,
