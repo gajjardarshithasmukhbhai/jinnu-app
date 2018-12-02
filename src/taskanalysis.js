@@ -34,6 +34,12 @@ const menuicon=style({
   outline:"0 !important;",
 })
 class Taksanalysis extends React.Component{
+	componentDidMount()
+	{
+		this.interval=setInterval(()=>{
+			this.randomdata();
+		},1000)
+	}
 	componentWillMount()
 	{
 		this.firebasedata();
@@ -55,6 +61,31 @@ class Taksanalysis extends React.Component{
     	this.backing=this.backing.bind(this);
     	this.logout=this.logout.bind(this);
     	this.logouting=this.logouting.bind(this);
+    	this.randomdata=this.randomdata.bind(this);
+	}
+	randomdata()
+	{
+		let qa=Math.random()*100;
+		let yt=Math.floor(qa);
+		console.log(yt);
+		this.setState({
+			chartData:{
+			datasets:[{
+					label:"Productivity Graph",
+					fill: true,
+					data:[yt+12,yt+34,yt*2.5,yt+17,yt+25,yt*1.4,yt*2.1],
+					backgroundColor:[
+						'rgba(5, 112, 194, 0.9)',
+						'rgba(5, 184, 194, 0.97)',
+						'rgba(194, 181, 5, 0.94)',
+						'rgba(222, 69, 110, 0.95)',
+						'rgba(223, 114, 214, 0.95)',
+						'#28DC68',
+						'rgba(87, 255, 36, 0.95)',
+					]
+				}],
+			}
+		})
 	}
 	toggleDrawer = (open) => () => {
     this.setState({
@@ -93,21 +124,6 @@ class Taksanalysis extends React.Component{
   	this.setState({
   		chartData:{
 				labels:["monday","tuesday","wendesday","thursday","friday","saturday","sunday"],
-
-				datasets:[{
-					label:"Productivity Graph",
-					fill: true,
-					data:[14,14,14,14,14,15,15],
-					backgroundColor:[
-						'rgba(5, 112, 194, 0.9)',
-						'rgba(5, 184, 194, 0.97)',
-						'rgba(194, 181, 5, 0.94)',
-						'rgba(222, 69, 110, 0.95)',
-						'rgba(223, 114, 214, 0.95)',
-						'#28DC68',
-						'rgba(87, 255, 36, 0.95)',
-					]
-				}],
 			}
   	})
   }
@@ -187,6 +203,8 @@ render()
 						 			},
 						 animation:{
 						 	duration:2000,
+						 	animateScale:true,
+						 	animateRotate:true
 						 },
 						 title: {
 								    display: true,
