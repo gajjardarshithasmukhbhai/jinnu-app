@@ -102,7 +102,7 @@ class Taksanalysis extends React.Component{
 						'rgba(194, 181, 5, 0.94)',
 						'rgba(222, 69, 110, 0.95)',
 						'rgba(223, 114, 214, 0.95)',
-						'rgba(238, 176, 62,.6)',
+						'rgba(238, 176, 62,0.6)',
 						'rgba(87, 255, 36, 0.95)',
 					]
 				}],
