@@ -97,14 +97,14 @@ class Taksanalysis extends React.Component{
 				datasets:[{
 					label:"Productivity Graph",
 					fill: true,
-					data:[20,10,40,10,20,10,20],
+					data:[14,14,14,14,14,15,15],
 					backgroundColor:[
 						'rgba(5, 112, 194, 0.9)',
 						'rgba(5, 184, 194, 0.97)',
 						'rgba(194, 181, 5, 0.94)',
 						'rgba(222, 69, 110, 0.95)',
 						'rgba(223, 114, 214, 0.95)',
-						'rgba(238, 176, 62,0.6)',
+						'#28DC68',
 						'rgba(87, 255, 36, 0.95)',
 					]
 				}],
