@@ -190,7 +190,7 @@ render()
         	<div class="text-muted">
         	<Paper>
         	<div>
-        		<Pie
+        		<Bar
 					data={this.state.chartData}
 					width={100}
 					height={130}
