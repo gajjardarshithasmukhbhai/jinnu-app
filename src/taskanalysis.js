@@ -34,7 +34,10 @@ const menuicon=style({
   outline:"0 !important;",
 })
 class Taksanalysis extends React.Component{
-	
+	componentWillMount()
+	{
+		this.firebasedata();
+	}
 	constructor(props)
 	{
 		super(props);
@@ -44,26 +47,11 @@ class Taksanalysis extends React.Component{
 			back:false,
 			logout:false,
 			name:"",
-			chartData:{
-				labels:["monday","tuesday","wendesday","thursday","friday","saturday","sunday"],
-				datasets:[{
-					label:"Productivity Graph",
-					data:[900,549,827,927,656,825,88],
-					backgroundColor:[
-						'rgba(5, 112, 194, 0.9)',
-						'rgba(5, 184, 194, 0.97)',
-						'rgba(194, 181, 5, 0.94)',
-						'rgba(222, 69, 110, 0.95)',
-						'rgba(223, 114, 214, 0.95)',
-						'rgba(238, 176, 62,.6)',
-						'rgba(87, 255, 36, 0.95)',
-
-					]
-				}],
-			}
+			chartData:{}
 		};
   	    this.toggleDrawer=this.toggleDrawer.bind(this);
   	    this.back=this.back.bind(this);
+  	    this.firebasedata=this.firebasedata.bind(this);
     	this.backing=this.backing.bind(this);
     	this.logout=this.logout.bind(this);
     	this.logouting=this.logouting.bind(this);
@@ -99,6 +87,27 @@ class Taksanalysis extends React.Component{
     {
       return <Redirect to="/next-page"/>
     }
+  }
+  firebasedata()
+  {
+  	this.setState({
+  		chartData:{
+				labels:["monday","tuesday","wendesday","thursday","friday","saturday","sunday"],
+				datasets:[{
+					label:"Productivity Graph",
+					data:[20,10,40,10,20,10,20],
+					backgroundColor:[
+						'rgba(5, 112, 194, 0.9)',
+						'rgba(5, 184, 194, 0.97)',
+						'rgba(194, 181, 5, 0.94)',
+						'rgba(222, 69, 110, 0.95)',
+						'rgba(223, 114, 214, 0.95)',
+						'rgba(238, 176, 62,.6)',
+						'rgba(87, 255, 36, 0.95)',
+					]
+				}],
+			}
+  	})
   }
 render()
 {
@@ -160,13 +169,13 @@ render()
         <br/><br/><br/>
         <div class="container">
         	<div class="text-muted">
-        	<Paper>
-        	<div >
+        	<Paper><br/>
+        	<Typography color="error" variant="subheading2" align="center">----- your Analytics Graph -----</Typography>
+        	<div>
         		<Pie
 					data={this.state.chartData}
 					width={100}
 					height={130}
-					
 				/>
         	</div>
         	</Paper>
