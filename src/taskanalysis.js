@@ -50,13 +50,13 @@ class Taksanalysis extends React.Component{
 					label:"Productivity Graph",
 					data:[900,549,827,927,656,825,88],
 					backgroundColor:[
-						'rgba(244,26,71,.6)',
-						'rgba(63,191,81,.6)',
-						'rgba(238,220,62,.8)',
-						'rgba(62,80,238,.8)',
-						'rgba(76, 62, 238,.5)',
+						'rgba(5, 112, 194, 0.9)',
+						'rgba(5, 184, 194, 0.97)',
+						'rgba(194, 181, 5, 0.94)',
+						'rgba(222, 69, 110, 0.95)',
+						'rgba(223, 114, 214, 0.95)',
 						'rgba(238, 176, 62,.6)',
-						'#0CE39A',
+						'rgba(87, 255, 36, 0.95)',
 
 					]
 				}],

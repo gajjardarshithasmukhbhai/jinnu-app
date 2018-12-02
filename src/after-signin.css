@@ -15,7 +15,7 @@
 	box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 }
 .fab-icon-holder:hover{
-	opacity: 0.8;
+	opacity: 0.6;
 }
 .fab-icon-holder i{ /*aa code no use te font-awsome na icon ne proper position and color apva mate thay che */
 	display: flex;
@@ -49,4 +49,7 @@
 	color: white;
 	box-shadow: 0 6px 20px rgba(0,0,0,0.2);
 	margin-right: 6px;
+}
+.fab-label:hover{
+	opacity: 0.6;
 }
