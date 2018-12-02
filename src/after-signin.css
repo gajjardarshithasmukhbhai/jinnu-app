@@ -6,7 +6,7 @@
 	box-shadow: 1px 1px 1px #787474;
 	overflow: hidden;
 }
-.fab-icon-holder
+.fab-icon-holder/* fab-icon-holder e pelu circle color varu banava mate thay che*/
 {
 	width: 50px;
 	height: 50px;
@@ -17,7 +17,7 @@
 .fab-icon-holder:hover{
 	opacity: 0.8;
 }
-.fab-icon-holder i{
+.fab-icon-holder i{ /*aa code no use te font-awsome na icon ne proper position and color apva mate thay che */
 	display: flex;
 	align-items: center;
 	align-content: center;
@@ -33,12 +33,12 @@
 	bottom: 120px;
 	right: 8%;
 }
-.fab-options li{
+.fab-options li{/*fab -option li no use e fab ni upar je fab dekhay ene te end position ma te gothavi nakhe che */
 	display: flex;
 	justify-content: flex-end;
 	padding: 5px;
 }
-.fab-label{
+.fab-label{/* fab label no use te fab ne label apva mate te thay che*/
 	padding: 2px 5px;
 	align-self: center;
 	user-select: none;

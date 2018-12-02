@@ -264,7 +264,7 @@ render()
       <div class="fab-container">
                     <ul class="fab-options">
                       <li>
-                          <span class="fab-label">change password</span>
+                          <span class="fab-label">Change Password</span>
 
                         <div class="fab-icon-holder">
                          <i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i>
@@ -273,7 +273,7 @@ render()
 
                       </li>
                       <li>
-                            <span class="fab-label">task analysis</span>
+                            <span class="fab-label">Task Analystics</span>
 
                         <div class="fab-icon-holder">
                             <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i>
@@ -282,7 +282,7 @@ render()
 
                       </li>
                       <li>
-                            <span class="fab-label">review</span>  
+                            <span class="fab-label">Review</span>  
 
                         <div class="fab-icon-holder">
                             <i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i>
@@ -387,7 +387,7 @@ render()
             </div>
         </div>
 {/* form khulse crud operaton by user*/} 
-       <div class="container-fluid">
+       <div class="container-fluid" onClick={this.flo}>
           <Card>
              <CardContent>
                 <TextField
@@ -419,7 +419,7 @@ render()
            {floaticon}
 
           <div class="fixed-bottom lol">
-           <Fab color="primary" aria-label="Add" onMouseOver={this.floaticon} onMouseOut={this.flo} className={fab}>
+           <Fab color="primary" aria-label="Add" onMouseOver={this.floaticon}  className={fab}>
               <AddIcon/>
            </Fab>
            </div>
