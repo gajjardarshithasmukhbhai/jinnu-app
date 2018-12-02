@@ -93,8 +93,10 @@ class Taksanalysis extends React.Component{
   	this.setState({
   		chartData:{
 				labels:["monday","tuesday","wendesday","thursday","friday","saturday","sunday"],
+
 				datasets:[{
 					label:"Productivity Graph",
+					fill: true,
 					data:[20,10,40,10,20,10,20],
 					backgroundColor:[
 						'rgba(5, 112, 194, 0.9)',
@@ -170,13 +172,29 @@ render()
         <br/><br/><br/>
         <div class="container">
         	<div class="text-muted">
-        	<Paper><br/>
-        	<Typography color="error" variant="subheading2" align="center">----- your Analytics Graph -----</Typography>
+        	<Paper>
         	<div>
         		<Pie
 					data={this.state.chartData}
 					width={100}
 					height={130}
+					options={{
+
+
+						 tooltips: {
+						 	backgroundColor:"#F1258F",
+						 	bodyFontSize:16,
+						 			},
+						 animation:{
+						 	duration:2000,
+						 },
+						 title: {
+								    display: true,
+								    text: 'Your Productivity-Graph',
+								    fontSize:22,
+								    fontFamily:"Helvetica"
+								}
+            				}}
 				/>
         	</div>
         	</Paper>
