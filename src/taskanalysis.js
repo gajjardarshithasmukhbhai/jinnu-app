@@ -113,7 +113,7 @@ render()
 {
 	
 	    const sideList = (
-      <div className={list}>
+      <div className={list}><br/><br/><br/><Divider/>
       		<ListItem button onClick={this.back}>
       		<ListItemIcon>
 		    	  	<span className="fa-fw">
@@ -130,7 +130,8 @@ render()
 		       </span>
       	</ListItemIcon>
       		<ListItemText primary="logout" />
-    	</ListItem>
+    	</ListItem><Divider/>
+
       	</div>
 );
 	return(
