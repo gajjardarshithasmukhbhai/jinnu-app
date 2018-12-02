@@ -267,16 +267,16 @@ render()
                           <span class="fab-label">change password</span>
 
                         <div class="fab-icon-holder">
-                         <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                         <i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i>
                         </div>
                       <br/>
-                        
+
                       </li>
                       <li>
                             <span class="fab-label">task analysis</span>
 
                         <div class="fab-icon-holder">
-                            <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i>
                         </div>
                       <br/>
 
@@ -285,7 +285,7 @@ render()
                             <span class="fab-label">review</span>  
 
                         <div class="fab-icon-holder">
-                            <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                            <i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i>
                         </div>
                       </li>
                     </ul>
