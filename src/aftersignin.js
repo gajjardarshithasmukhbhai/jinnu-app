@@ -145,7 +145,6 @@ class Aftersignin extends React.Component{
     this.logouting=this.logouting.bind(this);
     this.newspaper=this.newspaper.bind(this);
     this.floaticon=this.floaticon.bind(this);
-    this.flo=this.flo.bind(this);
     this.newspaper_open=this.newspaper_open.bind(this);
     this.taskanalysis=this.taskanalysis.bind(this);
     this.taskanalysis_open=this.taskanalysis_open.bind(this);
@@ -195,13 +194,7 @@ class Aftersignin extends React.Component{
     this.setState({
       floaticon:true,
     })
-  }
-  flo()
-  {
-    this.setState({
-      floaticon:false,
-    }) 
-  }
+  }  
   taskanalysis()
   {
     this.setState({
@@ -436,7 +429,7 @@ render()
            {floaticon}
 
           <div class="fixed-bottom lol">
-           <Fab color="primary" aria-label="Add" onClick={vbn?(this.flo)/*true*/:(this.floaticon/*false*/)}  className={fab}>
+           <Fab color="primary" aria-label="Add" onClick={vbn?(()=>{this.setState({floaticon:false})})/*true*/:(this.floaticon/*false*/)}  className={fab}>
               <AddIcon/>
            </Fab>
            </div>
@@ -447,6 +440,4 @@ render()
   );
 }
 }
-
-
 export default withStyles(styles)(Aftersignin);
