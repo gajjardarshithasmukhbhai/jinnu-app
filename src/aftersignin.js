@@ -435,7 +435,7 @@ render()
            {floaticon}
 
           <div class="fixed-bottom lol">
-           <Fab color="primary" aria-label="Add" onMouseOver={this.floaticon}  className={fab}>
+           <Fab color="primary" aria-label="Add" onClick={this.floaticon}  className={fab}>
               <AddIcon/>
            </Fab>
            </div>
