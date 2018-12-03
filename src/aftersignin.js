@@ -276,7 +276,6 @@ render()
                     <ul class="fab-options">
                       <li>
                           <span class="fab-label">Change Password</span>
-
                         <div class="fab-icon-holder">
                          <i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i>
                         </div>
@@ -293,7 +292,6 @@ render()
                       </li>
                       <li>
                             <span class="fab-label">Review</span>  
-
                         <div class="fab-icon-holder">
                             <i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i>
                         </div>

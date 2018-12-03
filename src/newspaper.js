@@ -120,7 +120,9 @@ class Newspaper extends React.Component{
       share:false,
       value:0,
       love:false,
-      sharingcolor:"default"
+      sk:null,
+      sharingcolor:"default",
+      macbook:false,
 		};
     	this.toggleDrawer=this.toggleDrawer.bind(this);
     	this.back=this.back.bind(this);
@@ -131,6 +133,7 @@ class Newspaper extends React.Component{
       this.love=this.love.bind(this);
       this.hat=this.hat.bind(this);
       this.share=this.share.bind(this);
+      this.macbook=this.macbook.bind(this);
   }
 	back()
   {
@@ -188,6 +191,7 @@ class Newspaper extends React.Component{
             this.setState({
               color:"secondary",
               love:true,
+            
             })
   }
   hat()
@@ -197,13 +201,18 @@ class Newspaper extends React.Component{
       love:false,
     })
   }
-  
+  macbook(event)
+  {
+    let qw=event;
+    console.log(qw);
+  }
 
 render()
 {
 	const { classes } = this.props;
   let sharing;
   let love=this.state.love;
+  let macbook=this.state.macbook;
 	const sideList = (
       <div className={list}>
       <ListItem>
@@ -281,7 +290,7 @@ render()
             <Card className={classes.card}>
             <CardHeader
               avatar={
-                <Avatar aria-label="Recipe" src={this.state.photo}className={classes.avatar}/>
+                <Avatar aria-label="Recipe" src={this.state.photo} className={classes.avatar}/>
               }
               action={
                 <IconButton>
@@ -304,10 +313,25 @@ render()
             <a class="text text-muted pl-3" href={wr.url}>more details</a>
             <CardActions className={classes.actions} disableActionSpacing>
 
-              <IconButton className={Favorite}aria-label="Add to favorites" key={wr.title} onClick={love?(this.hat):(this.love)} color={this.state.color}>
+
+
+
+
+              <IconButton className={Favorite} value="gajjau" key={wr.title} onMouseOver={this.macbook(i)} onClick={love?(this.hat):(this.love)} color={this.state.color}>
                 <FavoriteIcon/>
               </IconButton>
-              <IconButton className={share} aria-label="Share" onClick={this.share} color={this.state.sharingcolor}>
+            
+
+
+
+
+
+
+
+
+
+
+              <IconButton className={share} aria-label="Share" value={i} onChange={this.macbook} onClick={this.share} color={this.state.sharingcolor}>
                 <ShareIcon />
               </IconButton>
               
@@ -323,6 +347,4 @@ render()
 	);
 }
 }
-
-
 export default withStyles(styles)(Newspaper);

@@ -6,6 +6,14 @@
 	box-shadow: 1px 1px 1px #787474;
 	overflow: hidden;
 }
+.fab{
+	transition: all .3s ease;
+	transform: scale(0);
+	transform-origin:85% bottom;
+}
+.fab:hover{
+	transform: scale(1);
+}
 .fab-icon-holder/* fab-icon-holder e pelu circle color varu banava mate thay che*/
 {
 	width: 50px;

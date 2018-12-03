@@ -49,10 +49,10 @@ library.add(faNewspaper )
 library.add(faSignOutAlt)
 library.add(faChevronLeft)
 
-const theme=createMuiTheme();
 const list=style({
     width: 230,
 })
+const theme=createMuiTheme();
 const styles = theme => ({
   root: {
     width: '100%',
@@ -66,6 +66,9 @@ const image=style({
     height: 90,
 })
 class Inbox extends React.Component{
+componentDidMount(){
+		this.wer=setInterval(()=>{this.calling();},2600);
+}
 componentWillMount(){
 	var user = firebase.auth().currentUser;
 	if(user!=null)
@@ -75,6 +78,7 @@ componentWillMount(){
 		this.setState({
 			user:name,
 			photo:photoUrl,
+
 		})		
 	}
 	else
@@ -90,10 +94,15 @@ componentWillMount(){
      		 back:false,
      		 user:"",
      		 photo:'',
+     		 qa:true,
+     		 comment1:"welcome user in our webapp Jinu this app is free so don't worry use it",
+     		 comment2:"Any problem occur so please send message cismox.code@gmail.com"
 		};
     	this.toggleDrawer=this.toggleDrawer.bind(this);
     	this.back=this.back.bind(this);
     	this.backing=this.backing.bind(this);
+    	this.calling=this.calling.bind(this);
+    	this.calls=this.calls.bind(this);
 
 	}
 	toggleDrawer = (open) => () => {
@@ -108,6 +117,13 @@ componentWillMount(){
   		back:true,
   	})
   }
+  calls()
+  {
+  	this.setState({
+  		comment1:"welcome user in our webapp Jinu this app is free so don't worry use it",
+     	comment2:"Any problem occur so please send message cismox.code@gmail.com",
+  	})
+  }
   backing=()=>
   {
   	if(this.state.back)
@@ -115,7 +131,17 @@ componentWillMount(){
   		return <Redirect exact to="/after-signin"/>
   	}
   }
-
+  calling(){
+  	this.setState({
+  		comment1:"the 4 month hard-working then after this app became",
+  		comment2:"Darshit(Mern stack devloper) is big fan of aladdin.so this webapp name set",
+  		qa:!this.state.qa,		
+  	})
+  	if(this.state.qa==false)
+  	{
+  		this.calls();
+  	}
+  }
 render()
 {
 	const { classes } = this.props;
@@ -217,20 +243,22 @@ render()
 								<IconButton aria-label="Comments">
                   					<CommentIcon />
                 				</IconButton>
-							<ListItemText primary="welcome user in our webapp Jinu this app is free so don't worry use it"/>
+							<ListItemText primary={this.state.comment1}/>
 								
 						</ListItem>
 					</List>
 					<Divider/>
 					<List className={classes.listItem}   disableRipple>
+
 						<ListItem button>{/* button thi ribbel effect ave*/}
 								<IconButton aria-label="Comments">
                   					<CommentIcon />
                 				</IconButton>
-							<ListItemText primary="any problem occur so please send message cismox.code@gmail.com"/>
-								
+									<ListItemText primary={this.state.comment2} />
 						</ListItem>
+
 					</List>
+
 					<Divider/>
 					
 					</div>
