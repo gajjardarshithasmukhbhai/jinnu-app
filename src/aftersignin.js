@@ -40,6 +40,9 @@ import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import chart from 'chart.js'
+import { FaCss3 } from "react-icons/fa";
+import {FaVuejs,FaAdjust,Fa500px} from "react-icons/fa";
+
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -51,6 +54,7 @@ var config = {
   };
 
 const theme=createMuiTheme();
+
 const styles = {
   
   
@@ -60,6 +64,11 @@ const styles = {
   },
 
 };
+const right=style({
+        width:45,
+        height:35,
+      })
+
 const fab=style({
   marginLeft: theme.spacing.unit*34,
   outline:"0 !important;",
@@ -335,8 +344,11 @@ render()
       <ListItemText primary="company details" />
     </ListItem>
     <ListItem button>
-        <p class="text text-muted">Mr.Darshit Gajjar(Devloper)</p>
+        <p class="text text-muted">Mr.Darshit Gajjar(Devloper)</p><br/>
+
     </ListItem> 
+       &nbsp;&nbsp;&nbsp; <FaVuejs className={right}/>&nbsp;&nbsp;<FaCss3 className={right}/><FaAdjust/><Fa500px className={right}/>
+
       </div>
     );
   return(
