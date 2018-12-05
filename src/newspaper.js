@@ -67,7 +67,7 @@ const loving=style({
 const heart=style({
         width:25,
         height:30,
-        backgroundColor:red,
+        color:"#8E8C8C",
 
       })
 
@@ -129,15 +129,16 @@ class Newspaper extends React.Component{
 			left:false,
 			photo:"",
       news:[],
-      user:"",
+      user:null,
       share:false,
       value:0,
       love:false,
       sk:null,
       test:null,
+      ml:null,
       sharingcolor:"default",
       macbook:false,
-      colorx:"#8E8C8C",
+      test1:null
 		};
     	this.toggleDrawer=this.toggleDrawer.bind(this);
     	this.back=this.back.bind(this);
@@ -203,38 +204,52 @@ class Newspaper extends React.Component{
   }
   love(we)
   {
-    console.log("i am colorx");
+    console.log(we);
     /*problem soleve karva mate ni aa best method che instagram ni jem*/
             this.setState({
               love:true,            
               test:we,
-              colorx:"red"              
+              user:"gajjar"
             })
   }
-  hat()
+  hat(we,lk)
   {
+    console.log(we);
+    console.log(lk);
     this.setState({
       love:false,
-      colorx:"#8E8C8C"
+      test:lk,
+      test1:we,
+      user:lk,
     })
   }
-  macbook(event)
+  macbook()
   {
-
+    console.log("red");
   }
   testing(event)
   { 
-    console.log("darshit");
-   }
+    return "red"
+  }
 render()
 {
 	const { classes } = this.props;
   let sharing;
-  var test=this.state.test;
   let love=this.state.love;
-  let qw;
-  let macbook=this.state.macbook;
-  var blu=this.state.colorx;
+  let pr=[];
+  let sr=[];
+  let ed=this.state.test;
+  let test1=this.state.test1;
+  if(this.state.test!=null)
+  {
+
+    pr[ed]="red";    
+    sr[ed]="";    
+  }
+  else if(this.state.test==null)
+  {
+    pr[test1]="#8E8C8C";
+  }
 
 	const sideList = (
       <div className={list}>
@@ -309,7 +324,7 @@ render()
 				
         {
           this.state.news.map((wr,i)=>{
-            return <div class="container">
+            return <div class="container" key={wr.i}>
             <br/>
             <Card className={classes.card}>
             <CardHeader
@@ -335,28 +350,26 @@ render()
               </Typography>
             </CardContent>
             <a class="text text-muted pl-3" href={wr.url}>more details</a>
+            <Divider variant="middel"/>
+
+
+            <Typography variant="subtitle1">{sr[i]}</Typography>
+
+
             <CardActions className={classes.actions} disableActionSpacing>
 
-
-          
-              <IconContext.Provider value={{color:`${this.state.colorx}`,className:`${heart}`}} >
+              <IconContext.Provider value={{color:`${pr[i]}`,className:`${heart}`}} >
                   <div>
-                    &nbsp;&nbsp;&nbsp;<FaGrinHearts  onClick={love?(this.hat):(()=>{let qw=i;(this.love(qw))})}/>
+                    &nbsp;&nbsp;&nbsp;<FaGrinHearts  onClick={love?(()=>{let qw=i;(this.hat(qw,null))}):(()=>{let qw=i;(this.love(qw))})}/>
                   </div>
               </IconContext.Provider>
 
 
-
-
-
-
-
-
-
               <IconButton className={share} aria-label="Share" value={i} onChange={this.macbook} onClick={this.share} color={this.state.sharingcolor}>
-                &nbsp;<ShareIcon />
+
+                <ShareIcon />
               </IconButton>
-              
+
             </CardActions>
                       
           </Card>
