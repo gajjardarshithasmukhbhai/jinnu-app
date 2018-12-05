@@ -244,7 +244,7 @@ render()
   {
 
     pr[ed]="red";    
-    sr[ed]="";    
+    sr[ed]="";   
   }
   else if(this.state.test==null)
   {
@@ -360,7 +360,7 @@ render()
 
               <IconContext.Provider value={{color:`${pr[i]}`,className:`${heart}`}} >
                   <div>
-                    &nbsp;&nbsp;&nbsp;<FaGrinHearts  onClick={love?(()=>{let qw=i;(this.hat(qw,null))}):(()=>{let qw=i;(this.love(qw))})}/>
+                    &nbsp;&nbsp;&nbsp;<FaGrinHearts  onClick={love?(()=>{let qx=i;(this.hat(qx,null))}):(()=>{let qw=i;(this.love(qw))})}/>
                   </div>
               </IconContext.Provider>
 
