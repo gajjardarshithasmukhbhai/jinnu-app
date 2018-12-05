@@ -65,7 +65,7 @@ const loving=style({
         backgroundColor:red,
       })
 const heart=style({
-        width:20,
+        width:25,
         height:30,
         backgroundColor:red,
 
@@ -341,7 +341,7 @@ render()
           
               <IconContext.Provider value={{color:`${this.state.colorx}`,className:`${heart}`}} >
                   <div>
-                    &nbsp;&nbsp;<FaGrinHearts onClick={love?(this.hat):(()=>{let qw=i;(this.love(qw))})}/>
+                    &nbsp;&nbsp;&nbsp;<FaGrinHearts  onClick={love?(this.hat):(()=>{let qw=i;(this.love(qw))})}/>
                   </div>
               </IconContext.Provider>
 
@@ -354,7 +354,7 @@ render()
 
 
               <IconButton className={share} aria-label="Share" value={i} onChange={this.macbook} onClick={this.share} color={this.state.sharingcolor}>
-                <ShareIcon />
+                &nbsp;<ShareIcon />
               </IconButton>
               
             </CardActions>
