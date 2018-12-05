@@ -1,5 +1,4 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import  'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import AppBar from '@material-ui/core/AppBar';
@@ -35,6 +34,10 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import red from '@material-ui/core/colors/red'
 import axios from 'axios'
 import './newspaper.css'
+import { IconContext } from "react-icons";
+
+import {FaGrinHearts} from 'react-icons/fa';
+
 
 var firebase=require("firebase");
 var config = {
@@ -60,6 +63,12 @@ const share=style({
 })
 const loving=style({
         backgroundColor:red,
+      })
+const heart=style({
+        width:20,
+        height:30,
+        backgroundColor:red,
+
       })
 
 const theme=createMuiTheme();
@@ -93,6 +102,11 @@ const styles = theme => ({
 });
 
 class Newspaper extends React.Component{
+  componentDidCatch(error, info) {
+    // You can also log the error to an error reporting service
+    console.log(error);
+    console.log(info);
+  }
 	componentWillMount()
 	{
 		var user = firebase.auth().currentUser;
@@ -116,13 +130,14 @@ class Newspaper extends React.Component{
 			photo:"",
       news:[],
       user:"",
-      color:"default",
       share:false,
       value:0,
       love:false,
       sk:null,
+      test:null,
       sharingcolor:"default",
       macbook:false,
+      colorx:"#8E8C8C",
 		};
     	this.toggleDrawer=this.toggleDrawer.bind(this);
     	this.back=this.back.bind(this);
@@ -134,6 +149,7 @@ class Newspaper extends React.Component{
       this.hat=this.hat.bind(this);
       this.share=this.share.bind(this);
       this.macbook=this.macbook.bind(this);
+      this.testing=this.testing.bind(this);
   }
 	back()
   {
@@ -173,7 +189,6 @@ class Newspaper extends React.Component{
     .then((result)=>
     {
       const post=result.data.articles;
-      console.log(post);
       this.setState({
         news:post,
       })
@@ -186,33 +201,41 @@ class Newspaper extends React.Component{
       sharingcolor:"primary"
     })
   }
-  love()
+  love(we)
   {
+    console.log("i am colorx");
+    /*problem soleve karva mate ni aa best method che instagram ni jem*/
             this.setState({
-              color:"secondary",
-              love:true,
-            
+              love:true,            
+              test:we,
+              colorx:"red"              
             })
   }
   hat()
   {
     this.setState({
-      color:"default",
       love:false,
+      colorx:"#8E8C8C"
     })
   }
   macbook(event)
   {
-    let qw=event;
-    console.log(qw);
-  }
 
+  }
+  testing(event)
+  { 
+    console.log("darshit");
+   }
 render()
 {
 	const { classes } = this.props;
   let sharing;
+  var test=this.state.test;
   let love=this.state.love;
+  let qw;
   let macbook=this.state.macbook;
+  var blu=this.state.colorx;
+
 	const sideList = (
       <div className={list}>
       <ListItem>
@@ -278,6 +301,7 @@ render()
             				Jinu
           				</Typography>
 					</Toolbar>
+
 				</AppBar>
 				<br/>
 				<br/>
@@ -314,14 +338,12 @@ render()
             <CardActions className={classes.actions} disableActionSpacing>
 
 
-
-
-
-              <IconButton className={Favorite} value="gajjau" key={wr.title} onMouseOver={this.macbook(i)} onClick={love?(this.hat):(this.love)} color={this.state.color}>
-                <FavoriteIcon/>
-              </IconButton>
-            
-
+          
+              <IconContext.Provider value={{color:`${this.state.colorx}`,className:`${heart}`}} >
+                  <div>
+                    &nbsp;&nbsp;<FaGrinHearts onClick={love?(this.hat):(()=>{let qw=i;(this.love(qw))})}/>
+                  </div>
+              </IconContext.Provider>
 
 
 
