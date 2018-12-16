@@ -42,7 +42,8 @@ import Fab from '@material-ui/core/Fab';
 import chart from 'chart.js'
 import { FaCss3 } from "react-icons/fa";
 import {FaVuejs,FaAdjust,Fa500px} from "react-icons/fa";
-import {lightBlue,pink} from '@material-ui/core/colors/';
+import {lightBlue,pink,grey} from '@material-ui/core/colors/';
+
 const theme=createMuiTheme({
    palette: {
     primary: { main :lightBlue[700] },
@@ -65,6 +66,10 @@ var config = {
 const zero=style({
         color:pink[400],
 
+})
+const card=style({
+  backgroundColor:lightBlue[50],
+  borderRadius:"2px"
 })
 const styles = {  
   
@@ -423,7 +428,7 @@ render()
         
 {/* form khulse crud operaton by user*/} 
        <div class="container-fluid" DbClick={this.flo}>
-          <Card>
+          <Card class={card}>
              <CardContent>
                 <TextField
                   id="outlined-email-input"
