@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Cormorant" rel="stylesheet"');
 
 .background{
-	background-color: #5535CC;
+	background-color: #0288D1;
 	height: 606px;
-	background:-webkit-linear-gradient(top,#5535CC 60%,#1ADA43 100%);
 }
 .circle{
 	background-color: #FFFFFF;

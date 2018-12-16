@@ -15,12 +15,19 @@ import Inbox from './inbox.js'
 import Newspaper from './newspaper.js'
 import {style} from 'typestyle'
 import Taksanalysis from './taskanalysis.js'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import {IoIosArrowDropright} from 'react-icons/io';
 import {IoMdRose} from 'react-icons/io';
+import {lightGreen} from '@material-ui/core/colors/'
 const right=style({
         width:25,
         height:30,
       })
+const theme=createMuiTheme();
+
+const qwe=style({
+	backgroundColor:lightGreen[700],
+})
 class Darshit extends React.Component{
 render()
 {
@@ -39,20 +46,7 @@ render()
 						 Next      <IoIosArrowDropright className={right}/>
 					</Button>&nbsp;&nbsp;&nbsp;
 					
-					<IoMdRose/>
-					<IoMdRose/>
-					<IoMdRose/>
-					<IoMdRose/>
-					<IoMdRose/>
-					<IoMdRose/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					
-					<IoMdRose/>
-					<IoMdRose/>
-					<IoMdRose/>
-					<IoMdRose/>
-					<IoMdRose/>
-					<IoMdRose/></Link>
+					</Link>
 			</div>
 	);
 }

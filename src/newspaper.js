@@ -35,6 +35,7 @@ import red from '@material-ui/core/colors/red'
 import axios from 'axios'
 import './newspaper.css'
 import { IconContext } from "react-icons";
+import {lightBlue,pink} from '@material-ui/core/colors/';
 
 import {FaGrinHearts} from 'react-icons/fa';
 
@@ -54,6 +55,9 @@ library.add(faSignOutAlt)
 
 const list=style({
     width: 230,
+})
+const appbar=style({
+  backgroundColor:lightBlue[700],
 })
 const Favorite=style({
   outline:"0 !important;",
@@ -307,7 +311,7 @@ render()
 
     </SwipeableDrawer>
 			<div>
-				<AppBar>
+				<AppBar className={appbar}>
 					<Toolbar>
 						<IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
             				<MenuIcon/>

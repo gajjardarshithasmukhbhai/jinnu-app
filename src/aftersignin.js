@@ -42,6 +42,15 @@ import Fab from '@material-ui/core/Fab';
 import chart from 'chart.js'
 import { FaCss3 } from "react-icons/fa";
 import {FaVuejs,FaAdjust,Fa500px} from "react-icons/fa";
+import {lightBlue,pink} from '@material-ui/core/colors/';
+const theme=createMuiTheme({
+   palette: {
+    primary: { main :lightBlue[700] },
+  }
+});
+
+console.log(theme);
+
 
 var firebase=require("firebase");
 var config = {
@@ -53,10 +62,11 @@ var config = {
     messagingSenderId: "562657144875"
   };
 
-const theme=createMuiTheme();
+const zero=style({
+        color:pink[400],
 
-const styles = {
-  
+})
+const styles = {  
   
   menuButton: {
     marginLeft: -12,
@@ -67,6 +77,7 @@ const styles = {
 const right=style({
         width:45,
         height:35,
+        color:pink[800],
       })
 
 const fab=style({
@@ -75,7 +86,7 @@ const fab=style({
 })
 const appbar=style({
     flexGrow: 1,
-    backgroundColor: "#5535CC",
+    backgroundColor: lightBlue[700],
 
 })
 const list=style({
@@ -347,9 +358,8 @@ render()
         <p class="text text-muted">Mr.Darshit Gajjar(Devloper)</p><br/>
 
     </ListItem> 
-       &nbsp;&nbsp;&nbsp; <FaVuejs className={right}/>&nbsp;&nbsp;<FaCss3 className={right}/><FaAdjust/><Fa500px className={right}/>
-
-      </div>
+       &nbsp;&nbsp;&nbsp; <FaVuejs className={right}/>&nbsp;&nbsp;<FaCss3 className={right}/><FaAdjust className={zero}/><Fa500px className={right}/>
+    </div>
     );
   return(
       <div>
@@ -380,16 +390,20 @@ render()
     </SwipeableDrawer>
 
       <div className={root}>
-        <AppBar  className={appbar}>
-          <Toolbar variant="dense">
+
+        <AppBar  className={appbar} >
+
+          <Toolbar variant="dense" >
           <IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu" className={menuicon}>
 
             <MenuIcon/>
           
           </IconButton> 
+
           <Typography variant="title" color="inherit">
             Jinu
           </Typography>
+          
             <Badge className={yrt} badgeContent={this.state.inbox_number} color="secondary" onClick={this.inboxy}>
                <MailIcon/>
             </Badge>
@@ -406,6 +420,7 @@ render()
             <b>welcome user in Darshit jinu app</b><br/>your username is:&nbsp;&nbsp;<b>{this.state.title_name}</b><br/>your password is:&nbsp;&nbsp;<b>{this.state.password}</b>
             </div>
         </div>
+        
 {/* form khulse crud operaton by user*/} 
        <div class="container-fluid" DbClick={this.flo}>
           <Card>
@@ -421,7 +436,7 @@ render()
                   variant="outlined"
                   />
                   <button class="btn btn-outline-primary">ADD</button>&nbsp;
-                  <button type="cancel"class="btn btn-outline-danger">Cancel</button>
+                  <button type="cancel"  class="btn btn-outline-danger">Cancel</button>
                   <br/><br/>
                   
                   
@@ -430,7 +445,7 @@ render()
                 <IconButton aria-label="Comments">
                           
                         </IconButton>
-              <ListItemText primary="welcome user in our webapp "/>
+              <ListItemText color="primary" primary="welcome user in our webapp "/>
                 
             </ListItem>
           </List>
@@ -439,11 +454,14 @@ render()
            {floaticon}
 
           <div class="fixed-bottom lol">
+      <MuiThemeProvider theme={theme}> 
+
            <Fab color="primary" aria-label="Add" onClick={vbn?(()=>{this.setState({floaticon:false})})/*true*/:(this.floaticon/*false*/)}  className={fab}>
               <AddIcon/>
            </Fab>
+      </MuiThemeProvider>         
+
            </div>
-               
        </div>
       </div>
       </div>
