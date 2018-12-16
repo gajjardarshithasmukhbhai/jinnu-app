@@ -42,14 +42,13 @@ import Fab from '@material-ui/core/Fab';
 import chart from 'chart.js'
 import { FaCss3 } from "react-icons/fa";
 import {FaVuejs,FaAdjust,Fa500px} from "react-icons/fa";
-import {lightBlue,pink,grey} from '@material-ui/core/colors/';
+import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
 
 const theme=createMuiTheme({
    palette: {
     primary: { main :lightBlue[700] },
   }
 });
-
 console.log(theme);
 
 
@@ -71,6 +70,11 @@ const card=style({
   backgroundColor:lightBlue[50],
   borderRadius:"2px"
 })
+
+const text=style({
+  color:pink[600],
+})
+
 const styles = {  
   
   menuButton: {
@@ -92,6 +96,8 @@ const fab=style({
 const appbar=style({
     flexGrow: 1,
     backgroundColor: lightBlue[700],
+    height:"50px",
+    shadows:(9)
 
 })
 const list=style({
@@ -110,6 +116,7 @@ const yt=style({
   marginLeft: 24,
 
 })
+
 const root=style({
   flexGrow: 1,
 })
@@ -326,7 +333,7 @@ render()
     }
     const sideList = (
       <div className={list}>
-      <ListItem>
+      <ListItem className={list}>
         <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.title_name}
       </ListItem>
       <Divider/>
@@ -450,7 +457,7 @@ render()
                 <IconButton aria-label="Comments">
                           
                         </IconButton>
-              <ListItemText color="primary" primary="welcome user in our webapp "/>
+              <ListItemText color="primary" className={text} primary="welcome user in our webapp "/>
                 
             </ListItem>
           </List>
