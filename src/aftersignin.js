@@ -207,6 +207,7 @@ class Aftersignin extends React.Component{
       open: false,
       hidden: false,
       Task:[{name:"Gajjar Darshit hasmukhbhai"}],
+      data:"gajju is the great person",
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
@@ -219,6 +220,7 @@ class Aftersignin extends React.Component{
     this.newspaper_open=this.newspaper_open.bind(this);
     this.taskanalysis=this.taskanalysis.bind(this);
     this.taskanalysis_open=this.taskanalysis_open.bind(this);
+    this.data=this.data.bind(this);
   }
 
  toggleDrawer = (open) => () => {
@@ -352,6 +354,13 @@ newspaper()
       return <Redirect exact to="/taskanalysis"/>
     }
   }
+  data(event)
+  {
+    let wer=event.target.value;
+    this.setState({
+      data:wer,
+    })
+  }
 render()
 {
   const noti=this.state;
@@ -475,7 +484,8 @@ render()
                   autoComplete=""
                   margin="normal"
                   variant="outlined"
-                  defaultValue={this.state.Task.map((wer)=>wer.name)}
+                  onChange={this.data}
+                  value={this.state.data}
                   >
 
                   </TextField>
