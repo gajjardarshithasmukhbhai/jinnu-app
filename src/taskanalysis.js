@@ -24,7 +24,7 @@ import {Bar,Line,Pie,Polar,Scatter} from 'react-chartjs-2';
 import {lightBlue,pink,grey,lime,purple,orange} from '@material-ui/core/colors/';
 const appbar=style({
     flexGrow: 1,
-     backgroundColor: lightBlue[700],
+     backgroundColor: lightBlue[700],//color contrast
 
 })
 const list=style({
