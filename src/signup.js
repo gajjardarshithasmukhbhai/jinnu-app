@@ -19,6 +19,7 @@ import Button from '@material-ui/core/Button';
 import '../node_modules/font-awesome/css/font-awesome.min.css'
 import Aftersignin from './aftersignin.js'
 import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
+import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -34,7 +35,7 @@ var config = {
 const theme = createMuiTheme();
 const appbar=style({
     flexGrow: 1,
-    backgroundColor: "#5535CC",
+    backgroundColor: lightBlue[700],
 })
 const styles = theme => ({ 
 

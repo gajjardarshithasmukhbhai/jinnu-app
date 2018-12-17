@@ -42,8 +42,10 @@ import Fab from '@material-ui/core/Fab';
 import chart from 'chart.js'
 import { FaCss3 } from "react-icons/fa";
 import {FaVuejs,FaAdjust,Fa500px} from "react-icons/fa";
+import {TiWeatherSnow} from "react-icons/ti"; 
 import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
-
+import DeleteIcon from '@material-ui/icons/Delete';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 const theme=createMuiTheme({
    palette: {
     primary: { main :lightBlue[700] },
@@ -72,7 +74,9 @@ const card=style({
 })
 
 const text=style({
-  color:pink[600],
+    marginLeft:"-18px",
+    fontSize:"20px",
+    fontFamily:"Roboto"
 })
 
 const styles = {  
@@ -457,8 +461,17 @@ render()
                 <IconButton aria-label="Comments">
                           
                         </IconButton>
-              <ListItemText color="primary" className={text} primary="welcome user in our webapp "/>
-                
+
+              <Typography className={text}><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/>Reminder<TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/></Typography>
+              
+            </ListItem>
+            <ListItem>
+            <ListItemText primary="gajjar darshit hasmukhbhai"/>
+            <ListItemSecondaryAction>
+              <IconButton aria-label="Delete">
+                        <DeleteIcon />
+                      </IconButton>
+            </ListItemSecondaryAction>
             </ListItem>
           </List>
              </CardContent>

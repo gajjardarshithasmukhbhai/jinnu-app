@@ -24,7 +24,7 @@ import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
 import Signup from './signup.js'
 import {style} from 'typestyle'
 import Typography from '@material-ui/core/Typography';
-
+import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 const theme = createMuiTheme({
 	palatte:indigo[400],
@@ -53,7 +53,7 @@ const styles = theme => ({
 });
 const appbar=style({
     flexGrow: 1,
-    backgroundColor: "#5535CC",
+    backgroundColor: lightBlue[700],
 })
 const usericon=style({
     marginLeft:theme.spacing.unit * 30,

@@ -19,6 +19,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Drawer from '@material-ui/core/Drawer';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
+import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
 import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -53,6 +54,10 @@ const list=style({
     width: 230,
 })
 const theme=createMuiTheme();
+const appbar=style({
+    flexGrow: 1,
+    backgroundColor: lightBlue[700],
+})
 const styles = theme => ({
   root: {
     width: '100%',
@@ -206,7 +211,7 @@ render()
 
     </SwipeableDrawer>
     		{this.backing()}
-				<AppBar>
+				<AppBar className={appbar}>
 					<Toolbar>
 						<IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
             				<MenuIcon/>
