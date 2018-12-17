@@ -79,7 +79,9 @@ const text=style({
     fontSize:"20px",
     fontFamily:"Roboto"
 })
-
+const outline=style({
+  outline:"0 !important;"
+})
 const styles = {  
   
   menuButton: {
@@ -468,10 +470,10 @@ render()
             </ListItem>
             <ListItem>
             <ListItemText primary="gajjargajjar darshit hasmukhbhai darshit hasmukhbhai"/>
-            <IconButton aria-label="Delete">
+            <IconButton aria-label="Delete" color="primary" className={outline}>
                   <DeleteIcon />
               </IconButton>
-              <IconButton>
+              <IconButton  aria-label="Edit" color="secondary">
                   <EditIcon/>
               </IconButton>
             
@@ -490,11 +492,11 @@ render()
             </ListItem>
             <ListItem>
             <ListItemText primary="gajjargajjar darshit hasmukhbhai darshit hasmukhbhai"/>
-            <IconButton aria-label="Delete">
-                  <DeleteIcon color="primary"/>
+            <IconButton aria-label="Delete" color="primary">
+                  <DeleteIcon />
               </IconButton>
-              <IconButton>
-                  <EditIcon color="secondary"/>
+              <IconButton >
+                  <EditIcon />
               </IconButton>
             
 

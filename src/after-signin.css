@@ -37,7 +37,7 @@
 .fab-options{
 	list-style-type: none;
 	margin: 0;
-	position: absolute;
+	position: fixed;
 	bottom: 120px;
 	right: 8%;
 }
