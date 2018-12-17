@@ -68,7 +68,7 @@ class Taksanalysis extends React.Component{
 	{
 		let qa=Math.random()*100;
 		let yt=Math.floor(qa);
-		console.log(yt);
+		
 		this.setState({
 			chartData:{
 			datasets:[{

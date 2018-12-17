@@ -206,6 +206,7 @@ class Aftersignin extends React.Component{
       taskanalysis:false,
       open: false,
       hidden: false,
+      Task:[{name:"Gajjar Darshit hasmukhbhai"}],
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
@@ -324,28 +325,12 @@ function(){
                   photo:photourl,
 
           });  
-        ref.on("value",gotdata,errdata);
+       
 
       }
     });
   
-  function gotdata(data)
-  {
-    var scores=data.val();
-    var keys=Object.keys(scores);
-    for(var i=0;i<keys.length;i++)
-    {
-      var k=keys[i];
-      var initials=scores[k].initials;
-      var scor=scores[k].name;
-
-      console.log(initials,scor);
-    }
-  }
-  function errdata(err)
-  {
-
-  }
+  
 }
 newspaper()
   {
@@ -490,7 +475,10 @@ render()
                   autoComplete=""
                   margin="normal"
                   variant="outlined"
-                  />
+                  defaultValue={this.state.Task.map((wer)=>wer.name)}
+                  >
+
+                  </TextField>
                   <button class="btn btn-outline-primary">ADD</button>&nbsp;
                   <button type="cancel"  class="btn btn-outline-danger">Cancel</button>
                   <br/><br/>
