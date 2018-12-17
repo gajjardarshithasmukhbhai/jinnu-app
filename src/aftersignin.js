@@ -278,7 +278,14 @@ class Aftersignin extends React.Component{
     }));
   };
 
-  handleClick = () => {
+  handleClick = (i) => {
+    if(i==1)
+    {
+      this.setState({
+        taskanalysis: true,
+      });
+      console.log("i am call");
+    }
     this.setState(state => ({
       open: !state.open,
     }));
@@ -540,14 +547,16 @@ render()
           onMouseLeave={this.handleClose}
           open={open}
         >
-          {actions.map(action => (
+          {actions.map((action,i) => (
             
             <SpeedDialAction
               key={action.name}
               icon={action.icon}
               tooltipTitle={action.name}
               tooltipOpen
-              onClick={this.handleClick}
+              onClick={()=>{
+                this.handleClick(i);
+              }}
             />
           ))}
         </SpeedDial>         
