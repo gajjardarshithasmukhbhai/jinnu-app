@@ -47,6 +47,12 @@ import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import EditIcon from '@material-ui/icons/Edit';
+import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
+import SaveIcon from '@material-ui/icons/Save';
+import PrintIcon from '@material-ui/icons/Print';
+import SpeedDial from '@material-ui/lab/SpeedDial';
+import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
+import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
 const theme=createMuiTheme({
    palette: {
     primary: { main :lightBlue[700] },
@@ -85,11 +91,17 @@ const outline=style({
 const styles = {  
   
   menuButton: {
-    marginLeft: -12,
+    marginLeft: 34,
     marginRight: 20,
   },
 
 };
+const speedDial=style({
+  position: 'absolute',
+    bottom: theme.spacing.unit *6 ,
+    right: theme.spacing.unit * 4,
+    outline:"0 !important;"
+})
 const right=style({
         width:45,
         height:35,
@@ -124,6 +136,11 @@ const yt=style({
 
 })
 
+const actions = [
+  { icon: <FileCopyIcon />, name: 'change Password' },
+  { icon: <SaveIcon />, name: 'Task Analystics' },
+  { icon: <PrintIcon/>, name: 'Review' },
+];
 const root=style({
   flexGrow: 1,
 })
@@ -173,8 +190,9 @@ class Aftersignin extends React.Component{
       inb_page:false,
       logout:false,
       newspaper:false,
-      floaticon:false,
       taskanalysis:false,
+      open: false,
+      hidden: false,
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
@@ -240,6 +258,33 @@ class Aftersignin extends React.Component{
       taskanalysis:true,
     })
   }
+  handleVisibility = () => {
+    this.setState(state => ({
+      open: false,
+      hidden: !state.hidden,
+    }));
+  };
+
+  handleClick = () => {
+    this.setState(state => ({
+      open: !state.open,
+    }));
+  };
+
+  handleOpen = () => {
+    if (!this.state.hidden) {
+      this.setState({
+        open: true,
+      });
+    }
+  };
+
+  handleClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
+
 function(){
       var firebaseRef=firebase.database().ref("users");
 
@@ -306,6 +351,8 @@ render()
 {
   const noti=this.state;
   const { classes } = this.state;
+  const { hidden, open } = this.state;
+
   let floaticon;
   const vbn=this.state.floaticon;
   if(this.state.floaticon)
@@ -490,32 +537,38 @@ render()
             
 
             </ListItem>
-            <ListItem>
-            <ListItemText primary="gajjargajjar darshit hasmukhbhai darshit hasmukhbhai"/>
-            <IconButton aria-label="Delete" color="primary" className={outline}>
-                  <DeleteIcon />
-              </IconButton>
-              <IconButton aria-label="Edit" color="secondary" className={outline}>
-                  <EditIcon />
-              </IconButton>
             
-
-            </ListItem>
 
           </List>
              </CardContent>
           </Card>
            {floaticon}
-
-          <div class="fixed-bottom lol">
-      <MuiThemeProvider theme={theme}> 
-
-           <Fab color="primary" aria-label="Add" onClick={vbn?(()=>{this.setState({floaticon:false})})/*true*/:(this.floaticon/*false*/)}  className={fab}>
-              <AddIcon/>
-           </Fab>
-      </MuiThemeProvider>         
-
-           </div>
+            <div class="fixed-bottom">
+      <SpeedDial
+          ariaLabel="SpeedDial tooltip example"
+          hidden={hidden}
+          className={speedDial}
+          icon={<SpeedDialIcon />}
+          onBlur={this.handleClose}
+          onClick={this.handleClick}
+          onClose={this.handleClose}
+          onFocus={this.handleOpen}
+          onMouseEnter={this.handleOpen}
+          onMouseLeave={this.handleClose}
+          open={open}
+        >
+          {actions.map(action => (
+            
+            <SpeedDialAction
+              key={action.name}
+              icon={action.icon}
+              tooltipTitle={action.name}
+              tooltipOpen
+              onClick={this.handleClick}
+            />
+          ))}
+        </SpeedDial>         
+        </div>
        </div>
       </div>
       </div>
