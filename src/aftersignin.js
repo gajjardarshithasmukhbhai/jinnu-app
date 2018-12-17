@@ -46,6 +46,7 @@ import {TiWeatherSnow} from "react-icons/ti";
 import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
+import EditIcon from '@material-ui/icons/Edit';
 const theme=createMuiTheme({
    palette: {
     primary: { main :lightBlue[700] },
@@ -466,13 +467,39 @@ render()
               
             </ListItem>
             <ListItem>
-            <ListItemText primary="gajjar darshit hasmukhbhai"/>
-            <ListItemSecondaryAction>
-              <IconButton aria-label="Delete">
-                        <DeleteIcon />
-                      </IconButton>
-            </ListItemSecondaryAction>
+            <ListItemText primary="gajjargajjar darshit hasmukhbhai darshit hasmukhbhai"/>
+            <IconButton aria-label="Delete">
+                  <DeleteIcon />
+              </IconButton>
+              <IconButton>
+                  <EditIcon/>
+              </IconButton>
+            
+
             </ListItem>
+            <ListItem>
+            <ListItemText primary="gajjargajjar darshit hasmukhbhai darshit hasmukhbhai"/>
+            <IconButton aria-label="Delete">
+                  <DeleteIcon />
+              </IconButton>
+              <IconButton>
+                  <EditIcon/>
+              </IconButton>
+            
+
+            </ListItem>
+            <ListItem>
+            <ListItemText primary="gajjargajjar darshit hasmukhbhai darshit hasmukhbhai"/>
+            <IconButton aria-label="Delete">
+                  <DeleteIcon color="primary"/>
+              </IconButton>
+              <IconButton>
+                  <EditIcon color="secondary"/>
+              </IconButton>
+            
+
+            </ListItem>
+
           </List>
              </CardContent>
           </Card>
