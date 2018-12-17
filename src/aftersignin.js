@@ -473,7 +473,7 @@ render()
             <IconButton aria-label="Delete" color="primary" className={outline}>
                   <DeleteIcon />
               </IconButton>
-              <IconButton  aria-label="Edit" color="secondary">
+              <IconButton  aria-label="Edit" color="secondary" className={outline}>
                   <EditIcon/>
               </IconButton>
             
@@ -481,10 +481,10 @@ render()
             </ListItem>
             <ListItem>
             <ListItemText primary="gajjargajjar darshit hasmukhbhai darshit hasmukhbhai"/>
-            <IconButton aria-label="Delete">
+            <IconButton aria-label="Delete" color="primary" className={outline}>
                   <DeleteIcon />
               </IconButton>
-              <IconButton>
+              <IconButton aria-label="Edit" color="secondary" className={outline}>
                   <EditIcon/>
               </IconButton>
             
@@ -492,10 +492,10 @@ render()
             </ListItem>
             <ListItem>
             <ListItemText primary="gajjargajjar darshit hasmukhbhai darshit hasmukhbhai"/>
-            <IconButton aria-label="Delete" color="primary">
+            <IconButton aria-label="Delete" color="primary" className={outline}>
                   <DeleteIcon />
               </IconButton>
-              <IconButton >
+              <IconButton aria-label="Edit" color="secondary" className={outline}>
                   <EditIcon />
               </IconButton>
             
