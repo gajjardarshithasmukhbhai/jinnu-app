@@ -21,9 +21,10 @@ import Typography from '@material-ui/core/Typography';
 import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
 import {Bar,Line,Pie,Polar,Scatter} from 'react-chartjs-2';
+import {lightBlue,pink,grey,lime,purple,orange} from '@material-ui/core/colors/';
 const appbar=style({
     flexGrow: 1,
-    backgroundColor: "#5535CC",
+     backgroundColor: lightBlue[700],
 
 })
 const list=style({
