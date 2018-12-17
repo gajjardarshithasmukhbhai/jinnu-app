@@ -42,14 +42,12 @@ import Fab from '@material-ui/core/Fab';
 import chart from 'chart.js'
 import { FaCss3 } from "react-icons/fa";
 import {FaVuejs,FaAdjust,Fa500px} from "react-icons/fa";
-import {TiWeatherSnow} from "react-icons/ti"; 
-import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
+import {TiWeatherSnow,TiChartBarOutline,TiLockClosedOutline} from "react-icons/ti"; 
+import {MdThumbUp} from 'react-icons/md'
+import {lightBlue,pink,grey,lime,purple,orange} from '@material-ui/core/colors/';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import EditIcon from '@material-ui/icons/Edit';
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined';
-import SaveIcon from '@material-ui/icons/Save';
-import PrintIcon from '@material-ui/icons/Print';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
@@ -97,10 +95,11 @@ const styles = {
 
 };
 const speedDial=style({
+  outline:"0 !important;",
   position: 'absolute',
     bottom: theme.spacing.unit *6 ,
     right: theme.spacing.unit * 4,
-    outline:"0 !important;"
+    
 })
 const right=style({
         width:45,
@@ -135,11 +134,25 @@ const yt=style({
   marginLeft: 24,
 
 })
-
+const nava=style({
+  width:35,
+  height:35,
+  color:lightBlue[400],
+})
+const nava1=style({
+  width:35,
+  height:35,
+  color:purple[300],
+})
+const nava2=style({
+  width:30,
+  height:30,
+  color:orange[500],
+})
 const actions = [
-  { icon: <FileCopyIcon />, name: 'change Password' },
-  { icon: <SaveIcon />, name: 'Task Analystics' },
-  { icon: <PrintIcon/>, name: 'Review' },
+  { icon: <TiLockClosedOutline className={nava1}/>, name: 'change Password' },
+  { icon: <TiChartBarOutline className={nava}/>, name: 'Task Analystics' },
+  { icon: <MdThumbUp className={nava2}/>, name: 'Review' },
 ];
 const root=style({
   flexGrow: 1,
