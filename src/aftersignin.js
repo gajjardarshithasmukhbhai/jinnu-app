@@ -150,9 +150,9 @@ const nava2=style({
   color:orange[500],
 })
 const actions = [
-  { icon: <TiLockClosedOutline className={nava1}/>, name: 'change Password' },
-  { icon: <TiChartBarOutline className={nava}/>, name: 'Task Analystics' },
-  { icon: <MdThumbUp className={nava2}/>, name: 'Review' },
+  { icon: <TiLockClosedOutline className={nava1}/>, name: <p class="password">change Password</p> },
+  { icon: <TiChartBarOutline className={nava}/>, name: <p class="password">Task Analystics</p> },
+  { icon: <MdThumbUp className={nava2}/>, name: <p class="password">Review</p> },
 ];
 const root=style({
   flexGrow: 1,
@@ -368,36 +368,6 @@ render()
 
   let floaticon;
   const vbn=this.state.floaticon;
-  if(this.state.floaticon)
-  {
-    floaticon=(
-      <div class="fab-container">
-                    <ul class="fab-options">
-                      <li>
-                          <span class="fab-label">Change Password</span>
-                        <div class="fab-icon-holder">
-                         <i class="fa fa-unlock-alt fa-2x" aria-hidden="true"></i>
-                        </div>
-                      <br/>
-
-                      </li>
-                      <li onClick={this.taskanalysis}>
-                        <span class="fab-label">Task Analystics</span>
-                        <div class="fab-icon-holder">
-                            <i class="fa fa-line-chart fa-2x" aria-hidden="true"></i>
-                        </div>
-                      <br/>
-
-                      </li>
-                      <li>
-                            <span class="fab-label">Review</span>  
-                        <div class="fab-icon-holder">
-                            <i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i>
-                        </div>
-                      </li>
-                    </ul>
-              </div>)
-    }
     const sideList = (
       <div className={list}>
       <ListItem className={list}>

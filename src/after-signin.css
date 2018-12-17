@@ -6,58 +6,7 @@
 	box-shadow: 1px 1px 1px #787474;
 	overflow: hidden;
 }
-.fab{
-	transition: all .3s ease;
-	transform: scale(0);
-	transform-origin:85% bottom;
-}
-.fab:hover{
-	transform: scale(1);
-}
-.fab-icon-holder/* fab-icon-holder e pelu circle color varu banava mate thay che*/
-{
-	width: 50px;
-	height: 50px;
-	border-radius: 100%;
-	background-color: #016fb9;
-	box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-.fab-icon-holder:hover{
-	opacity: 0.6;
-}
-.fab-icon-holder i{ /*aa code no use te font-awsome na icon ne proper position and color apva mate thay che */
-	display: flex;
-	align-items: center;
-	align-content: center;
-	justify-content: center;
-	height: 100%;
-	font-size:25px;
-	color: #ffffff;
-}
-.fab-options{
-	list-style-type: none;
-	margin: 0;
-	position: fixed;
-	bottom: 120px;
-	right: 4%;
-}
-.fab-options li{/*fab -option li no use e fab ni upar je fab dekhay ene te end position ma te gothavi nakhe che */
-	display: flex;
-	justify-content: flex-end;
-	padding: 5px;
-}
-.fab-label{/* fab label no use te fab ne label apva mate te thay che*/
-	padding: 2px 5px;
-	align-self: center;
-	user-select: none;
-	white-space: nowrap;
-	border-radius: 3px;
-	font-size: 16px;
-	background-color: black;
-	color: white;
-	box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-	margin-right: 6px;
-}
-.fab-label:hover{
-	opacity: 0.6;
+.password{
+	font-size: 17px;
+	height: 2px;
 }
