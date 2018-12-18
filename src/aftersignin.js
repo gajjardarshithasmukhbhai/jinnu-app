@@ -168,11 +168,42 @@ const divider=style({
   borderTop:"12px soid red",
 })
 class Aftersignin extends React.Component{
+  componentDidMount()//component call thas e time call thase
+  {
+    let werw=this.state.firebase_data;
+    this.setState({
+      Task:werw,
+    })
+  }
+ 
   componentWillMount()
   {
+    console.log("gajjar is mdnkdnfn");
+    let we=[];
+    var chambu=this.state.firebase_data;
+    firebase.auth().onAuthStateChanged(user => {
+        if(user) {
+                  var uidd=user.uid;
+                  var database=firebase.database();
+                  var ref=database.ref("users").child(uidd).child("notes").child("notes");
+                  ref.on("child_added",snap=>{
+                    we=snap.val().name;
+                    console.log(we)
+                      chambu.push({
+                        name:we,
+                      })
+                      this.setState({
+                        firebase_data:chambu,
+                      })      
+                  });
+                }
+            });
    let ert="zxcvWERTYUIobnmasdfghjklpoiuytrewq1234567890";
    let lp="";
+
+   
    for(let i=0;i<=4;i++)
+
    {
      lp=lp+ert.charAt(Math.floor(Math.random()*ert.length))
    }
@@ -211,6 +242,7 @@ class Aftersignin extends React.Component{
       open: false,
       hidden: false,
       Task:[],
+      firebase_data:[],
       data:"gajju is the great person",
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
@@ -312,13 +344,13 @@ class Aftersignin extends React.Component{
       open: false,
     });
   };
-  add=()=>{
+  add=()=>{//problem e ave che ke jyare add kari e chie tyare add to sari rite thai jay che pan kyak bije jai ne pacha avi to data delete thai jay
     let data=this.state.data;
     let Task=this.state.Task;
     var firebaseRef=firebase.database().ref("users");
 
   firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
+    if(user){
        var wer=user.uid;
         var ert=user.displayName;
         var database=firebase.database();
@@ -327,13 +359,13 @@ class Aftersignin extends React.Component{
           firebaseRef.child(`${wer}`).child("notes").set({
                   notes:this.state.Task,
                 });
-      }
+        }
     });
   
     Task.push({
-      name:data,
-    })
-    this.setState({
+      name:data,                              
+    })                                        
+    this.setState({                           
       Task:Task,
     })    
   }
@@ -386,7 +418,6 @@ newspaper()
   data(event)
   {
     let wer=event.target.value;
-    console.log(wer);
     this.setState({
       data:wer,
     })
@@ -535,10 +566,10 @@ render()
             </ListItem>
 {/*Hello Gajjar welcome in our web-app ma data Task mathi lava mate thay che*/}
             {
-              this.state.Task.map((ert)=>{
+              this.state.firebase_data.map((ert,i)=>{
                 return (
-                  <ListItem divider>
-            <ListItemText primary={ert.name}/>
+                  <ListItem divider >
+            <ListItemText key={ert.i}>{ert.name}</ListItemText>
             <IconButton aria-label="Delete" color="primary" className={outline}>
                   <DeleteIcon />
               </IconButton>
