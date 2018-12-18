@@ -163,6 +163,10 @@ const grow=style({
 const menuicon=style({
   outline:"0 !important;",
 })
+const divider=style({
+  color:pink[200],
+  borderTop:"12px soid red",
+})
 class Aftersignin extends React.Component{
   componentWillMount()
   {
@@ -511,14 +515,14 @@ render()
                           
                         </IconButton>
 
-              <Typography className={text}><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/>Reminder<TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/></Typography>
+              <Typography className={text} ><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/>Reminder<TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/></Typography>
               
             </ListItem>
 {/*Hello Gajjar welcome in our web-app ma data Task mathi lava mate thay che*/}
             {
               this.state.Task.map((ert)=>{
                 return (
-                  <ListItem>
+                  <ListItem divider>
             <ListItemText primary={ert.name}/>
             <IconButton aria-label="Delete" color="primary" className={outline}>
                   <DeleteIcon />
@@ -526,7 +530,7 @@ render()
               <IconButton  aria-label="Edit" color="secondary" className={outline}>
                   <EditIcon/>
               </IconButton>
-            
+              
             </ListItem>
             )
 
