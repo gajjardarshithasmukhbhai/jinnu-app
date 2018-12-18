@@ -323,7 +323,7 @@ class Aftersignin extends React.Component{
         var ert=user.displayName;
         var database=firebase.database();
         var ref=database.ref("users");
-
+//gajajaj
           firebaseRef.child(`${wer}`).child("notes").set({
                   notes:this.state.Task,
                 });
