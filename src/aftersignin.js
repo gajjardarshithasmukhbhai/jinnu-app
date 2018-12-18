@@ -221,6 +221,7 @@ class Aftersignin extends React.Component{
     this.taskanalysis=this.taskanalysis.bind(this);
     this.taskanalysis_open=this.taskanalysis_open.bind(this);
     this.data=this.data.bind(this);
+    this.add=this.add.bind(this);
   }
 
  toggleDrawer = (open) => () => {
@@ -307,7 +308,16 @@ class Aftersignin extends React.Component{
       open: false,
     });
   };
-
+  add=()=>{
+    let data=this.state.data;
+    let Task=this.state.Task;
+    Task.push({
+      name:data,
+    })
+    this.setState({
+      Task:Task,
+    })    
+  }
 function(){
       var firebaseRef=firebase.database().ref("users");
 
@@ -357,6 +367,7 @@ newspaper()
   data(event)
   {
     let wer=event.target.value;
+    console.log(wer);
     this.setState({
       data:wer,
     })
@@ -489,7 +500,7 @@ render()
                   >
 
                   </TextField>
-                  <button class="btn btn-outline-primary">ADD</button>&nbsp;
+                  <button class="btn btn-outline-primary" onClick={this.add}>ADD</button>&nbsp;
                   <button type="cancel"  class="btn btn-outline-danger">Cancel</button>
                   <br/><br/>
                   
@@ -503,8 +514,12 @@ render()
               <Typography className={text}><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/>Reminder<TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/></Typography>
               
             </ListItem>
-            <ListItem>
-            <ListItemText primary="gajjargajjar darshit hasmukhbhai darshit hasmukhbhai"/>
+{/*Hello Gajjar welcome in our web-app ma data Task mathi lava mate thay che*/}
+            {
+              this.state.Task.map((ert)=>{
+                return (
+                  <ListItem>
+            <ListItemText primary={ert.name}/>
             <IconButton aria-label="Delete" color="primary" className={outline}>
                   <DeleteIcon />
               </IconButton>
@@ -512,21 +527,11 @@ render()
                   <EditIcon/>
               </IconButton>
             
-
             </ListItem>
-            <ListItem>
-            <ListItemText primary="gajjargajjar darshit hasmukhbhai darshit hasmukhbhai"/>
-            <IconButton aria-label="Delete" color="primary" className={outline}>
-                  <DeleteIcon />
-              </IconButton>
-              <IconButton aria-label="Edit" color="secondary" className={outline}>
-                  <EditIcon/>
-              </IconButton>
-            
+            )
 
-            </ListItem>
-            
-
+              })
+            }
           </List>
              </CardContent>
           </Card>
@@ -548,7 +553,7 @@ render()
           {actions.map((action,i) => (
             
             <SpeedDialAction
-              key={action.name}
+              key={action.i}
               icon={action.icon}
               tooltipTitle={action.name}
               tooltipOpen
