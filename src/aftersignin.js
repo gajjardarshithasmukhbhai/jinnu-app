@@ -315,6 +315,21 @@ class Aftersignin extends React.Component{
   add=()=>{
     let data=this.state.data;
     let Task=this.state.Task;
+    var firebaseRef=firebase.database().ref("users");
+
+  firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+       var wer=user.uid;
+        var ert=user.displayName;
+        var database=firebase.database();
+        var ref=database.ref("users");
+
+          firebaseRef.child(`${wer}`).child("notes").set({
+                  notes:this.state.Task,
+                });
+      }
+    });
+  
     Task.push({
       name:data,
     })
