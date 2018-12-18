@@ -210,7 +210,7 @@ class Aftersignin extends React.Component{
       taskanalysis:false,
       open: false,
       hidden: false,
-      Task:[{name:"Gajjar Darshit hasmukhbhai"}],
+      Task:[],
       data:"gajju is the great person",
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
