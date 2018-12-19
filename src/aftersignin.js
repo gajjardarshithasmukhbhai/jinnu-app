@@ -357,7 +357,7 @@ firebase.auth().onAuthStateChanged(user => {
         var database=firebase.database();
         var ref=database.ref("users");
 //gajajaj
-          firebaseRef.child(`${wer}`).child("notes").set({
+          firebaseRef.child(`${wer}`).child("notes").set({//ddkkd
                   notes:this.state.Task,
                 });
         }
