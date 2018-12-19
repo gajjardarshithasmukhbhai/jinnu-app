@@ -348,7 +348,7 @@ class Aftersignin extends React.Component{
     let data=this.state.data;
     let Task=this.state.Task;
     var firebaseRef=firebase.database().ref("users");
-  firebase.auth().onAuthStateChanged(user => {  
+    var user=firebase.auth().currentUser;
     if(user){
     console.log("gajjar");
        var wer=user.uid;
@@ -363,7 +363,6 @@ class Aftersignin extends React.Component{
         else{
           console.log("the problem will be occur");
         }
-      });
   
     Task.push({
       name:data,                              
@@ -571,8 +570,8 @@ render()
             {
               this.state.firebase_data.map((ert,i)=>{
                 return (
-                  <ListItem divider >
-            <ListItemText key={ert.i}>{ert.name}</ListItemText>
+                  <ListItem divider  key={ert.name}>
+            <ListItemText key={ert.name}>{ert.name}</ListItemText>
             <IconButton aria-label="Delete" color="primary" className={outline}>
                   <DeleteIcon />
               </IconButton>
