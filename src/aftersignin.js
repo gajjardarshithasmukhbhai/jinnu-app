@@ -168,13 +168,13 @@ const divider=style({
   borderTop:"12px soid red",
 })
 class Aftersignin extends React.Component{
-  componentDidMount()//component call thas e time call thase
+  /*componentDidMount()//component call thas e time call thase
   {
     let werw=this.state.firebase_data;
     this.setState({
       Task:werw,
     })
-  }
+  }*/
  
   componentWillMount()
   {
@@ -349,7 +349,7 @@ class Aftersignin extends React.Component{
     let Task=this.state.Task;
     var firebaseRef=firebase.database().ref("users");
 
-  firebase.auth().onAuthStateChanged((user) => {
+var user = firebase.auth().currentUser;
     if(user){
        var wer=user.uid;
         var ert=user.displayName;
@@ -360,7 +360,6 @@ class Aftersignin extends React.Component{
                   notes:this.state.Task,
                 });
         }
-    });
   
     Task.push({
       name:data,                              
