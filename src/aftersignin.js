@@ -351,7 +351,7 @@ class Aftersignin extends React.Component{
 firebase.auth().onAuthStateChanged(user => {
     
   var user = firebase.auth().currentUser;
-    if(user){
+    if(user.uid){
        var wer=user.uid;
         var ert=user.displayName;
         var database=firebase.database();
