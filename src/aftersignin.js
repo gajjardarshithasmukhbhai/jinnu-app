@@ -168,14 +168,7 @@ const divider=style({
   borderTop:"12px soid red",
 })
 class Aftersignin extends React.Component{
-  componentDidMount()//component call thas e time call thase
-  {
-    let werw=this.state.firebase_data;
-    this.setState({
-      Task:werw,
-    })
-  }
- 
+  
   componentWillMount()
   {
     console.log("gajjar is mdnkdnfn");
@@ -188,7 +181,6 @@ class Aftersignin extends React.Component{
                   var ref=database.ref("users").child(uidd).child("notes").child("notes");
                   ref.on("child_added",snap=>{
                     we=snap.val().name;
-                    console.log(we)
                       chambu.push({
                         name:we,
                       })
@@ -198,6 +190,13 @@ class Aftersignin extends React.Component{
                   });
                 }
             });
+    
+    let werw=this.state.firebase_data;
+    this.setState({
+      Task:werw,
+    })
+
+
    let ert="zxcvWERTYUIobnmasdfghjklpoiuytrewq1234567890";
    let lp="";
 
@@ -347,16 +346,16 @@ class Aftersignin extends React.Component{
   add(){//problem e ave che ke jyare add kari e chie tyare add to sari rite thai jay che pan kyak bije jai ne pacha avi to data delete thai jay
     let data=this.state.data;
     let Task=this.state.Task;
-    var firebaseRef=firebase.database().ref("users");
+    var firebaseRef=firebase.database();
     var user=firebase.auth().currentUser;
     if(user){
-    console.log("gajjar");
        var wer=user.uid;
         var ert=user.displayName;
         var database=firebase.database();
         var ref=database.ref("users");
-//gajajaj
-          firebaseRef.child(wer).child("notes").set({
+        console.log(wer);
+        console.log(ert);
+          firebaseRef.ref("users/"+wer).child("notes").set({
                   notes:this.state.Task,
                 });
         }
@@ -567,6 +566,28 @@ render()
               
             </ListItem>
 {/*Hello Gajjar welcome in our web-app ma data Task mathi lava mate thay che*/}
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             {
               this.state.firebase_data.map((ert,i)=>{
                 return (
@@ -581,6 +602,28 @@ render()
               
             </ListItem>
             )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
               })
             }
