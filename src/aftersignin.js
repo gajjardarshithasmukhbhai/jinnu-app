@@ -168,13 +168,13 @@ const divider=style({
   borderTop:"12px soid red",
 })
 class Aftersignin extends React.Component{
-  /*componentDidMount()//component call thas e time call thase
+  componentDidMount()//component call thas e time call thase
   {
     let werw=this.state.firebase_data;
     this.setState({
       Task:werw,
     })
-  }*/
+  }
  
   componentWillMount()
   {
@@ -344,22 +344,26 @@ class Aftersignin extends React.Component{
       open: false,
     });
   };
-  add=()=>{//problem e ave che ke jyare add kari e chie tyare add to sari rite thai jay che pan kyak bije jai ne pacha avi to data delete thai jay
+  add(){//problem e ave che ke jyare add kari e chie tyare add to sari rite thai jay che pan kyak bije jai ne pacha avi to data delete thai jay
     let data=this.state.data;
     let Task=this.state.Task;
     var firebaseRef=firebase.database().ref("users");
-
-var user = firebase.auth().currentUser;
+  firebase.auth().onAuthStateChanged(user => {  
     if(user){
+    console.log("gajjar");
        var wer=user.uid;
         var ert=user.displayName;
         var database=firebase.database();
         var ref=database.ref("users");
 //gajajaj
-          firebaseRef.child(`${wer}`).child("notes").set({
+          firebaseRef.child(wer).child("notes").set({
                   notes:this.state.Task,
                 });
         }
+        else{
+          console.log("the problem will be occur");
+        }
+      });
   
     Task.push({
       name:data,                              
