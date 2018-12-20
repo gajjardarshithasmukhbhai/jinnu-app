@@ -169,34 +169,80 @@ const divider=style({
 })
 class Aftersignin extends React.Component{
 
+componentWillUpdate()
+{
+  //var wer=this.state.firebase_data;
+  //this.setState({
+    //Task:wer,
+  //})
+}
   componentWillMount()
   {
 //data add karva mate
-    
 
 
 
     console.log("gajjar is mdnkdnfn");
-    let we=[];
-    var chambu=this.state.firebase_data;
+    let jinu=this.state.jinu;
+    let qw=[];
+    var Task=this.state.Task;
+    var qqe;
     firebase.auth().onAuthStateChanged(user => {
         if(user) {
                   var uidd=user.uid;
                   var database=firebase.database();
+                  
                   var ref=database.ref("users").child(uidd).child("notes").child("notes");
                   ref.on("child_added",snap=>{
-                    we=snap.val().name;
-                    console.log(we)
+                    qqe=snap.key;
+                    let lx=snap.val().name;
+                    jinu.push(lx);
+                    console.log(jinu.length);
+                    console.log(jinu[0]);
+                    this.setState({
+                      we:jinu.length,
+                    })
+                    //testing
+                   
 
-                      chambu.push({//problem occur in this point because data je avase e push ahiya thase
-                        name:we,
-                      })
-                      this.setState({
-                        firebase_data:chambu,
-                      })      
+                    //akha data lava padse
+                      //if(Task.length==0)
+                      //{
+                        //for(let i=0;i<we.length;i++)
+                          //  {
+                            //  Task.push({//problem occur in this point because data je avase e push ahiya thase
+                              //    name:we,
+                              //})
+                              //this.setState({
+                                //  Task:Task,
+                              //})
+                            //} 
+                      //}
+                      
+                      //chambu.push({//problem occur in this point because data je avase e push ahiya thase
+                        //name:we,
+                      //})
+                      //this.setState({
+                        //firebase_data:chambu,
+                      //})      
                   });
+
+                  if(Task.length==0)
+                  { 
+                    /*we.forEach(function(data,i){
+                        console.log(i);
+                    })*/
+                    console.log("HASMUKH");
+                    this.lkn=setInterval(this.mara_data,2200);
+                  //function before run the data put 
+                   
+                }
+                  //->
                 }
             });
+
+  
+
    let ert="zxcvWERTYUIobnmasdfghjklpoiuytrewq1234567890";
    let lp="";
 
@@ -225,6 +271,7 @@ class Aftersignin extends React.Component{
       });
 
 
+
   }
   constructor(props)
   {
@@ -244,8 +291,9 @@ class Aftersignin extends React.Component{
       hidden: false,
       Task:[],
       uid:"",
-      firebase_data:[],
+      we:null,
       data:"gajju is the great person",
+      jinu:[],
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
@@ -259,7 +307,28 @@ class Aftersignin extends React.Component{
     this.taskanalysis=this.taskanalysis.bind(this);
     this.taskanalysis_open=this.taskanalysis_open.bind(this);
     this.data=this.data.bind(this);
-    this.add=this.add.bind(this);
+    this.add=this.add.bind(this); 
+    this.mara_data=this.mara_data.bind(this); 
+  }
+  mara_data=()=>
+  {
+    console.log("darsh");
+    let jinu=this.state.jinu;
+    let Task=this.state.Task;
+    for(let j=0;j<this.state.we;j++)
+                    {
+                      console.log("jinu");
+                      console.log(j);
+
+                   Task.push({//problem occur in this point because data je avase e push ahiya thase
+                                 name:jinu[j],
+                          })
+                      this.setState({
+                               Task:Task,
+                           })
+                      
+                    }
+                    clearInterval(this.lkn);
   }
 
  toggleDrawer = (open) => () => {
@@ -346,30 +415,36 @@ class Aftersignin extends React.Component{
       open: false,
     });
   };
+
   add=()=>{//problem e ave che ke jyare add kari e chie tyare add to sari rite thai jay che pan kyak bije jai ne pacha avi to data delete thai jay
     let data=this.state.data;
     let Task=this.state.Task;
     var firebaseRef=firebase.database().ref("users");
     var kamal=this.state.uid;
+    var qlo=this.state.firebase_data;
+
   firebase.auth().onAuthStateChanged(user => {  
     if(user.uid===kamal){
+       console.log("cbjdnd");
        var wer=user.uid;
+
         var ert=user.displayName;
         var database=firebase.database();
         var ref=database.ref("users");
-//gajajaj
+//aa block control karo
+
           firebaseRef.child(`${wer}`).child("notes").set({
                   notes:this.state.Task,
                 });
         }
     });
-  
-    Task.push({
-      name:data,                              
-    })                                        
-    this.setState({                           
-      Task:Task,
-    })    
+      
+      Task.push({
+              name:data,                              
+            })                                        
+      this.setState({
+             Task:Task,
+        })       
   }
 function(){
       var firebaseRef=firebase.database().ref("users");
@@ -568,7 +643,7 @@ render()
             </ListItem>
 {/*Hello Gajjar welcome in our web-app ma data Task mathi lava mate thay che*/}
             {
-              this.state.firebase_data.map((ert,i)=>{
+              this.state.Task.map((ert,i)=>{
                 return (
                   <ListItem divider >
             <ListItemText key={ert.i}>{ert.name}</ListItemText>
