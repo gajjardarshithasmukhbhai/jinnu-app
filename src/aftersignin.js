@@ -198,7 +198,7 @@ componentWillUpdate()
                     let lx=snap.val().name;
                     jinu.push(lx);
                     console.log(jinu.length);
-                    console.log(jinu[0]);
+                    console.log("i mam jinu bhai"+jinu);
                     this.setState({
                       we:jinu.length,
                     })
@@ -233,7 +233,7 @@ componentWillUpdate()
                         console.log(i);
                     })*/
                     console.log("HASMUKH");
-                    this.lkn=setInterval(this.mara_data,2200);
+                    this.lkn=setInterval(this.mara_data,2100);
                   //function before run the data put 
                    
                 }
@@ -292,7 +292,7 @@ componentWillUpdate()
       Task:[],
       uid:"",
       we:null,
-      data:"gajju is the great person",
+      data:"",
       jinu:[],
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
@@ -325,6 +325,7 @@ componentWillUpdate()
                           })
                       this.setState({
                                Task:Task,
+
                            })
                       
                     }
