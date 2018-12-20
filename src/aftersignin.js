@@ -412,6 +412,7 @@ class Aftersignin extends React.Component{
             })                                        
       this.setState({
              Task:Task,
+             data:"",
         })       
   }
 function(){
