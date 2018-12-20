@@ -212,11 +212,13 @@ class Aftersignin extends React.Component{
     firebase.auth().onAuthStateChanged(user => {
         if(user) {
         var ert=user.displayName;
+          var uuid=user.uid;
           this.setState({
               function:true,
               title_name:ert,
               inbox:"welcome user in jinu app our company make the webapp,mobile app and ios app",
-              inbox_number:1
+              inbox_number:1,
+              uid:uuid,
           })          
           
         }
@@ -241,6 +243,7 @@ class Aftersignin extends React.Component{
       open: false,
       hidden: false,
       Task:[],
+      uid:"",
       firebase_data:[],
       data:"gajju is the great person",
     };
@@ -346,18 +349,16 @@ class Aftersignin extends React.Component{
   add=()=>{//problem e ave che ke jyare add kari e chie tyare add to sari rite thai jay che pan kyak bije jai ne pacha avi to data delete thai jay
     let data=this.state.data;
     let Task=this.state.Task;
-    var myUserId = firebase.auth().currentUser.uid
     var firebaseRef=firebase.database().ref("users");
-firebase.auth().onAuthStateChanged(user => {
-    
-  var user = firebase.auth().currentUser;
-    if(user.uid){
+    var kamal=this.state.uid;
+  firebase.auth().onAuthStateChanged(user => {  
+    if(user.uid===kamal){
        var wer=user.uid;
         var ert=user.displayName;
         var database=firebase.database();
         var ref=database.ref("users");
 //gajajaj
-          firebaseRef.child(`${wer}`).child("notes").set({//ddkkd
+          firebaseRef.child(`${wer}`).child("notes").set({
                   notes:this.state.Task,
                 });
         }
