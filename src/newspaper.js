@@ -36,7 +36,7 @@ import axios from 'axios'
 import './newspaper.css'
 import { IconContext } from "react-icons";
 import {lightBlue,pink} from '@material-ui/core/colors/';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 import {FaGrinHearts} from 'react-icons/fa';
 
 
@@ -244,6 +244,13 @@ render()
   let sr=[];
   let ed=this.state.test;
   let test1=this.state.test1;
+  let please_wait;
+  if(this.state.news.length==0)
+  {    please_wait=<div>
+                     <CircularProgress className="d-block mx-auto" />
+                  </div>
+  
+  }
   if(this.state.test!=null)
   {
 
@@ -325,7 +332,8 @@ render()
 				<br/>
 				<br/>
 				<br/>
-				
+              {please_wait}
+              				
         {
           this.state.news.map((wr,i)=>{
             return <div class="container" key={wr.i}>
