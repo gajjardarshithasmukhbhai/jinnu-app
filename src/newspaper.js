@@ -111,6 +111,15 @@ class Newspaper extends React.Component{
     console.log(error);
     console.log(info);
   }
+  componentDidUpdate()
+  {
+    if(this.state.love==true)
+
+    {this.setState({
+            love:false,
+          })
+      } 
+    }
 	componentWillMount()
 	{
 		var user = firebase.auth().currentUser;
