@@ -51,6 +51,7 @@ import EditIcon from '@material-ui/icons/Edit';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
+import CircularProgress from '@material-ui/core/CircularProgress';
 const theme=createMuiTheme({
    palette: {
     primary: { main :lightBlue[700] },
@@ -101,6 +102,7 @@ const speedDial=style({
     right: theme.spacing.unit * 4,
     
 })
+
 const right=style({
         width:45,
         height:35,
@@ -169,17 +171,9 @@ const divider=style({
 })
 class Aftersignin extends React.Component{
 
-componentWillUpdate()
-{
-  //var wer=this.state.firebase_data;
-  //this.setState({
-    //Task:wer,
-  //})
-}
+
   componentWillMount()
   {
-//data add karva mate
-
 
 
     console.log("gajjar is mdnkdnfn");
@@ -197,44 +191,17 @@ componentWillUpdate()
                     qqe=snap.key;
                     let lx=snap.val().name;
                     jinu.push(lx);
-                    console.log(jinu.length);
                     console.log("i mam jinu bhai"+jinu);
                     this.setState({
                       we:jinu.length,
                     })
-                    //testing
-                   
-
-                    //akha data lava padse
-                      //if(Task.length==0)
-                      //{
-                        //for(let i=0;i<we.length;i++)
-                          //  {
-                            //  Task.push({//problem occur in this point because data je avase e push ahiya thase
-                              //    name:we,
-                              //})
-                              //this.setState({
-                                //  Task:Task,
-                              //})
-                            //} 
-                      //}
-                      
-                      //chambu.push({//problem occur in this point because data je avase e push ahiya thase
-                        //name:we,
-                      //})
-                      //this.setState({
-                        //firebase_data:chambu,
-                      //})      
+                          
                   });
 
                   if(Task.length==0)
                   { 
-                    /*we.forEach(function(data,i){
-                        console.log(i);
-                    })*/
                     console.log("HASMUKH");
                     this.lkn=setInterval(this.mara_data,2100);
-                  //function before run the data put 
                    
                 }
                   //->
@@ -505,9 +472,16 @@ render()
   const noti=this.state;
   const { classes } = this.state;
   const { hidden, open } = this.state;
-
+  let please_wait;
   let floaticon;
-  const vbn=this.state.floaticon;
+  if(this.state.Task.length==0)
+  {    please_wait=<div>
+                     <CircularProgress className="d-block mx-auto" />
+                  </div>
+  
+  }
+
+    const vbn=this.state.floaticon;
     const sideList = (
       <div className={list}>
       <ListItem className={list}>
@@ -640,8 +614,8 @@ render()
                         </IconButton>
 
               <Typography className={text} ><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/>Reminder<TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/><TiWeatherSnow/></Typography>
-              
             </ListItem>
+            {please_wait}
 {/*Hello Gajjar welcome in our web-app ma data Task mathi lava mate thay che*/}
             {
               this.state.Task.map((ert,i)=>{
