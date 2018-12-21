@@ -200,7 +200,7 @@ class Aftersignin extends React.Component{
                   if(Task.length==0)
                   { 
                     console.log("HASMUKH");
-                    this.lkn=setInterval(this.mara_data,2150);
+                    this.lkn=setInterval(this.mara_data,2130);
                    
                 }
                   //->
