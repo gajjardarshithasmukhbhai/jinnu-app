@@ -34,6 +34,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import red from '@material-ui/core/colors/red'
 import axios from 'axios'
 import './newspaper.css'
+
 import { IconContext } from "react-icons";
 import {lightBlue,pink} from '@material-ui/core/colors/';
 import CircularProgress from '@material-ui/core/CircularProgress';

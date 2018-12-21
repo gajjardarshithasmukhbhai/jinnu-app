@@ -171,10 +171,9 @@ const divider=style({
 })
 class Aftersignin extends React.Component{
 
-
+  
   componentWillMount()
   {
-
 
     console.log("gajjar is mdnkdnfn");
     let jinu=this.state.jinu;
@@ -201,7 +200,7 @@ class Aftersignin extends React.Component{
                   if(Task.length==0)
                   { 
                     console.log("HASMUKH");
-                    this.lkn=setInterval(this.mara_data,2100);
+                    this.lkn=setInterval(this.mara_data,2150);
                    
                 }
                   //->
