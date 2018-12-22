@@ -275,6 +275,7 @@ class Aftersignin extends React.Component{
     this.data=this.data.bind(this);
     this.add=this.add.bind(this); 
     this.mara_data=this.mara_data.bind(this); 
+    this.delete=this.delete.bind(this);
   }
   mara_data=()=>
   {
@@ -382,6 +383,28 @@ class Aftersignin extends React.Component{
       open: false,
     });
   };
+  delete=(we)=>{
+    console.log(we+"my val");
+    var Task=this.state.Task;
+    var firecast=firebase.database().ref("users").child(this.state.uid).child("notes").child("notes");
+    Task.splice(we,1);
+    this.setState({
+      Task:Task,
+    })
+    firebase.auth().onAuthStateChanged(user => {
+        if(user) {
+                  var uidd=user.uid;
+                  var database=firebase.database();
+                  var ref=database.ref("users").child(uidd).child("notes");
+                  ref.set({
+                    notes:this.state.Task,
+                  })
+
+                }
+              });
+                    
+    
+  }
 
   add=()=>{//problem e ave che ke jyare add kari e chie tyare add to sari rite thai jay che pan kyak bije jai ne pacha avi to data delete thai jay
     let data=this.state.data;
@@ -622,7 +645,7 @@ render()
                 return (
                   <ListItem divider >
             <ListItemText key={ert.i}>{ert.name}</ListItemText>
-            <IconButton aria-label="Delete" color="primary" className={outline}>
+            <IconButton aria-label="Delete" color="primary" value={i} onClick={()=>{this.delete(i)}} className={outline}>
                   <DeleteIcon />
               </IconButton>
               <IconButton  aria-label="Edit" color="secondary" className={outline}>
