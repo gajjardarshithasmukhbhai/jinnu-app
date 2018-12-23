@@ -174,7 +174,7 @@ class Aftersignin extends React.Component{
   
   componentWillMount()
   {
-    this.function();
+    this.function();     
     console.log("gajjar is mdnkdnfn");
     let jinu=this.state.jinu;
     let qw=[];
@@ -189,7 +189,13 @@ class Aftersignin extends React.Component{
                   ref.on("child_added",snap=>{
                     qqe=snap.key;
                     let lx=snap.val().name;
-                    jinu.push(lx);
+                    let xl=snap.val().time;
+                    let rx=snap.val().day;
+                    jinu.push({
+                      name:lx,
+                      time:xl,
+                      day:rx,
+                    });
                     console.log("i mam jinu bhai"+jinu);
                     this.setState({
                       we:jinu.length,
@@ -262,7 +268,6 @@ class Aftersignin extends React.Component{
       we:null,
       data:"",
       jinu:[],
-      password_status:null,
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
@@ -284,18 +289,29 @@ class Aftersignin extends React.Component{
   {
     console.log("darsh");
     let jinu=this.state.jinu;
+    console.log(jinu);
     let Task=this.state.Task;
+    let qwe=[];
+    qwe=jinu.map((ret,i)=>ret.name);
+    let qwer=[];
+    qwer=jinu.map((ret,i)=>ret.day);
+    let ppq=[];
+    ppq=jinu.map((ret,i)=>ret.time);
+    console.log(qwe);
+    console.log(qwer);
+    console.log(ppq);
     for(let j=0;j<this.state.we;j++)
                     {
                       console.log("jinu");
                       console.log(j);
 
                    Task.push({//problem occur in this point because data je avase e push ahiya thase
-                                 name:jinu[j],
+                                 name:qwe[j],
+                                 time:ppq[j],
+                                 day:qwer[j],
                           })
                       this.setState({
                                Task:Task,
-
                            })
                       
                     }
@@ -325,6 +341,7 @@ class Aftersignin extends React.Component{
     {
       return <Redirect to="/next-page"/>
     }
+    
   }
   inbox()
   {
@@ -415,7 +432,39 @@ class Aftersignin extends React.Component{
     var firebaseRef=firebase.database().ref("users");
     var kamal=this.state.uid;
     var qlo=this.state.firebase_data;
-
+    var date=new Date();
+    var time=date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+    var day=date.getDay();
+    var myday;
+    if(day==0)
+    {
+        myday="Sunday";
+    }
+    else if(day==1)
+    {
+      myday="Monday";
+    }
+    else if(day==2)
+    {
+      myday="Tuesday";
+    }
+    else if(day==3)
+    {
+      myday="Wendesday";  
+    }
+    else if(day==4)
+    {
+      myday="Thursday";
+    }  
+    else if(day==5)
+    {
+      myday="Friday";
+    }
+    else
+    {
+      myday="Saturday";
+    }
+    console.log(myday);
   firebase.auth().onAuthStateChanged(user => {  
     if(user.uid===kamal){
        console.log("cbjdnd");
@@ -433,7 +482,9 @@ class Aftersignin extends React.Component{
     });
       
       Task.push({
-              name:data,                              
+              name:data, 
+              time:time,
+              day:myday,
             })                                        
       this.setState({
              Task:Task,
@@ -518,10 +569,7 @@ render()
                   </div>
   
   }
-  if(this.state.password_status==true)
-  {
-    fuck_off=this.function();
-  }
+
 
     const vbn=this.state.floaticon;
     const sideList = (
@@ -568,7 +616,6 @@ render()
     );
   return(
       <div>
-      {fuck_off}
       {Inbox}
       {this.logouting()}
       {this.newspaper_open()}
@@ -663,7 +710,8 @@ render()
               this.state.Task.map((ert,i)=>{
                 return (
                   <ListItem divider >
-            <ListItemText key={ert.i} secondary="Jan 9, 2014">{ert.name}</ListItemText>
+            <ListItemText key={ert.i} secondary={ert.day+","+ert.time}>{ert.name}</ListItemText>
+            
             <IconButton aria-label="Delete" color="primary" value={i} onClick={()=>{this.delete(i)}} className={outline}>
                   <DeleteIcon />
               </IconButton>
