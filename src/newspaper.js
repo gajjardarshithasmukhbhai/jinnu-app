@@ -38,7 +38,7 @@ import './newspaper.css'
 import { IconContext } from "react-icons";
 import {lightBlue,pink} from '@material-ui/core/colors/';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import {FaGrinHearts} from 'react-icons/fa';
+import {FaHeart} from 'react-icons/fa';
 
 
 var firebase=require("firebase");
@@ -112,16 +112,7 @@ class Newspaper extends React.Component{
     console.log(error);
     console.log(info);
   }
-  componentDidUpdate()
-  {
-    if(this.state.love==true)
-
-    {this.setState({
-            love:false,
-          })
-      } 
-    }
-	componentWillMount()
+  componentWillMount()
 	{
 		var user = firebase.auth().currentUser;
 	if(user!=null)
@@ -223,7 +214,6 @@ class Newspaper extends React.Component{
             this.setState({
               love:true,            
               test:we,
-              user:"gajjar"
             })
   }
   hat(we,lk)
@@ -245,6 +235,7 @@ class Newspaper extends React.Component{
   { 
     return "red"
   }
+
 render()
 {
 	const { classes } = this.props;
@@ -261,17 +252,17 @@ render()
                   </div>
   
   }
+
   if(this.state.test!=null)
   {
 
     pr[ed]="red";    
-    sr[ed]="";   
+    sr[ed]="";
   }
   else if(this.state.test==null)
   {
     pr[test1]="#8E8C8C";
   }
-
 	const sideList = (
       <div className={list}>
       <ListItem>
@@ -374,15 +365,13 @@ render()
             <a class="text text-muted pl-3" href={wr.url}>more details</a>
             <Divider variant="middel"/>
 
-
             <Typography variant="subtitle1">{sr[i]}</Typography>
-
 
             <CardActions className={classes.actions} disableActionSpacing>
 
               <IconContext.Provider value={{color:`${pr[i]}`,className:`${heart}`}} >
                   <div>
-                    &nbsp;&nbsp;&nbsp;<FaGrinHearts  onClick={love?(()=>{let qx=i;(this.hat(qx,null))}):(()=>{let qw=i;(this.love(qw))})}/>
+                    &nbsp;&nbsp;&nbsp;<FaHeart  onClick={love?(()=>{let qx=i;(this.hat(qx,null))}):(()=>{let qw=i;(this.love(qw))})}/>
                   </div>
               </IconContext.Provider>
 
