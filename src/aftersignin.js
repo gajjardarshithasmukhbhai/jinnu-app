@@ -174,7 +174,7 @@ class Aftersignin extends React.Component{
   
   componentWillMount()
   {
-
+    this.function();
     console.log("gajjar is mdnkdnfn");
     let jinu=this.state.jinu;
     let qw=[];
@@ -218,9 +218,10 @@ class Aftersignin extends React.Component{
    {
      lp=lp+ert.charAt(Math.floor(Math.random()*ert.length))
    }
-   this.setState({
-     password:lp,
-   }) 
+      this.setState({
+          password:lp,
+        }) 
+   
     firebase.auth().onAuthStateChanged(user => {
         if(user) {
         var ert=user.displayName;
@@ -239,6 +240,7 @@ class Aftersignin extends React.Component{
 
 
   }
+  
   constructor(props)
   {
     super(props);
@@ -260,6 +262,7 @@ class Aftersignin extends React.Component{
       we:null,
       data:"",
       jinu:[],
+      password_status:null,
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
@@ -442,22 +445,33 @@ function(){
 
   firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-       var wer=user.uid;
-        var ert=user.displayName;
-        var photourl=user.photoURL;
-        var phonenumb=user.phoneNumber;
-        var database=firebase.database();
-        var ref=database.ref("users");
-
-          firebaseRef.child(`${wer}`).child("password").set({
+          var wer=user.uid;
+          var ert=user.displayName;
+          var photourl=user.photoURL;
+          var phonenumb=user.phoneNumber;
+          var database=firebase.database();
+          var ref=database.ref("users");
+          database.ref("users").child(`${wer}`).child("password").child("password").on("value",snap=>{
+            var rew=snap.val();            
+            if(rew==null)
+            {
+                firebaseRef.child(`${wer}`).child("password").set({
                   password:this.state.password,
                 });
+            }
+            else{
+              this.setState({
+                password:rew,
+              })
+              console.log("gajju");
+            }
+          });
+
+          
           firebaseRef.child(`${wer}`).child("photo").set({
                   photo:photourl,
-
           });  
        
-
       }
     });
   
@@ -497,11 +511,16 @@ render()
   const { hidden, open } = this.state;
   let please_wait;
   let floaticon;
+  let fuck_off;
   if(this.state.Task.length==0)
   {    please_wait=<div>
                      <CircularProgress className="d-block mx-auto" />
                   </div>
   
+  }
+  if(this.state.password_status==true)
+  {
+    fuck_off=this.function();
   }
 
     const vbn=this.state.floaticon;
@@ -549,7 +568,7 @@ render()
     );
   return(
       <div>
-      {this.function()}
+      {fuck_off}
       {Inbox}
       {this.logouting()}
       {this.newspaper_open()}
@@ -644,7 +663,7 @@ render()
               this.state.Task.map((ert,i)=>{
                 return (
                   <ListItem divider >
-            <ListItemText key={ert.i}>{ert.name}</ListItemText>
+            <ListItemText key={ert.i} secondary="Jan 9, 2014">{ert.name}</ListItemText>
             <IconButton aria-label="Delete" color="primary" value={i} onClick={()=>{this.delete(i)}} className={outline}>
                   <DeleteIcon />
               </IconButton>

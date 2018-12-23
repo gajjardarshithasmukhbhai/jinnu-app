@@ -113,26 +113,26 @@ class Newspaper extends React.Component{
     console.log(info);
   }
   componentWillMount()
-	{
-		var user = firebase.auth().currentUser;
-	if(user!=null)
-	{
-		var name=user.displayName;
-		var photoUrl = user.photoURL;
-		this.setState({
-			photo:photoUrl,
+  {
+    var user = firebase.auth().currentUser;
+  if(user!=null)
+  {
+    var name=user.displayName;
+    var photoUrl = user.photoURL;
+    this.setState({
+      photo:photoUrl,
       user:name,
-		})		
-	}
-	this.news();
-	}
+    })    
+  }
+  this.news();
+  }
 
   constructor(props)
-	{
-		super(props);
-		this.state={
-			left:false,
-			photo:"",
+  {
+    super(props);
+    this.state={
+      left:false,
+      photo:"",
       news:[],
       user:null,
       share:false,
@@ -144,12 +144,12 @@ class Newspaper extends React.Component{
       sharingcolor:"default",
       macbook:false,
       test1:null
-		};
-    	this.toggleDrawer=this.toggleDrawer.bind(this);
-    	this.back=this.back.bind(this);
-    	this.backing=this.backing.bind(this);
-    	this.logout=this.logout.bind(this);
-    	this.logouting=this.logouting.bind(this);
+    };
+      this.toggleDrawer=this.toggleDrawer.bind(this);
+      this.back=this.back.bind(this);
+      this.backing=this.backing.bind(this);
+      this.logout=this.logout.bind(this);
+      this.logouting=this.logouting.bind(this);
       this.news=this.news.bind(this);
       this.love=this.love.bind(this);
       this.hat=this.hat.bind(this);
@@ -157,25 +157,25 @@ class Newspaper extends React.Component{
       this.macbook=this.macbook.bind(this);
       this.testing=this.testing.bind(this);
   }
-	back()
+  back()
   {
-  	this.setState({
-  		back:true,
-  	})
+    this.setState({
+      back:true,
+    })
   }
   backing=()=>
   {
-  	if(this.state.back)
-  	{
-  		return <Redirect exact to="/after-signin"/>
-  	}
+    if(this.state.back)
+    {
+      return <Redirect exact to="/after-signin"/>
+    }
   }
-	toggleDrawer = (open) => () => {
-   		 this.setState({
-      			left: open,
-    		});
-  	}
-  	logout()
+  toggleDrawer = (open) => () => {
+       this.setState({
+            left: open,
+        });
+    }
+    logout()
   {
     this.setState({
       logout:true,
@@ -238,7 +238,7 @@ class Newspaper extends React.Component{
 
 render()
 {
-	const { classes } = this.props;
+  const { classes } = this.props;
   let sharing;
   let love=this.state.love;
   let pr=[];
@@ -263,30 +263,30 @@ render()
   {
     pr[test1]="#8E8C8C";
   }
-	const sideList = (
+  const sideList = (
       <div className={list}>
       <ListItem>
         <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>&nbsp;&nbsp;{this.state.user}
       </ListItem>
       <Divider/>
 
-    	<ListItem button onClick={this.back}>
-      	<ListItemIcon>
-		      	<span className="fa-fw">
-		        <FontAwesomeIcon icon="chevron-left"/>
-		       </span>
-      	</ListItemIcon>
-      		<ListItemText primary="Back"/>
-    	</ListItem>
+      <ListItem button onClick={this.back}>
+        <ListItemIcon>
+            <span className="fa-fw">
+            <FontAwesomeIcon icon="chevron-left"/>
+           </span>
+        </ListItemIcon>
+          <ListItemText primary="Back"/>
+      </ListItem>
     <Divider/>
-    	<ListItem button onClick={this.logout}>
-      	<ListItemIcon>
-		      	<span className="fa-fw">
-		        <FontAwesomeIcon icon="sign-out-alt"/>
-		       </span>
-      	</ListItemIcon>
-      		<ListItemText primary="logout" />
-    	</ListItem>
+      <ListItem button onClick={this.logout}>
+        <ListItemIcon>
+            <span className="fa-fw">
+            <FontAwesomeIcon icon="sign-out-alt"/>
+           </span>
+        </ListItemIcon>
+          <ListItemText primary="logout" />
+      </ListItem>
       </div>
 
     );
@@ -295,12 +295,12 @@ render()
 
                   </div>
                 )
-	return(
-		<div>
-		{this.backing()}
-		{this.logouting()}
+  return(
+    <div>
+    {this.backing()}
+    {this.logouting()}
 
-		<SwipeableDrawer
+    <SwipeableDrawer
           open={this.state.left}
           onClose={this.toggleDrawer(false)}
           onOpen={this.toggleDrawer(true)}
@@ -318,23 +318,23 @@ render()
 
 
     </SwipeableDrawer>
-			<div>
-				<AppBar className={appbar}>
-					<Toolbar>
-						<IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
-            				<MenuIcon/>
-          				</IconButton> 
-          				<Typography variant="title" color="inherit">
-            				Jinu
-          				</Typography>
-					</Toolbar>
+      <div>
+        <AppBar className={appbar}>
+          <Toolbar>
+            <IconButton onClick={this.toggleDrawer('left', true)} color="inherit" aria-label="Menu">
+                    <MenuIcon/>
+                  </IconButton> 
+                  <Typography variant="title" color="inherit">
+                    Jinu
+                  </Typography>
+          </Toolbar>
 
-				</AppBar>
-				<br/>
-				<br/>
-				<br/>
+        </AppBar>
+        <br/>
+        <br/>
+        <br/>
               {please_wait}
-              				
+                      
         {
           this.state.news.map((wr,i)=>{
             return <div class="container" key={wr.i}>
@@ -371,7 +371,7 @@ render()
 
               <IconContext.Provider value={{color:`${pr[i]}`,className:`${heart}`}} >
                   <div>
-                    &nbsp;&nbsp;&nbsp;<FaHeart  onClick={love?(()=>{let qx=i;(this.hat(qx,null))}):(()=>{let qw=i;(this.love(qw))})}/>
+                    &nbsp;&nbsp;&nbsp;<FaHeart  onClick={love?(()=>{let qx=i;(this.hat(qx,null))}):(()=>{let qw=i;(this.love(qw))})}/>&nbsp;&nbsp;
                   </div>
               </IconContext.Provider>
 
@@ -387,10 +387,10 @@ render()
       </div> 
           })
         }
-				
-			</div>
-			</div>
-	);
+        
+      </div>
+      </div>
+  );
 }
 }
 export default withStyles(styles)(Newspaper);
