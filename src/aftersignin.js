@@ -41,7 +41,7 @@ import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import chart from 'chart.js'
 import { FaCss3 } from "react-icons/fa";
-import {FaVuejs,FaAdjust,Fa500px} from "react-icons/fa";
+import {FaVuejs,FaAdjust,Fa500px,FaTree} from "react-icons/fa";
 import {TiWeatherSnow,TiChartBarOutline,TiLockClosedOutline} from "react-icons/ti"; 
 import {MdThumbUp} from 'react-icons/md'
 import {lightBlue,pink,grey,lime,purple,orange} from '@material-ui/core/colors/';
@@ -95,6 +95,12 @@ const styles = {
   },
 
 };
+const tree=style({
+    marginLeft:"50px",
+    width:"90px",
+    height:"130px",
+    color:"#9C27B0",
+})
 const speedDial=style({
   outline:"0 !important;",
   position: 'absolute',
@@ -627,6 +633,10 @@ render()
 
     </ListItem> 
        &nbsp;&nbsp;&nbsp; <FaVuejs className={right}/>&nbsp;&nbsp;<FaCss3 className={right}/><FaAdjust className={zero}/><Fa500px className={right}/>
+      <br/>
+      <br/>
+      <FaTree className={tree}/>
+      <h3 className="text-center">Merry Christmas</h3>
     </div>
     );
   return(
