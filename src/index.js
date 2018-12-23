@@ -19,6 +19,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
 import {IoIosArrowDropright} from 'react-icons/io';
 import {IoMdRose} from 'react-icons/io';
 import {lightGreen} from '@material-ui/core/colors/'
+import Change from './change_password.js'
 const right=style({
         width:25,
         height:30,
@@ -61,6 +62,7 @@ ReactDOM.render(
 	<Route exact path="/after-signin" component={Aftersignin}/>
 	<Route exact path="/newspaper" component={Newspaper}/>
 	<Route exact path="/taskanalysis" component={Taksanalysis}/>
+	<Route exact path="/change" component={Change}/>
 </div>
 </Router>
 	,document.getElementById("root"));

@@ -22,6 +22,7 @@ import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-
 import Paper from '@material-ui/core/Paper'
 import {Bar,Line,Pie,Polar,Scatter} from 'react-chartjs-2';
 import {lightBlue,pink,grey,lime,purple,orange} from '@material-ui/core/colors/';
+var firebase=require("firebase");
 const appbar=style({
     flexGrow: 1,
      backgroundColor: lightBlue[700],//color contrast
@@ -37,14 +38,64 @@ const menuicon=style({
 class Taksanalysis extends React.Component{
 	componentDidMount()
 	{
-		this.interval=setInterval(()=>{
-			this.randomdata();
-		},2350)
+    var data=this.state.chartData.labels;
+    console.log(data);
+    firebase.auth().onAuthStateChanged(user=>{
+      if(user)
+      {
+        let uidd=user.uid;
+        var database=firebase.database().ref("users").child(uidd).child("notes").child("notes");
+        console.log("hasmukh");
+        database.on("value",snap=>{
+          let i=1;
+          var qwe=snap.val().forEach((der,i)=>{
+            console.log(der.day);
+            console.log(i);
+            
+                if(der.day==="Sunday")
+                {
+                    data.push("Sunday");
+                }
+                else if(der.day==="Monday")
+                {
+                  data.push("Monday");
+                }
+                else if(der.day=="Tuesday")
+                {
+                  console.log("bnbj");
+                  data.push("Tuesday")
+                }
+                else if(der.day==="Wendesday")
+                {
+                  console.log("bnbj");
+
+                  data.push("Wendesday")
+                }
+                else if(der.push==="Thursday")
+                {
+                  data.push("Thursday")
+                }  
+                else if(der.push==="Friday")
+                {
+                  data.push("Friday");
+                }
+                else
+                {
+                  data.push("Saturday");
+                }
+            
+            this.setState({
+              data:data,
+            })
+          });
+
+        })     
+
+      }
+    })
+		this.randomdata();
 	}
-	componentWillMount()
-	{
-		this.firebasedata();
-	}
+	
 	constructor(props)
 	{
 		super(props);
@@ -58,7 +109,6 @@ class Taksanalysis extends React.Component{
 		};
   	    this.toggleDrawer=this.toggleDrawer.bind(this);
   	    this.back=this.back.bind(this);
-  	    this.firebasedata=this.firebasedata.bind(this);
     	this.backing=this.backing.bind(this);
     	this.logout=this.logout.bind(this);
     	this.logouting=this.logouting.bind(this);
@@ -66,15 +116,13 @@ class Taksanalysis extends React.Component{
 	}
 	randomdata()
 	{
-		let qa=Math.random()*100;
-		let yt=Math.floor(qa);
 		
 		this.setState({
 			chartData:{
 			datasets:[{
 					label:"Productivity Graph",
 					fill: true,
-					data:[yt+12,yt+34,yt*2.5,yt+17,yt+25,yt*1.4,yt*2.1],
+					data:[32,53,176,282],
 					backgroundColor:[
 						'rgba(5, 112, 194, 0.9)',
 						'rgba(5, 184, 194, 0.97)',
@@ -120,14 +168,7 @@ class Taksanalysis extends React.Component{
       return <Redirect to="/next-page"/>
     }
   }
-  firebasedata()
-  {
-  	this.setState({
-  		chartData:{
-				labels:["monday","tuesday","wendesday","thursday","friday","saturday","sunday"],
-			}
-  	})
-  }
+  
 render()
 {
 	

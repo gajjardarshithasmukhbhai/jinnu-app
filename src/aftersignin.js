@@ -268,6 +268,7 @@ class Aftersignin extends React.Component{
       we:null,
       data:"",
       jinu:[],
+      chnage_password:false,
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
@@ -284,6 +285,7 @@ class Aftersignin extends React.Component{
     this.add=this.add.bind(this); 
     this.mara_data=this.mara_data.bind(this); 
     this.delete=this.delete.bind(this);
+    this.chnage_password=this.chnage_password.bind(this);
   }
   mara_data=()=>
   {
@@ -384,6 +386,12 @@ class Aftersignin extends React.Component{
         taskanalysis: true,
       });
       console.log("i am call");
+    }
+    else if(i==2)
+    {
+      this.setState({
+        chnage_password:true,
+      })
     }
     this.setState(state => ({
       open: !state.open,
@@ -528,6 +536,13 @@ function(){
   
   
 }
+chnage_password()
+{
+  if(this.state.chnage_password)
+  {
+    return <Redirect exact to="/change"/>
+  }
+}
 newspaper()
   {
     this.setState({
@@ -620,6 +635,7 @@ render()
       {this.logouting()}
       {this.newspaper_open()}
       {this.taskanalysis_open()}
+      {this.chnage_password()}
       {this.inbox_pages()}
     {/* sidebar open karva mate thay che */}
     <SwipeableDrawer
