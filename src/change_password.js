@@ -64,7 +64,29 @@ const menuicon=style({
  })
  
 class Change extends React.Component{
-	constructor(props)
+	componentWillMount()
+  {
+    let ref=firebase.database().ref("users");
+    firebase.auth().onAuthStateChanged((user)=>{
+      if(user)
+      {
+        var uid=user.uid;
+        var fire_pass;
+        var fire_user;
+        ref.child(uid).child("username").child("name").on("value",snap=>{
+          this.setState({
+            fire_user:snap.val(),
+          })
+        })
+        ref.child(uid).child("password").child("password").on("value",snap=>{
+          this.setState({
+            fire_pass:snap.val(),
+          })
+        })
+      }
+    })
+  }
+  constructor(props)
 	{
 		super(props);
 		this.state={
@@ -72,6 +94,13 @@ class Change extends React.Component{
 			back:false,
 			logout:false,
       showPassword: false,
+      username:"",
+      password:"",
+      fire_pass:"",
+      fire_user:"",
+      mane_kholo:false,
+      forgot:"",
+      renew_forgot:"",
 		};
   	  this.toggleDrawer=this.toggleDrawer.bind(this);
   	  this.back=this.back.bind(this);
@@ -80,7 +109,13 @@ class Change extends React.Component{
       this.handleChange=this.handleChange.bind(this);
     	this.logout=this.logout.bind(this);
     	this.logouting=this.logouting.bind(this);
-	}
+	    this.username=this.username.bind(this);
+      this.password=this.password.bind(this);
+      this.submit=this.submit.bind(this);
+      this.renew_forgot=this.renew_forgot.bind(this);
+      this.forgot=this.forgot.bind(this);
+      this.submitkaro=this.submitkaro.bind(this);
+  }
 	toggleDrawer = (open) => () => {
     this.setState({
       left: open,
@@ -93,7 +128,73 @@ class Change extends React.Component{
    handleClickShowPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
   };
+  renew_forgot(f)
+  {
+    console.log(f.target.value);
+    this.setState({
+      renew_forgot:f.target.value,
+    })
+  }
+  forgot(g)
+  {
+    console.log(g.target.value);
+    this.setState({
+      forgot:g.target.value,
+    })
+  }
+  username(e)
+  {
+    this.setState({
+      username:e.target.value,
+    })
+    
+  }
+  submitkaro()
+  {
+    if(this.state.forgot==this.state.renew_forgot && this.state.forgot!=''&&this.state.renew_forgot!='')
+    {
+        let ref=firebase.database().ref("users");
+    firebase.auth().onAuthStateChanged((user)=>{
+      if(user)
+      {
+        var uid=user.uid;
+        var fire_pass;
+        var fire_user;
+        ref.child(uid).child("password").set({
+          password:this.state.forgot,
+        })
 
+      }
+
+    })    
+    }
+    else if(this.state.forgot=='')
+    {
+      <h1>djd</h1>
+    }
+  }
+  submit()
+  {
+    if(this.state.username===this.state.fire_user&&this.state.password===this.state.fire_pass)
+    {
+      this.setState({
+        mane_kholo:true,
+      })
+    }
+    else{
+      console.log("not right");
+      this.setState({
+        mane_kholo:false,
+      })
+    }
+  }
+
+  password(e)
+  {
+    this.setState({
+      password:e.target.value,
+    })
+  }
   back()
   {
   	this.setState({
@@ -125,6 +226,113 @@ class Change extends React.Component{
 render()
 {
       const { classes } = this.props;
+      let mane_kholo;
+      if(this.state.mane_kholo==true)
+      {
+        mane_kholo=<div>
+        <br/>
+          <TextField
+          id="outlined-adornment-password"
+          variant="outlined"
+          required
+          value={this.state.forgot}
+          onChange={this.forgot}
+          className={margin}
+          type={this.state.showPassword ? 'text' : 'password'}
+          label="New-Password"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={this.handleClickShowPassword}
+                >
+                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+              
+
+            ),
+          }}
+        /><br/><br/><br/>
+        <TextField
+          id="outlined-adornment-password"
+          variant="outlined"
+          className={margin}
+          value={this.state.renew_forgot}
+          onChange={this.renew_forgot}
+          type={this.state.showPassword ? 'text' : 'password'}
+          label="Renew-Password"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={this.handleClickShowPassword}
+                >
+                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+              
+
+            ),
+          }}
+        /><br/><br/><br/>
+        <br/><br/>
+        <Button variant="contained" color="secondary" className={margin} onClick={this.submitkaro}>
+                submit
+              </Button>
+                      
+                    </div>
+      }
+      else if(this.state.mane_kholo==false)
+      {
+        mane_kholo=<div>
+                      <TextField
+          className={margin}
+          label="Username"
+          variant="outlined"
+          value={this.state.username}
+          id="mui-theme-provider-outlined-input"
+          onChange={this.username}
+        />
+        <br/><br/>
+        <TextField
+          id="outlined-adornment-password"
+          variant="outlined"
+          value={this.state.password}
+          className={margin}
+          onChange={this.password}
+          type={this.state.showPassword ? 'text' : 'password'}
+          label="Previous-Password"
+          value={this.state.password}
+          onChange={this.handleChange('password')}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={this.handleClickShowPassword}
+                >
+                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+              
+
+            ),
+          }}
+        />
+        <br/>
+        <br/>
+              <br/>
+              <br/>
+              <br/>
+              <br/>
+              <Button variant="contained" color="secondary" className={margin} onClick={this.submit}>
+                submit
+              </Button>
+                   </div>
+      }
 	    const sideList = (
       <div className={list}><br/><br/><br/><Divider/>
       		<ListItem button onClick={this.back}>
@@ -188,45 +396,8 @@ render()
 
             <MuiThemeProvider theme={theme}>
         <br/><br/>
-        <TextField
-          className={margin}
-          label="Username"
-          variant="outlined"
-          id="mui-theme-provider-outlined-input"
-        />
-        <br/><br/>
-        <TextField
-          id="outlined-adornment-password"
-          variant="outlined"
-          className={margin}
-          type={this.state.showPassword ? 'text' : 'password'}
-          label="Previous-Password"
-          value={this.state.password}
-          onChange={this.handleChange('password')}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                >
-                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-              
-
-            ),
-          }}
-        />
-        <br/>
-        <br/>
-              <br/>
-              <br/>
-              <br/>
-              <br/>
-              <Button variant="contained" color="secondary" className={margin}>
-                submit
-              </Button>
+        {mane_kholo}
+        
       </MuiThemeProvider>
           }
 

@@ -48,6 +48,11 @@ class Taksanalysis extends React.Component{
         console.log("hasmukh");
         database.on("value",snap=>{
           let i=1;
+          if(snap.val()==null)
+          {
+            console.log("gajjau");
+          }
+          else{
           var qwe=snap.val().forEach((der,i)=>{
             console.log(der.day);
             console.log(i);
@@ -88,6 +93,7 @@ class Taksanalysis extends React.Component{
               data:data,
             })
           });
+        }
 
         })     
 
