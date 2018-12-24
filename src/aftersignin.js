@@ -103,6 +103,8 @@ const tree=style({
 })
 const speedDial=style({
   outline:"0 !important;",
+  border:"none",
+  outline:"none",
   position: 'absolute',
     bottom: theme.spacing.unit *6 ,
     right: theme.spacing.unit * 4,
@@ -193,6 +195,7 @@ class Aftersignin extends React.Component{
                   
                   var ref=database.ref("users").child(uidd).child("notes").child("notes");
                   ref.on("child_added",snap=>{
+                    console.log("jamuna");
                     qqe=snap.key;
                     let lx=snap.val().name;
                     let xl=snap.val().time;
@@ -211,10 +214,10 @@ class Aftersignin extends React.Component{
 
                   if(Task.length==0)
                   { 
-                    console.log("HASMUKH");
-                    this.lkn=setInterval(this.mara_data,2130);
-                   
-                }
+                      //console.log("HASMUKH");
+                      this.lkn=setInterval(this.mara_data,2400);
+                    
+                  }
                   //->
                 }
             });
@@ -295,7 +298,7 @@ class Aftersignin extends React.Component{
   }
   mara_data=()=>
   {
-    console.log("darsh");
+    console.log("savita");
     let jinu=this.state.jinu;
     console.log(jinu);
     let Task=this.state.Task;
@@ -386,6 +389,7 @@ class Aftersignin extends React.Component{
   };
 
   handleClick = (i) => {
+    console.log("i am "+i);
     if(i==1)
     {
       this.setState({
@@ -393,7 +397,7 @@ class Aftersignin extends React.Component{
       });
       console.log("i am call");
     }
-    else if(i==2)
+    else if(i==0)
     {
       this.setState({
         chnage_password:true,
