@@ -21,6 +21,11 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { withStyles } from '@material-ui/core/styles';
 import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import Visibility from '@material-ui/icons/Visibility';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import IconButton from '@material-ui/core/IconButton';
+
 import Signup from './signup.js'
 import {style} from 'typestyle'
 import Typography from '@material-ui/core/Typography';
@@ -31,6 +36,10 @@ const theme = createMuiTheme({
 	width:10,
 
 });
+const margin=style ({
+    marginLeft: theme.spacing.unit,
+    width:"95%",
+  })
 const styles = theme => ({
   margin: {
     margin: theme.spacing.unit*5,
@@ -59,6 +68,22 @@ const usericon=style({
     marginLeft:theme.spacing.unit * 30,
 })
 class Nextpage extends React.Component{
+	constructor(props)
+	{
+		super(props);
+		this.state={
+			username:"",
+      		password:"",
+		}
+		this.handleChange=this.handleChange.bind(this);
+		this.handleClickShowPassword=this.handleClickShowPassword.bind(this);
+	}
+	handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
+  handleClickShowPassword = () => {
+    this.setState({ showPassword: !this.state.showPassword });
+  };
 render()
 {
 	 const { classes } = this.props;
@@ -80,30 +105,50 @@ render()
 				<div class="col-sm-12">
 					<Card>
 						 <CardContent>
-							 <div className={classes.margin}>
-							        <Grid container spacing={8} alignItems="flex-end">
-							          <Grid item>
-							            <AccountCircle className={classes.rightIcon}/>
-							          </Grid>
-							          <Grid item>
-							            <TextField id="input-with-icon-grid" label="username" />
-							          </Grid>
-							        </Grid>
-							  </div>
-							  <div className={classes.margin}>
-							        <Grid container spacing={8} alignItems="flex-end">
-							          <Grid item>
-							            <VisibilityIcon/>
-							          </Grid>
-							          <Grid item>
-							            <TextField id="input-with-icon-grid" label="password" />
-							          </Grid>
-							        </Grid>
-							  </div>&nbsp;&nbsp;&nbsp;
+							<br/>
+							
+						 <TextField
+          className={margin}
+          label="Username"
+          variant="outlined"
+          value={this.state.username}
+          id="mui-theme-provider-outlined-input"
+        />
+        <br/><br/>
+							<br/>
+
+        <TextField
+          id="outlined-adornment-password"
+          variant="outlined"
+          value={this.state.password}
+          className={margin}
+          onChange={this.password}
+          type={this.state.showPassword ? 'text' : 'password'}
+          label="Password"
+          value={this.state.password}
+          onChange={this.handleChange('password')}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={this.handleClickShowPassword}
+                >
+                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+              
+
+            ),
+          }}
+        />
+							<br/>
+							<br/>
+					
 							  <Button variant="contained" color="primary" className={classes.button}>
 						        <HowToRegRoundedIcon/>
 						        Login
-						      </Button>&nbsp;&nbsp;
+						      </Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						      <Button spacing={5} color="secondary" variant="contained" className={classes.button}>
 						        <KeyboardArrowLeftIcon/>
 						        Back
