@@ -25,12 +25,12 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Visibility from '@material-ui/icons/Visibility';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import IconButton from '@material-ui/core/IconButton';
-
 import Signup from './signup.js'
 import {style} from 'typestyle'
 import Typography from '@material-ui/core/Typography';
 import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import christ from './image/christ.jpg'
 const theme = createMuiTheme({
 	palatte:indigo[400],
 	width:10,
@@ -60,6 +60,9 @@ const styles = theme => ({
   	backgroundColor:"#F80707",
   },
 });
+const card=style({
+	backgroundImage:`url(${christ})`,
+})
 const appbar=style({
     flexGrow: 1,
     backgroundColor: lightBlue[700],
@@ -103,7 +106,7 @@ render()
 				<br/>
 				<br/>
 				<div class="col-sm-12">
-					<Card>
+					<Card className={card}>
 						 <CardContent>
 							<br/>
 							
@@ -153,7 +156,8 @@ render()
 						        <KeyboardArrowLeftIcon/>
 						        Back
 						      </Button><br/><br/>
-						      &nbsp;&nbsp;&nbsp;&nbsp;<Link exact to="/sign-up" class="text text-center mk" label="password" color="primary">you have no account?Signup</Link>
+						      &nbsp;&nbsp;&nbsp;&nbsp;<Link exact to="/sign-up" class="text text-danger text-center d-block mx-auto " label="password" color="primary">you have no account?Signup</Link>
+						 <br/>
 						 </CardContent>
 					</Card>
 				</div>
