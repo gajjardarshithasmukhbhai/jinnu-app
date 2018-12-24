@@ -170,8 +170,8 @@ class Change extends React.Component{
     }
     else if(this.state.forgot=='')
     {
-      <h1>djd</h1>
     }
+    
   }
   submit()
   {
