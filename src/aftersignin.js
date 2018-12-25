@@ -201,7 +201,7 @@ class Aftersignin extends React.Component{
     var Task=this.state.Task;
     var qqe;
     firebase.auth().onAuthStateChanged(user => {
-        if(user) {
+        if(user.uid) {
                   var uidd=user.uid;
                   var database=firebase.database();
                   
@@ -307,7 +307,18 @@ class Aftersignin extends React.Component{
     this.add=this.add.bind(this); 
     this.mara_data=this.mara_data.bind(this); 
     this.delete=this.delete.bind(this);
+    this.bnm=this.bnm.bind(this);
     this.chnage_password=this.chnage_password.bind(this);
+  }
+  bnm()
+  {
+    firebase.auth().onAuthStateChanged(user => {
+        if(user) {
+            this.setState({
+              uid:user.uid,
+            })
+          }
+          }) 
   }
   mara_data=()=>
   {

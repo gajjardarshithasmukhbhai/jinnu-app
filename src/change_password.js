@@ -71,9 +71,10 @@ const close=style({
 class Change extends React.Component{
 	componentWillMount()
   {
+    this.lkj();
     let ref=firebase.database().ref("users");
     firebase.auth().onAuthStateChanged((user)=>{
-      if(user)
+      if(user.uid==this.state.uid)
       {
         var uid=user.uid;
         var fire_pass;
@@ -96,6 +97,7 @@ class Change extends React.Component{
 		super(props);
 		this.state={
 			left:false,
+      uid:"",
 			back:false,
 			logout:false,
       showPassword: false,
@@ -120,6 +122,7 @@ class Change extends React.Component{
       this.submit=this.submit.bind(this);
       this.renew_forgot=this.renew_forgot.bind(this);
       this.forgot=this.forgot.bind(this);
+      this.lkj=this.lkj.bind(this);
       this.submitkaro=this.submitkaro.bind(this);
   }
 	toggleDrawer = (open) => () => {
@@ -127,6 +130,17 @@ class Change extends React.Component{
       left: open,
    
     });
+  }
+  lkj()
+  {
+    firebase.auth().onAuthStateChanged((user)=>{
+      if(user)
+      {
+        this.setState({
+          uid:user.uid,
+        })       
+      }
+    })
   }
    handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
