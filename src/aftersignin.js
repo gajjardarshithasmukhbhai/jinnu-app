@@ -194,6 +194,7 @@ class Aftersignin extends React.Component{
   
   componentWillMount()
   {
+    this.bnm();
     this.function();     
     console.log("gajjar is mdnkdnfn");
     let jinu=this.state.jinu;
@@ -201,7 +202,7 @@ class Aftersignin extends React.Component{
     var Task=this.state.Task;
     var qqe;
     firebase.auth().onAuthStateChanged(user => {
-        if(user.uid) {
+        if(user.uid==this.state.uid) {
                   var uidd=user.uid;
                   var database=firebase.database();
                   
@@ -250,7 +251,7 @@ class Aftersignin extends React.Component{
         }) 
    
     firebase.auth().onAuthStateChanged(user => {
-        if(user) {
+        if(user.uid==this.state.uid) {
         var ert=user.displayName;
           var uuid=user.uid;
           this.setState({
@@ -454,7 +455,7 @@ class Aftersignin extends React.Component{
       Task:Task,
     })
     firebase.auth().onAuthStateChanged(user => {
-        if(user) {
+        if(user.uid==this.state.uid) {
                   var uidd=user.uid;
                   var database=firebase.database();
                   var ref=database.ref("users").child(uidd).child("notes");
@@ -537,7 +538,7 @@ function(){
       var firebaseRef=firebase.database().ref("users");
 
   firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
+      if (user.uid==this.state.uid) {
           var wer=user.uid;
           var ert=user.displayName;
           var photourl=user.photoURL;

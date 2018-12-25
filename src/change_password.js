@@ -175,7 +175,7 @@ class Change extends React.Component{
     {
         let ref=firebase.database().ref("users");
     firebase.auth().onAuthStateChanged((user)=>{
-      if(user)
+      if(user.uid==this.state.uid)
       {
         var uid=user.uid;
         var fire_pass;
