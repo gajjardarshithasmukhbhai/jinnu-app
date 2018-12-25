@@ -20,6 +20,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
 import Paper from '@material-ui/core/Paper'
+import Snackbar from '@material-ui/core/Snackbar';
 import {Bar,Line,Pie,Polar,Scatter} from 'react-chartjs-2';
 import {lightBlue,pink,grey,lime,purple,orange,white} from '@material-ui/core/colors/';
 import Input from '@material-ui/core/Input';
@@ -35,6 +36,8 @@ import Button from '@material-ui/core/Button';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import chrismas from './image/christmas.jpg';
+import CloseIcon from '@material-ui/icons/Close';
+
 var firebase=require("firebase");
 const appbar=style({
     flexGrow: 1,
@@ -62,7 +65,9 @@ const menuicon=style({
   backgroundImage:`url(${chrismas})`,
    background: "#CEC5C5",
  })
- 
+const close=style({
+  padding: theme.spacing.unit / 2,
+}) 
 class Change extends React.Component{
 	componentWillMount()
   {
@@ -101,6 +106,7 @@ class Change extends React.Component{
       mane_kholo:false,
       forgot:"",
       renew_forgot:"",
+      vbn:false,
 		};
   	  this.toggleDrawer=this.toggleDrawer.bind(this);
   	  this.back=this.back.bind(this);
@@ -163,17 +169,20 @@ class Change extends React.Component{
         ref.child(uid).child("password").set({
           password:this.state.forgot,
         })
-
+        return <h1>your password will be successfully changed</h1>
       }
 
     })    
     }
-    else if(this.state.forgot=='')
-    {
-    }
-    
+   
+    this.setState({
+      vbn:true,
+
+    })
   }
+
   submit()
+
   {
     if(this.state.username===this.state.fire_user&&this.state.password===this.state.fire_pass)
     {
@@ -227,64 +236,42 @@ render()
 {
       const { classes } = this.props;
       let mane_kholo;
+      let vbn;
       if(this.state.mane_kholo==true)
       {
         mane_kholo=<div>
+              <Chimak renew={this.renew_forgot} renew_pass={this.state.renew_forgot} forgot={this.state.forgot} ghj={this.handleClickShowPassword} forgo={this.forgot} hmk={this.state.showPassword}/>
         <br/>
-          <TextField
-          id="outlined-adornment-password"
-          variant="outlined"
-          required
-          value={this.state.forgot}
-          onChange={this.forgot}
-          className={margin}
-          type={this.state.showPassword ? 'text' : 'password'}
-          label="New-Password"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                >
-                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-              
-
-            ),
-          }}
-        /><br/><br/><br/>
-        <TextField
-          id="outlined-adornment-password"
-          variant="outlined"
-          className={margin}
-          value={this.state.renew_forgot}
-          onChange={this.renew_forgot}
-          type={this.state.showPassword ? 'text' : 'password'}
-          label="Renew-Password"
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="Toggle password visibility"
-                  onClick={this.handleClickShowPassword}
-                >
-                  {this.state.showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-              
-
-            ),
-          }}
+          
         /><br/><br/><br/>
         <br/><br/>
         <Button variant="contained" color="secondary" className={margin} onClick={this.submitkaro}>
                 submit
               </Button>
-                      
+
+                                  
                     </div>
+      if(this.state.vbn)
+      {
+        vbn=<div>
+            <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.vbn}
+          autoHideDuration={4000}
+          onClose={this.handleClose}
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">password is successfully change</span>}
+          
+        />
+          </div>
       }
+      }
+      
       else if(this.state.mane_kholo==false)
       {
         mane_kholo=<div>
@@ -358,6 +345,7 @@ render()
 	return(
 			<div>
 			     {this.backing()}
+           {vbn}
       {this.logouting()}
 
 			<SwipeableDrawer
@@ -407,5 +395,61 @@ render()
 			</div>
 	);
 }
+}
+class Chimak extends React.Component{
+
+render()
+{
+  return(
+      <div>
+          <TextField
+          id="outlined-adornment-password"
+          variant="outlined"
+          value={this.props.forgot}
+          onChange={this.props.forgo}
+          className={margin}
+          type={this.props.hmk ? 'text' : 'password'}
+          label="New-Password"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={this.props.ghj}
+                >
+                  {this.props.hmk ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+              
+
+            ),
+          }}
+        /><br/><br/><br/>
+        <TextField
+          id="outlined-adornment-password"
+          variant="outlined"
+          className={margin}
+          value={this.props.renew_pass}
+          onChange={this.props.renew}
+          type={this.props.hmk ? 'text' : 'password'}
+          label="Renew-Password"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="Toggle password visibility"
+                  onClick={this.props.ghj}
+                >
+                  {this.props.hmk ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+              
+
+            ),
+          }}        
+      /></div>
+  );
+}
+
 }
 export default Change;

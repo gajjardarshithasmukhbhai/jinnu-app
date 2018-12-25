@@ -20,7 +20,7 @@ import HowToRegRoundedIcon from '@material-ui/icons/HowToRegRounded';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import { withStyles } from '@material-ui/core/styles';
-import {BrowserRouter as Router,Route,Link,NavLink} from 'react-router-dom'
+import {BrowserRouter as Router,Route,Link,NavLink,Redirect} from 'react-router-dom'
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Visibility from '@material-ui/icons/Visibility';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -31,6 +31,7 @@ import Typography from '@material-ui/core/Typography';
 import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import christ from './image/christ.jpg'
+var firebase=require("firebase");
 const theme = createMuiTheme({
 	palatte:indigo[400],
 	width:10,
@@ -71,16 +72,106 @@ const usericon=style({
     marginLeft:theme.spacing.unit * 30,
 })
 class Nextpage extends React.Component{
+	componentWillMount()
+	{
+		console.log("darshit");
+		var firebas=this.state.firebas;
+		var ert=[];
+		var item;
+		let i=0;
+		var ref=firebase.database().ref("users");
+			ref.on("value",snap=>{
+					   snap.forEach((ss) => {
+					   	console.log(i);
+					      this.state.firebas.push(ss.val());
+					      this.setState({
+					      	firebas:this.state.firebas,
+					      })
+					   });
+					   //console.log(data.username);
+					   //console.log(ert);
+
+					/*var wer=snap.val();
+					var tr=wer.key;
+				snap.forEach((child)=>{
+					console.log(i);										
+					item=child.val();
+					item.key=child.key;
+					ert.push(item);
+					i++;
+				});*/
+				
+			})
+	}
+	componentDidMount()
+	{
+		console.log("jhs");
+		this.wer=setInterval(this.bnm,3000)
+		
+	}
 	constructor(props)
 	{
 		super(props);
 		this.state={
 			username:"",
       		password:"",
+      		direct:"hello",
+      		refrerr:"",
+      		firebas:[],
 		}
+		this.username=this.username.bind(this);
+		this.password=this.password.bind(this);
 		this.handleChange=this.handleChange.bind(this);
+		this.tr=this.tr.bind(this);
+		this.bnm=this.bnm.bind(this);
+		this.Redirect=this.Redirect.bind(this);
 		this.handleClickShowPassword=this.handleClickShowPassword.bind(this);
 	}
+	bnm()
+	{
+		console.log("click");
+		this.state.firebas.map((ert,i)=>{
+			console.log(ert.uid.uid);
+		})
+	}
+	username(f)
+	{
+		this.setState({
+			username:f.target.value,
+		})
+	}
+		
+	password(g)
+	{
+		this.setState({
+			password:g.target.value,
+		})
+	}
+	tr()
+	{
+		if(this.state.username!=null)
+		{
+			this.setState({
+				Redirect:true,
+			})
+	
+		}
+	}
+	Redirect()
+	{
+		if(this.state.Redirect)
+		{
+			return (<Redirect exact to={{
+				pathname:'/after-signin',
+						      	state:{
+						      		noti:this.state.direct,
+						      		password:this.state.password,
+						      		username:this.state.username,
+						      	}}
+						      }/>)
+		}
+	}
+
 	handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
   };
@@ -90,8 +181,10 @@ class Nextpage extends React.Component{
 render()
 {
 	 const { classes } = this.props;
+	 
 	return(
 			<div>
+			{this.Redirect()}
 			<br/><br/>
 				<AppBar className={appbar}>
 					<Toolbar >
@@ -113,6 +206,7 @@ render()
 						 <TextField
           className={margin}
           label="Username"
+ 		  onChange={this.username}
           variant="outlined"
           value={this.state.username}
           id="mui-theme-provider-outlined-input"
@@ -148,10 +242,11 @@ render()
 							<br/>
 							<br/>
 					
-							  <Button variant="contained" color="primary" className={classes.button}>
+							  <Button variant="contained" color="primary" className={classes.button} onClick={this.tr}>
 						        <HowToRegRoundedIcon/>
 						        Login
 						      </Button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						      
 						      <Button spacing={5} color="secondary" variant="contained" className={classes.button}>
 						        <KeyboardArrowLeftIcon/>
 						        Back

@@ -178,7 +178,19 @@ const divider=style({
   borderTop:"12px soid red",
 })
 class Aftersignin extends React.Component{
+  /*componentDidMount()
+  {
+    const handle=this.props.match;
+    console.log(handle);
+    const {noti}=this.props.location.state;
+    const {username}=this.props.location.state;
+    const {password}=this.props.location.state;
 
+    console.log(noti);
+    console.log(username);
+    console.log(password);
+
+  }*/
   
   componentWillMount()
   {
@@ -278,6 +290,7 @@ class Aftersignin extends React.Component{
       data:"",
       jinu:[],
       chnage_password:false,
+      Redirect:false,
     };
     this.toggleDrawer=this.toggleDrawer.bind(this);
     this.inbox=this.inbox.bind(this);
@@ -540,8 +553,11 @@ function(){
           firebaseRef.child(`${wer}`).child("photo").set({
                   photo:photourl,
           });  
-       
+        firebaseRef.child(`${wer}`).child("uid").set({
+                  uid:wer,
+          });
       }
+
     });
   
   
