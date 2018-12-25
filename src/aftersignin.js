@@ -221,15 +221,16 @@ class Aftersignin extends React.Component{
                     this.setState({
                       we:jinu.length,
                     })
-                          
-                  });
-
-                  if(Task.length==0)
+                     if(Task.length==0)
                   { 
                       //console.log("HASMUKH");
-                      this.lkn=setInterval(this.mara_data,2400);
+                      this.lkn=setInterval(this.mara_data,0);
                     
                   }
+
+                  });
+
+                  
                   //->
                 }
             });

@@ -80,7 +80,7 @@ class Nextpage extends React.Component{
 		var item;
 		let i=0;
 		var ref=firebase.database().ref("users");
-			ref.on("value",snap=>{
+			/*ref.on("value",snap=>{
 					   snap.forEach((ss) => {
 					   	console.log(i);
 					      this.state.firebas.push(ss.val());
@@ -88,26 +88,10 @@ class Nextpage extends React.Component{
 					      	firebas:this.state.firebas,
 					      })
 					   });
-					   //console.log(data.username);
-					   //console.log(ert);
-
-					/*var wer=snap.val();
-					var tr=wer.key;
-				snap.forEach((child)=>{
-					console.log(i);										
-					item=child.val();
-					item.key=child.key;
-					ert.push(item);
-					i++;
-				});*/
-				
-			})
-	}
-	componentDidMount()
-	{
-		console.log("jhs");
-		this.wer=setInterval(this.bnm,3000)
-		
+					   
+				this.wer=setInterval(this.bnm,0)
+			
+			})*/
 	}
 	constructor(props)
 	{
@@ -129,10 +113,11 @@ class Nextpage extends React.Component{
 	}
 	bnm()
 	{
-		console.log("click");
+		console.log("hasu-->");
 		this.state.firebas.map((ert,i)=>{
 			console.log(ert.uid.uid);
 		})
+		clearInterval(this.wer);
 	}
 	username(f)
 	{
