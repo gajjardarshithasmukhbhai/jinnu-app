@@ -58,8 +58,19 @@ const theme=createMuiTheme({
   }
 });
 console.log(theme);
+/*const admin = require('firebase-admin');
 
+const serviceAccount = require('./servicekey.json');
+const uid="some-uid";
+admin.auth().createCustomToken(uid)
+.then((customToken)=>{console.log(customToken);})
+.catch((err)=>{console.log(err);})
 
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://gajjar-great.firebaseio.com'
+});
+*/
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -367,9 +378,16 @@ class Aftersignin extends React.Component{
   }
   logout()
   {
+    firebase.auth().signOut().then(function() {
+  console.log("successfully");  
+}).catch(function(error) {
+
+  console.log(error.message);
+});
     this.setState({
       logout:true,
     })
+
   }
   logouting()
   {
@@ -536,6 +554,7 @@ class Aftersignin extends React.Component{
   }
 function(){
       var firebaseRef=firebase.database().ref("users");
+      var use = firebase.auth().currentUser;
 
   firebase.auth().onAuthStateChanged((user) => {
       if (user.uid==this.state.uid) {
@@ -568,6 +587,7 @@ function(){
         firebaseRef.child(`${wer}`).child("uid").set({
                   uid:wer,
           });
+        
       }
 
     });

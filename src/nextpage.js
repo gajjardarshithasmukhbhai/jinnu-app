@@ -31,6 +31,22 @@ import Typography from '@material-ui/core/Typography';
 import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import christ from './image/christ.jpg'
+//var admin = require('firebase-admin');
+
+/*const serviceAccount = require('./servicekey.json');
+const uid="some-uid";
+admin.auth().createCustomToken(uid)
+.then((customToken)=>{console.log(customToken);})
+.catch((err)=>{console.log(err);})
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://gajjar-great.firebaseio.com'
+});
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://gajjar-great.firebaseio.com'
+});*/
 var firebase=require("firebase");
 const theme = createMuiTheme({
 	palatte:indigo[400],
@@ -72,27 +88,32 @@ const usericon=style({
     marginLeft:theme.spacing.unit * 30,
 })
 class Nextpage extends React.Component{
+	
 	componentWillMount()
 	{
-		console.log("darshit");
+		console.log("darshit2");
 		var firebas=this.state.firebas;
 		var ert=[];
 		var item;
 		let i=0;
 		var ref=firebase.database().ref("users");
-			/*ref.on("value",snap=>{
-					   snap.forEach((ss) => {
-					   	console.log(i);
-					      this.state.firebas.push(ss.val());
-					      this.setState({
-					      	firebas:this.state.firebas,
-					      })
-					   });
-					   
-				this.wer=setInterval(this.bnm,0)
-			
-			})*/
-	}
+				ref.once("value").then(snap=>{
+						   snap.forEach((ss) => {
+						   	console.log(i);
+						      this.state.firebas.push(ss.val());
+						      this.setState({
+						      	firebas:this.state.firebas,
+						      })
+						      ++i;
+						     
+						   });
+						   
+					this.wer=setTimeout(this.bnm,0)
+				
+				})
+				.catch(err=>{console.log("gajjau error"+err.message)});
+			}
+				
 	constructor(props)
 	{
 		super(props);
@@ -102,6 +123,11 @@ class Nextpage extends React.Component{
       		direct:"hello",
       		refrerr:"",
       		firebas:[],
+      		val:null,
+      		uid:"",
+      		Redirect:false,
+      		MOB:1,
+      		photo:"",
 		}
 		this.username=this.username.bind(this);
 		this.password=this.password.bind(this);
@@ -114,11 +140,18 @@ class Nextpage extends React.Component{
 	bnm()
 	{
 		console.log("hasu-->");
-		this.state.firebas.map((ert,i)=>{
-			console.log(ert.uid.uid);
-		})
-		clearInterval(this.wer);
+		let i=0;
+	try
+		{
+		
 	}
+	catch(e)
+	{
+		this.setState({
+			firebas:this.state.firebas,
+		})
+	}
+}
 	username(f)
 	{
 		this.setState({
@@ -134,13 +167,41 @@ class Nextpage extends React.Component{
 	}
 	tr()
 	{
-		if(this.state.username!=null)
+		var wer;
+		this.state.firebas.map((ert,i)=>{
+					var i=i;
+					console.log(ert.username.name);
+					console.log(ert.Token.Token)
+					if(this.state.username===ert.username.name && this.state.password===ert.password.password)
+					{
+						wer=ert.uid.uid;
+						var Token=ert.Token.Token;
+						firebase.auth().signInWithRedirect(Token).then((wer)=>{
+							console.log("gajju");
+						})
+						.catch((err)=>{console.log(err.message);})
+						/*firebase.auth().signInWithCustomToken(Token).catch(function(error) {
+						  var errorCode = error.code;
+						  var errorMessage = error.message;
+						  console.log(errorMessage);
+						  console.log(errorCode);
+						});*/
+						this.setState({
+							Redirect:true,
+							uid:ert.uid.uid,
+							username:ert.username.name,
+							password:ert.password.password,
+							photo:ert.photo.photo,
+						})
+					}
+					else{
+						console.log("unsucessfull search");
+					}
+				})
+		/*if(this.state.username!=null)
 		{
-			this.setState({
-				Redirect:true,
-			})
-	
-		}
+			
+		}*/
 	}
 	Redirect()
 	{
@@ -149,9 +210,12 @@ class Nextpage extends React.Component{
 			return (<Redirect exact to={{
 				pathname:'/after-signin',
 						      	state:{
+						      		MOB:this.state.MOB,
 						      		noti:this.state.direct,
+									uid:this.state.uid,
 						      		password:this.state.password,
 						      		username:this.state.username,
+						      		photo:this.state.photo,
 						      	}}
 						      }/>)
 		}

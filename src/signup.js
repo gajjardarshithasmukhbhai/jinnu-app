@@ -66,18 +66,6 @@ const button=style({
 
 
 class Signup extends React.Component{
-componentWillMount()
-  {
-   let ert="zxcvWERTYUIobnmasdfghjklpoiuytrewq1234567890";
-   let lp="";
-   for(let i=0;i<=4;i++)
-   {
-     lp=lp+ert.charAt(Math.floor(Math.random()*ert.length))
-   }
-   this.setState({
-     password:lp,
-   }) 
-}
 	constructor(props)
 	{
 		super(props);
@@ -107,13 +95,17 @@ componentWillMount()
 	{
 		console.log("gajjar darshit ja");
 		var provider=new firebase.auth.GoogleAuthProvider();
+		console.log(provider);
 		var promise=firebase.auth().signInWithPopup(provider);
   		var qwe=this.state.password;
 
 		promise.then(result=>{
 			var user=result.user;
-			var ert=user.displayName;
+			var token = user.refreshToken/*result.credential.accessToken*/;
+			console.log("my accessToken ->"+token)
 
+			var ert=user.displayName;
+			console.log("emadjjjjjjjjjjjjjjjjjjjddjd->"+user.email);
 			this.setState({
 				der:"Welcome "+user+"in Jinu App",
 			})
@@ -122,6 +114,9 @@ componentWillMount()
 				name:user.displayName,	
 				email:user.email,
 							
+			});
+			firebase.database().ref("users/"+user.uid).child("Token").set({
+				Token:provider,					
 			});
 
 			firebase.auth().onAuthStateChanged(user => {
