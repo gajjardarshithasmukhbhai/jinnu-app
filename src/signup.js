@@ -112,12 +112,12 @@ class Signup extends React.Component{
 			
 			firebase.database().ref("users/"+user.uid).child("username").set({
 				name:user.displayName,	
-				email:user.email,
 							
 			});
-			firebase.database().ref("users/"+user.uid).child("Token").set({
-				Token:provider,					
+						firebase.database().ref("users/"+user.uid).child("Token").set({
+				Token:"Google",
 			});
+			
 
 			firebase.auth().onAuthStateChanged(user => {
 			  if(user) {
@@ -160,7 +160,9 @@ class Signup extends React.Component{
 			
 			firebase.database().ref("users/"+user.uid).child("username").set({
 				name:user.displayName,	
-				email:user.email			
+			});
+			firebase.database().ref("users/"+user.uid).child("Token").set({
+				Token:"facebook",
 			});
 
 			firebase.auth().onAuthStateChanged(user => {

@@ -171,28 +171,36 @@ class Nextpage extends React.Component{
 		this.state.firebas.map((ert,i)=>{
 					var i=i;
 					console.log(ert.username.name);
-					console.log(ert.Token.Token)
 					if(this.state.username===ert.username.name && this.state.password===ert.password.password)
 					{
 						wer=ert.uid.uid;
 						var Token=ert.Token.Token;
-						firebase.auth().signInWithPopup(Token).then((wer)=>{
-							console.log("gajju");
-						})
-						.catch((err)=>{console.log(err.message);})
+						if(Token=="Google")
+						{
+							var provider=new firebase.auth.GoogleAuthProvider();
+							var promise=firebase.auth().signInWithRedirect(provider);
+							this.setState({
+							Redirect:true,
+							uid:ert.uid.uid,
+							username:ert.username.name,
+							password:ert.password.password,
+							photo:ert.photo.photo,
+							})
+						}
+						else if(Token=="facebook"){
+							var provider=new firebase.auth.FacebookAuthProvider();
+							var promise=firebase.auth().signInWithRedirect(provider);
+							this.setState({
+								Redirect:true,
+							})
+						}
 						/*firebase.auth().signInWithCustomToken(Token).catch(function(error) {
 						  var errorCode = error.code;
 						  var errorMessage = error.message;
 						  console.log(errorMessage);
 						  console.log(errorCode);
 						});*/
-						this.setState({
-							Redirect:true,
-							uid:ert.uid.uid,
-							username:ert.username.name,
-							password:ert.password.password,
-							photo:ert.photo.photo,
-						})
+						
 					}
 					else{
 						console.log("unsucessfull search");
