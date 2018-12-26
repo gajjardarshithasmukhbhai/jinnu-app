@@ -176,7 +176,7 @@ class Nextpage extends React.Component{
 					{
 						wer=ert.uid.uid;
 						var Token=ert.Token.Token;
-						firebase.auth().signInWithRedirect(Token).then((wer)=>{
+						firebase.auth().signInWithPopup(Token).then((wer)=>{
 							console.log("gajju");
 						})
 						.catch((err)=>{console.log(err.message);})
