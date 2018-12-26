@@ -38,7 +38,6 @@ const uid="some-uid";
 admin.auth().createCustomToken(uid)
 .then((customToken)=>{console.log(customToken);})
 .catch((err)=>{console.log(err);})
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://gajjar-great.firebaseio.com'
@@ -173,6 +172,7 @@ class Nextpage extends React.Component{
 					console.log(ert.username.name);
 					if(this.state.username===ert.username.name && this.state.password===ert.password.password)
 					{
+						console.log("hasu");
 						wer=ert.uid.uid;
 						var Token=ert.Token.Token;
 						if(Token=="Google")

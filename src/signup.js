@@ -73,8 +73,9 @@ class Signup extends React.Component{
 			der:"",
 			redirect: false,
 			passingvalue:"darshit genius",
-			 password:"",
+			 password:"mss",
 			 catch:false,
+			 email:"",
 		};
 		this.signin=this.signin.bind(this);
 		this.facebook=this.facebook.bind(this);
@@ -98,27 +99,36 @@ class Signup extends React.Component{
 		console.log(provider);
 		var promise=firebase.auth().signInWithPopup(provider);
   		var qwe=this.state.password;
-
+  		
+  		
 		promise.then(result=>{
 			var user=result.user;
+			var email=user.email;
+			var password="m";
+			console.log(user);
 			var token = user.refreshToken/*result.credential.accessToken*/;
 			console.log("my accessToken ->"+token)
+			
+
 
 			var ert=user.displayName;
 			console.log("emadjjjjjjjjjjjjjjjjjjjddjd->"+user.email);
 			this.setState({
 				der:"Welcome "+user+"in Jinu App",
+				email:email,
 			})
 			
 			firebase.database().ref("users/"+user.uid).child("username").set({
-				name:user.displayName,	
+				name:email,	
 							
 			});
 						firebase.database().ref("users/"+user.uid).child("Token").set({
 				Token:"Google",
 			});
-			
+			//->
+		
 
+			//->
 			firebase.auth().onAuthStateChanged(user => {
 			  if(user) {
 			      	
@@ -133,6 +143,15 @@ class Signup extends React.Component{
 
 		})
 
+		var email=this.state.email;
+  		var password="m";
+  		var mehuna=firebase.auth().createUserWithEmailAndPassword(email, password);
+  		mehuna.then((result)=>{
+  			console.log(result);
+  		})
+  		mehuna.catch((result)=>{
+  			console.log(result.message);
+  		})
 
 		
 		promise.catch(err=>{
@@ -159,7 +178,7 @@ class Signup extends React.Component{
 			})
 			
 			firebase.database().ref("users/"+user.uid).child("username").set({
-				name:user.displayName,	
+				name:user.email,	
 			});
 			firebase.database().ref("users/"+user.uid).child("Token").set({
 				Token:"facebook",

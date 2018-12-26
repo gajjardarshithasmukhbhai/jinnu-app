@@ -58,19 +58,15 @@ const theme=createMuiTheme({
   }
 });
 console.log(theme);
-/*const admin = require('firebase-admin');
+//const admin = require('firebase-admin');
 
-const serviceAccount = require('./servicekey.json');
-const uid="some-uid";
-admin.auth().createCustomToken(uid)
-.then((customToken)=>{console.log(customToken);})
-.catch((err)=>{console.log(err);})
+//const serviceAccount = require('./servicekey.json');
+//const uid="some-uid";
+//admin.auth().createCustomToken(uid)
+//.then((customToken)=>{console.log(customToken);})
+//.catch((err)=>{console.log(err);})
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://gajjar-great.firebaseio.com'
-});
-*/
+
 var firebase=require("firebase");
 var config = {
     apiKey: "AIzaSyAuyVZN2Sfzs_I-KFg8OekpJ0dHJ7Sd_H8",
@@ -263,7 +259,7 @@ class Aftersignin extends React.Component{
    
     firebase.auth().onAuthStateChanged(user => {
         if(user.uid==this.state.uid) {
-        var ert=user.displayName;
+        var ert=user.email;
           var uuid=user.uid;
           this.setState({
               function:true,
@@ -531,7 +527,7 @@ class Aftersignin extends React.Component{
        console.log("cbjdnd");
        var wer=user.uid;
 
-        var ert=user.displayName;
+        var ert=user.email;
         var database=firebase.database();
         var ref=database.ref("users");
 //aa block control karo
@@ -554,20 +550,19 @@ class Aftersignin extends React.Component{
   }
 function(){
       var firebaseRef=firebase.database().ref("users");
-      var use = firebase.auth().currentUser;
-
+      
   firebase.auth().onAuthStateChanged((user) => {
       if (user.uid==this.state.uid) {
           var wer=user.uid;
-          var ert=user.displayName;
+          var ert=user.email;
           var photourl=user.photoURL;
-          var phonenumb=user.phoneNumber;
           var database=firebase.database();
           var ref=database.ref("users");
           database.ref("users").child(`${wer}`).child("password").child("password").on("value",snap=>{
             var rew=snap.val();            
             if(rew==null)
             {
+                
                 firebaseRef.child(`${wer}`).child("password").set({
                   password:this.state.password,
                 });
@@ -591,8 +586,7 @@ function(){
       }
 
     });
-  
-  
+
 }
 chnage_password()
 {
@@ -747,7 +741,7 @@ render()
         <br/><br/><br/>
         <div class="container">
             <div class="alert alert-primary"><span aria-hidden="true" data-dismiss="alert" class="close">&times;</span>
-            <b>welcome user in Darshit jinu app</b><br/>your username is:&nbsp;&nbsp;<b>{this.state.title_name}</b><br/>your password is:&nbsp;&nbsp;<b>{this.state.password}</b>
+            <b>welcome user in Darshit jinu app</b><br/>Username:&nbsp;<b>{this.state.title_name}</b><br/>password:&nbsp;&nbsp;<b>{this.state.password}</b>
             </div>
         </div>
         
