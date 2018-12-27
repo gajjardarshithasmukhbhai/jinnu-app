@@ -38,9 +38,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Paper from '@material-ui/core/Paper';
 import Slide from '@material-ui/core/Slide';
-
+//import SweetAlert from 'sweetalert-react';
 //var admin = require('firebase-admin');
-
+//import swal from 'sweetalert';
 /*const serviceAccount = require('./servicekey.json');
 const uid="some-uid";
 admin.auth().createCustomToken(uid)
@@ -96,7 +96,7 @@ const usericon=style({
 })
 class Nextpage extends React.Component{
 	
-	componentWillUpdate()
+	componentWillMount()
 	{
 		console.log("darshit2");
 		var firebas=this.state.firebas;
@@ -155,9 +155,8 @@ class Nextpage extends React.Component{
   };
   dialog()
   {
-  		return (<div>
-  			<Slide direction="up">
-  				   <Dialog
+  	if(this.state.open){
+  		return ( <Dialog
           open={this.state.open}
           keepMounted
           onClose={this.handleClose}
@@ -177,9 +176,8 @@ class Nextpage extends React.Component{
               Signup
             </Button>
           </DialogActions>
-        </Dialog>
-        </Slide>
-  		</div>)
+        </Dialog>);
+  	}
   }
   signup()
   {

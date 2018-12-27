@@ -20,6 +20,8 @@ import {IoIosArrowDropright} from 'react-icons/io';
 import {IoMdRose} from 'react-icons/io';
 import {lightGreen} from '@material-ui/core/colors/'
 import Change from './change_password.js'
+import swal from 'sweetalert';
+
 const right=style({
         width:25,
         height:30,
