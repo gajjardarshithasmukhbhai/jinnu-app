@@ -31,6 +31,14 @@ import Typography from '@material-ui/core/Typography';
 import {lightBlue,pink,grey,lime} from '@material-ui/core/colors/';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import christ from './image/christ.jpg'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Paper from '@material-ui/core/Paper';
+import Slide from '@material-ui/core/Slide';
+
 //var admin = require('firebase-admin');
 
 /*const serviceAccount = require('./servicekey.json');
@@ -124,8 +132,11 @@ class Nextpage extends React.Component{
       		firebas:[],
       		val:null,
       		uid:"",
+      		modal:false,
       		Redirect:false,
       		photo:"",
+      		open: false,
+      		signup:false,
 		}
 		this.username=this.username.bind(this);
 		this.password=this.password.bind(this);
@@ -133,8 +144,54 @@ class Nextpage extends React.Component{
 		this.tr=this.tr.bind(this);
 		this.bnm=this.bnm.bind(this);
 		this.Redirect=this.Redirect.bind(this);
+		this.handleClickOpen=this.handleClickOpen.bind(this);
+		this.handleClose=this.handleClose.bind(this);
 		this.handleClickShowPassword=this.handleClickShowPassword.bind(this);
+		this.dialog=this.dialog.bind(this);
+		this.signup=this.signup.bind(this);
 	}
+	handleClickOpen(){
+    this.setState({ open: true });
+  };
+  dialog()
+  {
+  		return (<div>
+  			<Slide direction="up">
+  				   <Dialog
+          open={this.state.open}
+          keepMounted
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            {`${this.state.username} your username or password wrong`}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              Let Google and Facebook help to signup/login. first signup please and the after login
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              Signup
+            </Button>
+          </DialogActions>
+        </Dialog>
+        </Slide>
+  		</div>)
+  }
+  signup()
+  {
+  	if(this.state.signup)
+  	{
+  		return (<Redirect eaxt to="/sign-up" />)
+  	}
+  }
+  handleClose(){
+    this.setState({ open: false,signup:true, });
+
+  };
 	bnm()
 	{
 		console.log("hasu-->");
@@ -178,13 +235,12 @@ class Nextpage extends React.Component{
 							var provider=new firebase.auth.GoogleAuthProvider();
 							var promise=firebase.auth().signInWithPopup(provider).then(()=>{
 								this.setState({
-									MOB:2,
 									Redirect:true,
 								})
 							});
 								
 						}
-						else if(Token=="facebook"){
+						else {
 							var provider=new firebase.auth.FacebookAuthProvider();
 							var promise=firebase.auth().signInWithRedirect(provider);
 							this.setState({
@@ -201,7 +257,10 @@ class Nextpage extends React.Component{
 					}
 
 					else{
-						console.log("unsucessfull search");
+						this.setState({
+							modal:true,
+							open:true
+						})
 					}
 				})
 		/*if(this.state.username!=null)
@@ -230,16 +289,20 @@ class Nextpage extends React.Component{
 	handleChange = prop => event => {
     this.setState({ [prop]: event.target.value });
   };
+  
   handleClickShowPassword = () => {
     this.setState({ showPassword: !this.state.showPassword });
   };
 render()
 {
 	 const { classes } = this.props;
-	 
+	 var dialog;
+
 	return(
 			<div>
 			{this.Redirect()}
+			{this.dialog()}
+			{this.signup()}
 			<br/><br/>
 				<AppBar className={appbar}>
 					<Toolbar >
