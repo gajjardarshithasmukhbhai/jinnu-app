@@ -259,7 +259,7 @@ class Aftersignin extends React.Component{
    
     firebase.auth().onAuthStateChanged(user => {
         if(user.uid==this.state.uid) {
-        var ert=user.email;
+        var ert=user.displayName;
           var uuid=user.uid;
           this.setState({
               function:true,
@@ -527,7 +527,7 @@ class Aftersignin extends React.Component{
        console.log("cbjdnd");
        var wer=user.uid;
 
-        var ert=user.email;
+        var ert=user.displayName;
         var database=firebase.database();
         var ref=database.ref("users");
 //aa block control karo
@@ -554,7 +554,7 @@ function(){
   firebase.auth().onAuthStateChanged((user) => {
       if (user.uid==this.state.uid) {
           var wer=user.uid;
-          var ert=user.email;
+          var ert=user.displayName;
           var photourl=user.photoURL;
           var database=firebase.database();
           var ref=database.ref("users");
@@ -579,10 +579,6 @@ function(){
           firebaseRef.child(`${wer}`).child("photo").set({
                   photo:photourl,
           });  
-        firebaseRef.child(`${wer}`).child("uid").set({
-                  uid:wer,
-          });
-        
       }
 
     });
@@ -682,7 +678,7 @@ render()
       <br/>
       <br/>
       <FaTree className={tree}/>
-      <h3 className="text-center">Merry Christmas</h3>
+      <h3 className="text-center">welcome 2019</h3>
     </div>
     );
   return(
@@ -750,7 +746,7 @@ render()
           <Card class={card}>
              <CardContent>
                 <TextField
-                  id="outlined-email-input"
+                  id="outlined-displayName-input"
                   label="Daily Task reminder"
                   className={textyu}
                   type="text"

@@ -125,7 +125,6 @@ class Nextpage extends React.Component{
       		val:null,
       		uid:"",
       		Redirect:false,
-      		MOB:1,
       		photo:"",
 		}
 		this.username=this.username.bind(this);
@@ -173,19 +172,17 @@ class Nextpage extends React.Component{
 					if(this.state.username===ert.username.name && this.state.password===ert.password.password)
 					{
 						console.log("hasu");
-						wer=ert.uid.uid;
 						var Token=ert.Token.Token;
 						if(Token=="Google")
 						{
 							var provider=new firebase.auth.GoogleAuthProvider();
-							var promise=firebase.auth().signInWithRedirect(provider);
-							this.setState({
-							Redirect:true,
-							uid:ert.uid.uid,
-							username:ert.username.name,
-							password:ert.password.password,
-							photo:ert.photo.photo,
-							})
+							var promise=firebase.auth().signInWithPopup(provider).then(()=>{
+								this.setState({
+									MOB:2,
+									Redirect:true,
+								})
+							});
+								
 						}
 						else if(Token=="facebook"){
 							var provider=new firebase.auth.FacebookAuthProvider();
@@ -202,6 +199,7 @@ class Nextpage extends React.Component{
 						});*/
 						
 					}
+
 					else{
 						console.log("unsucessfull search");
 					}

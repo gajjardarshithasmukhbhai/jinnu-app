@@ -103,7 +103,7 @@ class Signup extends React.Component{
   		
 		promise.then(result=>{
 			var user=result.user;
-			var email=user.email;
+			var email=user.displayName;
 			var password="m";
 			console.log(user);
 			var token = user.refreshToken/*result.credential.accessToken*/;
@@ -178,7 +178,7 @@ class Signup extends React.Component{
 			})
 			
 			firebase.database().ref("users/"+user.uid).child("username").set({
-				name:user.email,	
+				name:user.displayName,	
 			});
 			firebase.database().ref("users/"+user.uid).child("Token").set({
 				Token:"facebook",
