@@ -60,38 +60,134 @@ class Taksanalysis extends React.Component{
           });
           let n=wer.length;
           let i,j;
-       let dwe=this.state.chartData.datasets;
-       console.log(dwe);
-       
+       let dwe=this.state.dwe;
+            let m1=1;
+            let m2=1;
+            let m3=1;
+            let m4=1;
+            let m5=1;
+            let m6=1;
+            let m7=1;
+          for(let i=0;i<n;i++)
+          {
+            if(wer[i]==="Monday")
+            {
+            
+              ++m1;//2
+            }
+            else if(wer[i]=="Tuesday")
+            {
+              ++m2;
+            }
+            else if(wer[i]=="Wenesday")
+            {
+              ++m3;
+            }
+            else if(wer[i]=="Thursday")
+            {
+              ++m4;
+            }
+            else if(wer[i]=="Friday")
+            {
+              ++m5;
+              console.log(m5);
+            }
+            else if(wer[i]=="Saturday"){
+              ++m6;
+            }
+            else{
+              ++m7;
+            }
+          }
+          let q=[];
+          this.add=setTimeout(()=>{
+            q=this.state.data.map((ww)=>ww);
+            for(let i=0;i<q.length;i++)
+            {
+                if(q[i]=="Monday")
+                {
+                  dwe.push(10*(m1-1));
+                }
+                else if(q[i]=="Tuesday")
+                {
+                  dwe.push(10*(m2-1));
+                }
+                else if(q[i]=="Wendesday")
+                {
+                  dwe.push(10*(m3-1));
+                }
+                else if(q[i]=="Thursday")
+                {
+                  dwe.push(10*(m4-1));
+                }
+                else if(q[i]=="Friday")
+                {
+                  dwe.push(10*(m5-1));
+                }
+                else if(q[i]=="Saturday"){ 
+                  dwe.push(10*(m6-1));
+                }
+                else{
+                  dwe.push(10*(m7-1));
+
+                }
+            }
+            this.setState({
+              chart:true,
+              chartData:{
+              datasets:[{
+                    data:this.state.dwe,
+                    label:"Productivity Graph",
+                    backgroundColor:[
+            'rgba(5, 112, 194, 0.9)',
+            'rgba(5, 184, 194, 0.97)',
+            'rgba(194, 181, 5, 0.94)',
+            'rgba(222, 69, 110, 0.95)',
+            'rgba(223, 114, 214, 0.95)',
+            '#28DC68',
+            'rgba(87, 255, 36, 0.95)',
+          ]
+ 
+                  }]
+                }
+  
+            })
+          },30);
+
+          /*dwe.push(10*(tr-1));
+          dwe.push(10*(mm-1));
+          dwe.push(10*(sk-1));
+        */
           for(i=0;i<n;i++)
-       
           {
             for(j=i+1;j<n;)
             {
               if(wer[i]==wer[j])
               {
-                
+                console.log(wer[i]);
                 for(let k=j;k<n;k++)
                 {
                   wer[k]=wer[k+1];
+                  console.log(wer[k]);
                 }
                 n--;
 
               }
               else{
                 j++;
-                
+                console.log(j);
               }
-
+              console.log(wer[i]);
             }
             console.log(j)
           }
-                      
+                  
 
           for(let i=0;i<n;i++)
           {
             data.push(wer[i]);
           }
+
           this.setState({
               data:data,
             })
@@ -112,13 +208,14 @@ class Taksanalysis extends React.Component{
 			back:false,
 			logout:false,
 			name:"",
-      dwe:[56,45,78],
+      dwe:[],
+      chart:false,
 			chartData:{
         labels:[],
                 datasets:[{
           label:"Productivity Graph",
           fill: true,
-          data:[43,83,87],
+          data:[],
           backgroundColor:[
             'rgba(5, 112, 194, 0.9)',
             'rgba(5, 184, 194, 0.97)',
@@ -132,11 +229,12 @@ class Taksanalysis extends React.Component{
       }  
       }
 		
-  	    this.toggleDrawer=this.toggleDrawer.bind(this);
-  	    this.back=this.back.bind(this);
+  	  this.toggleDrawer=this.toggleDrawer.bind(this);
+  	  this.back=this.back.bind(this);
     	this.backing=this.backing.bind(this);
     	this.logout=this.logout.bind(this);
     	this.logouting=this.logouting.bind(this);
+      this.chart=this.chart.bind(this);
 	}
 	
 	toggleDrawer = (open) => () => {
@@ -169,6 +267,13 @@ class Taksanalysis extends React.Component{
     if(this.state.logout)
     {
       return <Redirect to="/next-page"/>
+    }
+  }
+  chart()
+  {
+    if(this.state.chart)
+    {
+
     }
   }
   
@@ -235,19 +340,20 @@ render()
         	<div class="text-muted">
         	<Paper>
         	<div>
-        		<Bar
+        		
+
+          
+            <Bar
 					data={this.state.chartData}
 					width={100}
 					height={130}
 					options={{
-
-
 						 tooltips: {
 						 	backgroundColor:"#F1258F",
 						 	bodyFontSize:16,
 						 			},
 						 animation:{
-						 	duration:2000,
+						 	duration:1000,
 						 	animateScale:true,
 						 	animateRotate:true
 						 },
