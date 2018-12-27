@@ -96,7 +96,7 @@ const usericon=style({
 })
 class Nextpage extends React.Component{
 	
-	componentWillMount()
+	componentWillUpdate()
 	{
 		console.log("darshit2");
 		var firebas=this.state.firebas;
