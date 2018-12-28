@@ -21,7 +21,8 @@ import {IoMdRose} from 'react-icons/io';
 import {lightGreen} from '@material-ui/core/colors/'
 import Change from './change_password.js'
 import swal from 'sweetalert';
-
+import Ratings from './rating.js'
+import StarRatingComponent from 'react-star-rating-component';
 const right=style({
         width:25,
         height:30,
@@ -65,6 +66,7 @@ ReactDOM.render(
 	<Route exact path="/newspaper" component={Newspaper}/>
 	<Route exact path="/taskanalysis" component={Taksanalysis}/>
 	<Route exact path="/change" component={Change}/>
+	<Route exact path="/rating" component={Ratings}/>
 </div>
 </Router>
 	,document.getElementById("root"));

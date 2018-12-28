@@ -169,7 +169,7 @@ const nava2=style({
 const actions = [
   { icon: <TiLockClosedOutline className={nava1}/>, name: <p class="password">change Password</p> },
   { icon: <TiChartBarOutline className={nava}/>, name: <p class="password">Task Analystics</p> },
-  { icon: <MdThumbUp className={nava2}/>, name: <p class="password">Review</p> },
+  { icon: <MdThumbUp className={nava2}/>, name: <p class="password">Rating</p> },
 ];
 const root=style({
   flexGrow: 1,
@@ -316,6 +316,7 @@ class Aftersignin extends React.Component{
     this.mara_data=this.mara_data.bind(this); 
     this.delete=this.delete.bind(this);
     this.bnm=this.bnm.bind(this);
+    this.rating=this.rating.bind(this);
     this.chnage_password=this.chnage_password.bind(this);
   }
   bnm()
@@ -393,6 +394,13 @@ class Aftersignin extends React.Component{
     }
     
   }
+  rating()
+  {
+    if(this.state.rating)
+    {
+      return <Redirect to="/rating"/>
+    }
+  }
   inbox()
   {
     this.setState({
@@ -440,6 +448,12 @@ class Aftersignin extends React.Component{
     {
       this.setState({
         chnage_password:true,
+      })
+    }
+    else if(i==2)
+    {
+      this.setState({
+        rating:true,
       })
     }
     this.setState(state => ({
@@ -689,6 +703,7 @@ render()
       {this.taskanalysis_open()}
       {this.chnage_password()}
       {this.inbox_pages()}
+      {this.rating()}
     {/* sidebar open karva mate thay che */}
     <SwipeableDrawer
           open={this.state.left}
