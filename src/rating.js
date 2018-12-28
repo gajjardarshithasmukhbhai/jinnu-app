@@ -130,14 +130,13 @@ class Ratings extends React.Component{
     {
       console.log("hasu");
                   var database=firebase.database().ref("users");
-console.log(database.val());
       firebase.auth().onAuthStateChanged(user => {
-        if(user.uid==this.state.uid) {
+        if(user) {
                   var uidd=user.uid;
     
-                  
+                  console.log(uidd);
     console.log("hitesh");
-                  var ref=database.child(uidd).child("rate").set({
+                  database.child(uidd).child("rate").set({
                     rate:this.state.rating,
                     comment:this.state.multiline,
                   });
@@ -151,11 +150,13 @@ console.log(database.val());
   {
     this.setState({
       multiline:e.target.value,
+      checkedB:false,
     })
   }
    handleChange = name => event => {
     console.log(event.target.checked);
     this.setState({ [name]: event.target.checked });
+
   };
 
 onStarClick(nextValue, prevValue, name) {
