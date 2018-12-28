@@ -36,7 +36,7 @@ const menuicon=style({
   outline:"0 !important;",
 })
 class Taksanalysis extends React.Component{
-	componentDidMount()
+	componentWillMount()
 	{
     var data=this.state.chartData.labels;
     console.log(data);
@@ -101,6 +101,7 @@ class Taksanalysis extends React.Component{
           }
           let q=[];
           this.add=setTimeout(()=>{
+try{
             q=this.state.data.map((ww)=>ww);
             for(let i=0;i<q.length;i++)
             {
@@ -133,6 +134,11 @@ class Taksanalysis extends React.Component{
 
                 }
             }
+}
+catch(err)
+{
+  console.log(err.message);
+}
             this.setState({
               chart:true,
               chartData:{
