@@ -682,7 +682,7 @@ render()
       <ListItemIcon>
         <BusinessIcon />
       </ListItemIcon>
-      <ListItemText primary="company details" />
+      <a href="https://mern-cismox.herokuapp.com"><ListItemText primary="company details"/></a>
     </ListItem>
     <ListItem button>
         <p class="text text-muted">Mr.Darshit Gajjar(Devloper)</p><br/>
@@ -797,9 +797,6 @@ render()
             
             <IconButton aria-label="Delete" color="primary" value={i} onClick={()=>{this.delete(i)}} className={outline}>
                   <DeleteIcon />
-              </IconButton>
-              <IconButton  aria-label="Edit" color="secondary" className={outline}>
-                  <EditIcon/>
               </IconButton>
               
             </ListItem>
