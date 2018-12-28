@@ -139,13 +139,13 @@ class Taksanalysis extends React.Component{
                     data:this.state.dwe,
                     label:"Productivity Graph",
                     backgroundColor:[
-            'rgba(5, 112, 194, 0.9)',
-            'rgba(5, 184, 194, 0.97)',
-            'rgba(194, 181, 5, 0.94)',
-            'rgba(222, 69, 110, 0.95)',
+            '#FF5722',
+            '#EEFF41',
+            '#039BE5',
+            '#304FFE',
             'rgba(223, 114, 214, 0.95)',
-            '#28DC68',
-            'rgba(87, 255, 36, 0.95)',
+            '#D500F9',
+            '#E91E63',
           ]
  
                   }]
@@ -216,15 +216,7 @@ class Taksanalysis extends React.Component{
           label:"Productivity Graph",
           fill: true,
           data:[],
-          backgroundColor:[
-            'rgba(5, 112, 194, 0.9)',
-            'rgba(5, 184, 194, 0.97)',
-            'rgba(194, 181, 5, 0.94)',
-            'rgba(222, 69, 110, 0.95)',
-            'rgba(223, 114, 214, 0.95)',
-            '#28DC68',
-            'rgba(87, 255, 36, 0.95)',
-          ]
+         
         }],
       }  
       }
@@ -349,13 +341,22 @@ render()
 					height={130}
 					options={{
 						 tooltips: {
-						 	backgroundColor:"#F1258F",
+						 	backgroundColor:"rgba(223, 114, 214, 0.95)",
 						 	bodyFontSize:16,
 						 			},
+                  legend: {
+            display: true,
+            labels: {
+                fontColor: '#FFB300',
+                fontSize:16,
+            }
+        },
+
+
 						 animation:{
-						 	duration:1000,
-						 	animateScale:true,
-						 	animateRotate:true
+						 	duration:8500,
+              easing:'easeInOutBack',
+						 	
 						 },
 						 title: {
 								    display: true,
