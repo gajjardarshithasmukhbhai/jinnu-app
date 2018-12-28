@@ -79,7 +79,7 @@ class Taksanalysis extends React.Component{
             {
               ++m2;
             }
-            else if(wer[i]=="Wenesday")
+            else if(wer[i]=="Wendesday")
             {
               ++m3;
             }
@@ -104,6 +104,7 @@ class Taksanalysis extends React.Component{
             q=this.state.data.map((ww)=>ww);
             for(let i=0;i<q.length;i++)
             {
+              console.log(q[2]);
                 if(q[i]=="Monday")
                 {
                   dwe.push(10*(m1-1));
@@ -344,10 +345,18 @@ render()
 						 	backgroundColor:"rgba(223, 114, 214, 0.95)",
 						 	bodyFontSize:16,
 						 			},
+                   scales: {
+                yAxes : [{
+                    ticks : {
+                        //max : 100,    
+                        min : 0,
+                    }
+                }]
+            },
                   legend: {
             display: true,
             labels: {
-                fontColor: '#FFB300',
+                fontColor: '#FFB300', 
                 fontSize:16,
             }
         },
