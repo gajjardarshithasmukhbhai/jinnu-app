@@ -11,8 +11,8 @@ I give security features like
 **in this web-app i learn lot**
 ---
 ```
-in this web-app my main priority not only making webApp.But Also security si
-I give security features like 
+in this web-app my main priority not only making webApp.
+I give new features like 
 ->react js
 ->data-visualization
 ->Encrypted protection system
